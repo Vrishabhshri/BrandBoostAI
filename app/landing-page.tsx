@@ -142,8 +142,9 @@ export default function LandingPage() {
               viewport={{ once: true }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 z-10"></div>
+              {/* \public\assets\hero.png */}
               <img 
-                src="/placeholder.svg?height=600&width=1200" 
+                src="/assets/hero.png?height=600&width=1200" 
                 alt="BrandBoost.ai Dashboard Preview" 
                 className="w-full h-auto"
               />
