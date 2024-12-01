@@ -1,292 +1,284 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  CheckCircle,
-  BarChart2,
-  Calendar,
-  Users,
-  ArrowRight,
-} from "lucide-react";
+"use client"
+
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Meteors } from "@/components/ui/meteors"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, BarChart2, Zap, Shield, Sparkles, Play } from 'lucide-react'
+// import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
+// import { ScrollArea } from "@/components/ui/scroll-area"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { GlowingStars } from "@/components/ui/glowing-stars"
+import { FloatingNavDemo } from "@/components/ui/floating-navbar"
 
 export default function LandingPage() {
+  const { scrollYProgress } = useScroll()
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+  const [activeTab, setActiveTab] = useState("overview")
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['features', 'demo', 'testimonials', 'pricing']
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+      if (currentSection) setActiveTab(currentSection)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-14 flex items-center justify-center">
-        <Link className="flex items-center justify-center" href="#">
-          <BarChart2 className="h-6 w-6" />
-          <span className="sr-only">BrandBoost</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
-            href="#features"
+    <div className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black text-white overflow-hidden">
+      <FloatingNavDemo navItems={[
+        {
+          name: "Features",
+          link: "#features",
+        },
+        {
+          name: "Demo",
+          link: "#demo",
+        },
+        {
+          name: "Testimonials",
+          link: "#testimonials",
+        },
+        {
+          name: "Pricing",
+          link: "#pricing",
+        },
+      ]} />
+
+      <main>
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+          <Meteors number={20} />
+          <GlowingStars />
+          <motion.div 
+            className="container mx-auto px-4 text-center relative z-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: -10 }}
+            transition={{ duration: 1.8 }}
           >
-            Features
-          </Link>
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
-            href="#pricing"
-          >
-            Pricing
-          </Link>
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
-            href="#testimonials"
-          >
-            Testimonials
-          </Link>
-        </nav>
-      </header>
-      <main className="flex-1 items-center justify-center">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  Boost Your Brand with BrandBoost
-                </h1>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Streamline your social media management, analyze your
-                  performance, and grow your brand with our all-in-one platform.
-                </p>
-              </div>
-              <div className="space-x-4">
-                <Link href="/dashboard">
-                  <Button>Get Started</Button>{" "}
-                  {/* Wrap the Button in a Link component */}
-                </Link>
-                <Link href="competitor-dashboard">
-                  <Button variant="outline">Learn More</Button>
-                </Link>
-              </div>
-            </div>
-          </div>
+            <motion.h1 
+              className="text-5xl md:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Supercharge Your Social Media Strategy
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl mb-8 text-zinc-300 max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              Harness the power of AI to boost your brand's presence, engage your audience, and stay ahead of the competition.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <Link href="/dashboard">
+                <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
+                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
+          <motion.div 
+            className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent"
+            style={{ y }}
+          />
         </section>
-        <section
-          id="features"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
-        >
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
-              Key Features
+
+        <section id="features" className="py-20 bg-zinc-900">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+              Powerful Features
             </h2>
-            <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
-              <Card>
-                <CardHeader>
-                  <BarChart2 className="h-10 w-10 mb-2 text-primary" />
-                  <CardTitle>Advanced Analytics</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    Gain deep insights into your social media performance with
-                    our comprehensive analytics tools.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <Calendar className="h-10 w-10 mb-2 text-primary" />
-                  <CardTitle>Content Calendar</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    Plan and schedule your content across multiple platforms
-                    with our intuitive content calendar.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <Users className="h-10 w-10 mb-2 text-primary" />
-                  <CardTitle>Audience Insights</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    Understand your audience better with detailed demographic
-                    and engagement data.
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                { icon: BarChart2, title: "Advanced Analytics", description: "Gain deep insights into your social media performance with our cutting-edge analytics tools." },
+                { icon: Zap, title: "AI-Powered Content", description: "Generate engaging content tailored to your brand voice and audience preferences." },
+                { icon: Shield, title: "Competitor Analysis", description: "Stay ahead of the game by tracking and analyzing your competitors' strategies." },
+                { icon: Sparkles, title: "Trend Prediction", description: "Leverage AI to predict upcoming trends and stay ahead of the curve." },
+              ].map((feature, index) => (
+                <motion.div 
+                  key={index} 
+                  className="bg-zinc-800 p-6 rounded-lg shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <feature.icon className="h-12 w-12 mb-4 text-blue-500" />
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-zinc-400">{feature.description}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
-        <section id="pricing" className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
-              Pricing Plans
+
+        <section id="demo" className="py-20 bg-gradient-to-b from-zinc-900 to-black">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+              See BrandBoost.ai in Action
             </h2>
-            <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Starter</CardTitle>
-                  <CardDescription>
-                    Perfect for small businesses
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-4xl font-bold mb-2">$29/mo</div>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>5 social media accounts</span>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>Basic analytics</span>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>Content calendar</span>
-                    </li>
-                  </ul>
-                  <Button className="w-full mt-6">Choose Plan</Button>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Professional</CardTitle>
-                  <CardDescription>Ideal for growing brands</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-4xl font-bold mb-2">$79/mo</div>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>15 social media accounts</span>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>Advanced analytics</span>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>Content calendar & scheduling</span>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>Audience insights</span>
-                    </li>
-                  </ul>
-                  <Button className="w-full mt-6">Choose Plan</Button>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Enterprise</CardTitle>
-                  <CardDescription>For large-scale operations</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-4xl font-bold mb-2">Custom</div>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>Unlimited social media accounts</span>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>Custom analytics & reporting</span>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>Advanced content planning tools</span>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                      <span>Dedicated account manager</span>
-                    </li>
-                  </ul>
-                  <Button className="w-full mt-6">Contact Sales</Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-        <section
-          id="testimonials"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
-        >
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
-              What Our Customers Say
-            </h2>
-            <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="mb-4">
-                    "BrandBoost has revolutionized our social media strategy.
-                    The insights we've gained have been invaluable."
-                  </p>
-                  <p className="font-semibold">
-                    - Sarah J., Marketing Director
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="mb-4">
-                    "The content calendar feature has saved us so much time. Our
-                    team is more organized and efficient than ever."
-                  </p>
-                  <p className="font-semibold">
-                    - Mike T., Social Media Manager
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="mb-4">
-                    "The customer support team at BrandBoost is exceptional.
-                    They're always there to help us get the most out of the
-                    platform."
-                  </p>
-                  <p className="font-semibold">
-                    - Emily R., Small Business Owner
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Ready to Boost Your Brand?
-                </h2>
-                <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Join thousands of businesses that are growing their brand with
-                  BrandBoost.
-                </p>
+            <motion.div 
+              className="relative rounded-lg overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 z-10"></div>
+              <img 
+                src="/placeholder.svg?height=600&width=1200" 
+                alt="BrandBoost.ai Dashboard Preview" 
+                className="w-full h-auto"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Button size="lg" className="bg-white text-zinc-900 hover:bg-zinc-200 font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 z-20">
+                  <Play className="mr-2 h-5 w-5" /> Watch Demo
+                </Button>
               </div>
-              <Button className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                Get Started Now
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="testimonials" className="py-20 bg-zinc-900">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+              What Our Clients Say
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { name: "Sarah Johnson", role: "Marketing Director", company: "TechCorp", quote: "BrandBoost.ai has revolutionized our social media strategy. The AI-powered insights are invaluable!" },
+                { name: "Michael Chen", role: "Social Media Manager", company: "FashionNova", quote: "The competitor analysis feature has given us a significant edge in our industry. Highly recommended!" },
+                { name: "Emily Rodriguez", role: "CEO", company: "StartupX", quote: "As a startup, BrandBoost.ai has been a game-changer for us. It's like having an entire marketing team at our fingertips." },
+              ].map((testimonial, index) => (
+                <motion.div 
+                  key={index} 
+                  className="bg-zinc-800 p-6 rounded-lg shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <p className="text-zinc-300 mb-4">"{testimonial.quote}"</p>
+                  <div className="flex items-center">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white font-bold text-xl">
+                      {testimonial.name[0]}
+                    </div>
+                    <div className="ml-4">
+                      <p className="font-semibold">{testimonial.name}</p>
+                      <p className="text-sm text-zinc-400">{testimonial.role}, {testimonial.company}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing" className="py-20 bg-black">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+              Choose Your Plan
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { name: "Starter", price: "$49", features: ["Basic Analytics", "Content Suggestions", "1 Social Account"] },
+                { name: "Pro", price: "$99", features: ["Advanced Analytics", "AI Content Generation", "5 Social Accounts", "Competitor Tracking"] },
+                { name: "Enterprise", price: "Custom", features: ["Full Suite Access", "Dedicated Account Manager", "Unlimited Social Accounts", "Custom Integrations"] },
+              ].map((plan, index) => (
+                <motion.div 
+                  key={index} 
+                  className="bg-zinc-800 rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="p-6 bg-gradient-to-r from-purple-600 to-blue-600">
+                    <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                    <p className="text-4xl font-extrabold">{plan.price}</p>
+                    <p className="text-sm text-zinc-200">per month</p>
+                  </div>
+                  <div className="p-6">
+                    <ul className="mb-6 space-y-2">
+                      {plan.features.map((feature, i) => (
+                        <li key={i} className="flex items-center">
+                          <svg className="h-5 w-5 text-green-500 mr-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-300">
+                      Get Started
+                    </Button>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          © 2024 BrandBoost. All rights reserved.
-        </p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Terms of Service
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Privacy
-          </Link>
-        </nav>
+
+      <footer className="bg-zinc-900 py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Product</h4>
+              <ul className="space-y-2">
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Features</Link></li>
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Pricing</Link></li>
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Case Studies</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Company</h4>
+              <ul className="space-y-2">
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Careers</Link></li>
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Resources</h4>
+              <ul className="space-y-2">
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Blog</Link></li>
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Help Center</Link></li>
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">API Docs</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Connect</h4>
+              <ul className="space-y-2">
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Twitter</Link></li>
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">LinkedIn</Link></li>
+                <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Facebook</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-12 pt-8 border-t border-zinc-800 text-center text-zinc-400">
+            <p>&copy; 2024 BrandBoost.ai. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
+

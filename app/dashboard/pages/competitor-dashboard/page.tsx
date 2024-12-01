@@ -1,7 +1,7 @@
 import { Instagram, Lock } from "lucide-react"
 
-import { MetricCard } from "@/components/ui/metric-card"
-import { NavHeader } from "@/components/ui/nav-header"
+import { MetricCard } from "@/app/dashboard/components/metric-card"
+import { NavHeader } from "@/app/dashboard/components/nav-header"
 
 export default function OverviewPage() {
   return (

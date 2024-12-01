@@ -49,3 +49,4 @@ export function CompanyInfo({ name, instagram, facebook }: CompanyInfoProps) {
     </Card>
   )
 }
+

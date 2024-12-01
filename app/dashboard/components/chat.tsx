@@ -85,7 +85,6 @@ export function Chat() {
           >
             {message.text}
           </div>
-        //   
         ))}
         {mentionedCompany && (
           <CompanyInfo

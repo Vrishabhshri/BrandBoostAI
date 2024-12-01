@@ -1,0 +1,75 @@
+{
+    "totalFollowers": 45231,
+    "followerGrowth": 20.1,
+    "engagementRate": 5.67,
+    "engagementGrowth": 1.2,
+    "postReach": 95211,
+    "reachGrowth": 10.5,
+    "brandMentions": 1232,
+    "mentionsGrowth": 8.2,
+    "recentPosts": [
+      {
+        "title": "Summer Collection Launch",
+        "likes": 2300,
+        "comments": 500,
+        "reach": 15000,
+        "growth": 15.5
+      },
+      {
+        "title": "Product Update",
+        "likes": 1800,
+        "comments": 300,
+        "reach": 12000,
+        "growth": 10.2
+      },
+      {
+        "title": "Customer Story",
+        "likes": 2100,
+        "comments": 450,
+        "reach": 13500,
+        "growth": 12.8
+      }
+    ],
+    "competitors": [
+      {
+        "name": "Uniqlo",
+        "instagram": [
+          {
+            "followers": 2500000,
+            "increase_percentage": 6,
+            "hashtags": ["#uniqlo", "#fashion", "#style", "#comfort"],
+            "content": "Discover our new summer collection! Comfortable and stylish pieces for everyone."
+          }
+        ],
+        "facebook": [
+          {
+            "followers": 4000000,
+            "increase_percentage": 3.5,
+            "hashtags": ["#uniqlo", "#fashion", "#summerstyle"],
+            "content": "Beat the heat with our breathable fabrics. Shop our summer essentials now!"
+          }
+        ]
+      },
+      {
+        "name": "H&M",
+        "instagram": [
+          {
+            "followers": 3600000,
+            "increase_percentage": 4.2,
+            "hashtags": ["#HM", "#fashion", "#sustainablestyle"],
+            "content": "Sustainable fashion for a better future. Check out our eco-conscious collection."
+          }
+        ],
+        "facebook": [
+          {
+            "followers": 5500000,
+            "increase_percentage": 2.8,
+            "hashtags": ["#HM", "#fashion", "#summerlook"],
+            "content": "Get ready for summer with H&M. Find your perfect beach outfit today!"
+          }
+        ]
+      }
+    ]
+  }
+  
+  
