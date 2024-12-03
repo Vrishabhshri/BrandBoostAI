@@ -1,0 +1,244 @@
+{
+  "companies": [
+    {
+      "name": "Nike",
+      "followers": 120000000,
+      "percentageChange": "+4.2%",
+      "likes": 1500000,
+      "about": "Leading sportswear and footwear brand focused on innovation and performance.",
+      "posts": 8500,
+      "replies": 120000,
+      "hashtags": ["#JustDoIt", "#Nike", "#Athleisure"],
+      "mentions": 210000,
+      "engagementRate": "12.5%",
+      "platforms": ["Instagram", "Twitter", "Facebook"],
+      "topPerformingPost": {
+        "likes": 300000,
+        "comments": 25000,
+        "shares": 5000,
+        "content": "Our new AirMax 2024 is here. Innovation redefined. #JustDoIt",
+        "date": "2024-11-15"
+      }
+    },
+    {
+      "name": "Uniqlo",
+      "followers": 58000000,
+      "percentageChange": "+3.8%",
+      "likes": 1200000,
+      "about": "Global Japanese apparel brand delivering everyday essentials and casual wear.",
+      "posts": 4500,
+      "replies": 80000,
+      "hashtags": ["#LifeWear", "#Uniqlo", "#StyleForAll"],
+      "mentions": 180000,
+      "engagementRate": "10.2%",
+      "platforms": ["Instagram", "Twitter", "LinkedIn"],
+      "topPerformingPost": {
+        "likes": 220000,
+        "comments": 18000,
+        "shares": 4200,
+        "content": "Stay cozy with our Heattech collection. Perfect for winter days. #LifeWear",
+        "date": "2024-11-20"
+      }
+    },
+    {
+      "name": "Adidas",
+      "followers": 95000000,
+      "percentageChange": "+5.1%",
+      "likes": 1300000,
+      "about": "Sporting goods leader known for innovation and style.",
+      "posts": 7800,
+      "replies": 150000,
+      "hashtags": ["#ImpossibleIsNothing", "#Adidas", "#SportsStyle"],
+      "mentions": 250000,
+      "engagementRate": "13.1%",
+      "platforms": ["Instagram", "Twitter", "Facebook"],
+      "topPerformingPost": {
+        "likes": 290000,
+        "comments": 21000,
+        "shares": 4900,
+        "content": "Pushing the limits with our Ultraboost 25. Are you ready? #ImpossibleIsNothing",
+        "date": "2024-11-10"
+      }
+    },
+    {
+      "name": "Apple",
+      "followers": 250000000,
+      "percentageChange": "+6.0%",
+      "likes": 3000000,
+      "about": "Innovative technology company revolutionizing personal devices.",
+      "posts": 2000,
+      "replies": 300000,
+      "hashtags": ["#Apple", "#ThinkDifferent", "#iPhone16"],
+      "mentions": 500000,
+      "engagementRate": "15.2%",
+      "platforms": ["Instagram", "Twitter", "YouTube"],
+      "topPerformingPost": {
+        "likes": 800000,
+        "comments": 120000,
+        "shares": 12000,
+        "content": "Introducing iPhone 16 Pro. Beyond imagination. #ThinkDifferent",
+        "date": "2024-11-01"
+      }
+    },
+    {
+      "name": "Samsung",
+      "followers": 180000000,
+      "percentageChange": "+4.8%",
+      "likes": 2500000,
+      "about": "Global leader in consumer electronics and home technology.",
+      "posts": 3500,
+      "replies": 220000,
+      "hashtags": ["#Samsung", "#GalaxyS25", "#InnovationForAll"],
+      "mentions": 320000,
+      "engagementRate": "14.3%",
+      "platforms": ["Instagram", "Twitter", "YouTube"],
+      "topPerformingPost": {
+        "likes": 750000,
+        "comments": 100000,
+        "shares": 15000,
+        "content": "The Galaxy S25 is here. Experience the future of smartphones. #InnovationForAll",
+        "date": "2024-10-28"
+      }
+    },
+    {
+      "name": "H&M",
+      "followers": 65000000,
+      "percentageChange": "+2.5%",
+      "likes": 900000,
+      "about": "Affordable fashion and sustainability combined.",
+      "posts": 5600,
+      "replies": 60000,
+      "hashtags": ["#HM", "#ConsciousFashion", "#StyleForAll"],
+      "mentions": 100000,
+      "engagementRate": "8.7%",
+      "platforms": ["Instagram", "Facebook", "Pinterest"],
+      "topPerformingPost": {
+        "likes": 180000,
+        "comments": 12000,
+        "shares": 3000,
+        "content": "New collection drop! Refresh your wardrobe. #ConsciousFashion",
+        "date": "2024-11-12"
+      }
+    },
+    {
+      "name": "Zara",
+      "followers": 70000000,
+      "percentageChange": "+3.6%",
+      "likes": 950000,
+      "about": "Fast fashion brand delivering on-trend collections.",
+      "posts": 4000,
+      "replies": 50000,
+      "hashtags": ["#Zara", "#EffortlessStyle", "#TrendingNow"],
+      "mentions": 110000,
+      "engagementRate": "9.2%",
+      "platforms": ["Instagram", "Twitter", "Pinterest"],
+      "topPerformingPost": {
+        "likes": 200000,
+        "comments": 15000,
+        "shares": 4500,
+        "content": "Step into the season with our latest arrivals. #EffortlessStyle",
+        "date": "2024-11-08"
+      }
+    },
+    {
+      "name": "Coca-Cola",
+      "followers": 110000000,
+      "percentageChange": "+3.9%",
+      "likes": 1400000,
+      "about": "The world's most iconic beverage brand.",
+      "posts": 7200,
+      "replies": 250000,
+      "hashtags": ["#ShareACoke", "#CocaCola", "#RefreshingMoments"],
+      "mentions": 350000,
+      "engagementRate": "11.8%",
+      "platforms": ["Instagram", "Twitter", "Facebook"],
+      "topPerformingPost": {
+        "likes": 250000,
+        "comments": 20000,
+        "shares": 4000,
+        "content": "Celebrating 100 years of refreshing moments. #ShareACoke",
+        "date": "2024-11-15"
+      }
+    },
+    {
+      "name": "Pepsi",
+      "followers": 90000000,
+      "percentageChange": "+4.1%",
+      "likes": 1250000,
+      "about": "Globally loved beverage brand delivering bold flavors.",
+      "posts": 6900,
+      "replies": 220000,
+      "hashtags": ["#Pepsi", "#BoldTaste", "#PepsiMoments"],
+      "mentions": 320000,
+      "engagementRate": "10.9%",
+      "platforms": ["Instagram", "Twitter", "TikTok"],
+      "topPerformingPost": {
+        "likes": 240000,
+        "comments": 18000,
+        "shares": 3700,
+        "content": "Bold moves, bold taste. Experience Pepsi like never before. #BoldTaste",
+        "date": "2024-11-14"
+      }
+    },
+    {
+      "name": "Tesla",
+      "followers": 98000000,
+      "percentageChange": "+7.0%",
+      "likes": 1800000,
+      "about": "Pioneering the future of sustainable energy and transportation.",
+      "posts": 1200,
+      "replies": 170000,
+      "hashtags": ["#Tesla", "#SustainableFuture", "#ElectricVehicles"],
+      "mentions": 410000,
+      "engagementRate": "19.5%",
+      "platforms": ["Twitter", "YouTube", "Instagram"],
+      "topPerformingPost": {
+        "likes": 500000,
+        "comments": 85000,
+        "shares": 9500,
+        "content": "The future is here. Meet the Tesla Cybertruck. #SustainableFuture",
+        "date": "2024-11-16"
+      }
+    },
+    {
+      "name": "McDonald's",
+      "followers": 80000000,
+      "percentageChange": "+3.4%",
+      "likes": 1100000,
+      "about": "Global fast-food chain serving smiles worldwide.",
+      "posts": 9500,
+      "replies": 260000,
+      "hashtags": ["#McDonalds", "#ImLovinIt", "#FastFoodFun"],
+      "mentions": 280000,
+      "engagementRate": "9.8%",
+      "platforms": ["Instagram", "Facebook", "Twitter"],
+      "topPerformingPost": {
+        "likes": 230000,
+        "comments": 19000,
+        "shares": 5000,
+        "content": "Double the fun with our Double Cheeseburger deal. #ImLovinIt",
+        "date": "2024-11-17"
+      }
+    },
+    {
+      "name": "Starbucks",
+      "followers": 90000000,
+      "percentageChange": "+3.9%",
+      "likes": 1250000,
+      "about": "Global coffeehouse chain inspiring and nurturing the human spirit.",
+      "posts": 6300,
+      "replies": 140000,
+      "hashtags": ["#Starbucks", "#CoffeeCulture", "#PumpkinSpiceLatte"],
+      "mentions": 320000,
+      "engagementRate": "10.5%",
+      "platforms": ["Instagram", "Facebook", "Pinterest"],
+      "topPerformingPost": {
+        "likes": 260000,
+        "comments": 20000,
+        "shares": 4700,
+        "content": "Pumpkin Spice Latte is back! Fall flavors are here. #PumpkinSpiceLatte",
+        "date": "2024-11-18"
+      }
+    }
+  ]
+}
