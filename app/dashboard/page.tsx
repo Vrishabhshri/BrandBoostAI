@@ -58,19 +58,19 @@ export default function OverviewPage() {
             <h2 className="text-lg font-medium text-white">{recentPostsSection.title}</h2>
             <p className="text-sm text-zinc-400">{recentPostsSection.subtitle}</p>
             <div className="mt-4 space-y-3">
-              {recentPosts.map((post, i) => (
+              {recentPosts.map((post) => (
                 <div
-                  key={i}
+                  key={post.id}
                   className="flex items-center gap-3 rounded-lg bg-zinc-700/50 p-3"
                   role="article"
                 >
                   <Instagram className="h-6 w-6 text-zinc-400" />
                   <div className="flex-1">
                     <p className="text-sm font-medium text-white">
-                      {post.title}
+                      {post.type}
                     </p>
                     <p className="text-xs text-zinc-400">
-                      {post.likes.toLocaleString()} likes • {post.reach.toLocaleString()} reach
+                      {post.engagements.toLocaleString()} engagements • {post.reach.toLocaleString()} reach
                     </p>
                   </div>
                 </div>
