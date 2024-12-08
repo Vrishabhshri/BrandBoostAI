@@ -67,6 +67,11 @@
       }
     },
     "overview": {
+      "title": "Overview",
+      "lockStatus": {
+        "isLocked": true,
+        "text": "Locked"
+      },
       "metrics": {
         "followers": {
           "count": 45231,
@@ -85,48 +90,38 @@
           "growth": 8.2
         }
       },
+      "socialMediaPerformance": {
+        "title": "Social Media Performance",
+        "subtitle": "Engagement across platforms",
+        "chartHeight": 300
+      },
+      "recentPostsSection": {
+        "title": "Recent Posts",
+        "subtitle": "Performance of your latest content"
+      },
       "recentPosts": [
         {
           "title": "Summer Collection Launch",
           "likes": 2300,
           "comments": 500,
           "reach": 15000,
-          "growth": 15.5,
-          "platform": "instagram"
+          "growth": 15.5
         },
         {
           "title": "Product Update",
           "likes": 1800,
           "comments": 300,
           "reach": 12000,
-          "growth": 10.2,
-          "platform": "instagram"
+          "growth": 10.2
         },
         {
           "title": "Customer Story",
           "likes": 2100,
           "comments": 450,
           "reach": 13500,
-          "growth": 12.8,
-          "platform": "instagram"
+          "growth": 12.8
         }
-      ],
-      "socialMediaPerformance": {
-        "title": "Social Media Performance",
-        "subtitle": "Engagement across platforms",
-        "data": {
-          "instagram": {
-            "engagement": 5.67,
-            "reach": 95211,
-            "followers": 45231
-          },
-          "facebook": {
-            "engagement": 3.21,
-            "reach": 75432,
-            "followers": 32145
-          }
-        }
-      }
+      ]
     },
     "navigation": {
       "logo": "flame-icon",

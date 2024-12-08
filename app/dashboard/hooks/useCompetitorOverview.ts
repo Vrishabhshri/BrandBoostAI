@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import competitorOverviewData from '@/components/context/competitor-overview.json';
 
 export const useCompetitorOverview = () => {
-  const [data, setData] = useState(competitorOverviewData);
-  
+  const [data] = useState(competitorOverviewData);
   return {
     overview: data.overview,
     navigation: data.navigation,
