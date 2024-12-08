@@ -1,67 +1,80 @@
 "use client"
 
-import { useState } from 'react'
-import { RefreshCw } from 'lucide-react'
-import  NavHeader  from "./components/dashboard-header"
-import { CompetitorCard } from "./components/competitor-card"
-import { AddCompetitorButton } from "./components/add-competitor-button"
-import { Chat } from "./components/chat"
+import { Instagram, Lock } from "lucide-react"
+import { useCompetitorOverview } from "././hooks/useCompetitorOverview"
+import { MetricCard } from "@/app/dashboard/components/metric-card"
+import { NavHeader } from "@/app/dashboard/components/nav-header"
 
-interface CompanyData {
-  name: string;
-  instagram: {
-    followers: number;
-    increase_percentage: number;
-    hashtags: string[];
-    content: string;
-  }[];
-  facebook: {
-    followers: number;
-    increase_percentage: number;
-    hashtags: string[];
-    content: string;
-  }[];
-}
-
-export default function CompetitorDashboardPage() {
-  const [competitors, setCompetitors] = useState<CompanyData[]>([])
-
-  const handleLoadCompetitor = (competitor: CompanyData) => {
-    setCompetitors((prev) => [...prev, competitor])
-  }
+export default function OverviewPage() {
+  const { overview, lastRefreshed } = useCompetitorOverview();
+  const { metrics, recentPosts } = overview;
 
   return (
     <div className="flex min-h-screen flex-col bg-zinc-900">
       <NavHeader />
-      <div className="flex flex-1">
-        <aside className="w-[300px] border-r border-zinc-800 bg-zinc-900 flex flex-col">
-          <Chat />
-        </aside>
+      <main className="flex-1 p-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold text-white">Overview</h1>
+          <button className="flex items-center gap-2 rounded-full border border-zinc-700 px-3 py-1">
+            <Lock className="h-4 w-4 text-zinc-400" />
+            <span className="text-sm text-zinc-400">Locked</span>
+          </button>
+        </div>
         
-        <main className="flex-1 p-6">
-          <div className="mb-6 flex items-center justify-between">
-            <h1 className="text-2xl font-semibold text-white">
-              Competitor Dashboard
-            </h1>
-            <div className="flex items-center gap-2 text-sm text-zinc-400">
-              <RefreshCw className="h-4 w-4" />
-              Last refreshed 11/11/2024 16:42PM CDT
+        <div className="mt-6 grid grid-cols-4 gap-4">
+          <MetricCard 
+            title="Followers" 
+            value={metrics.followers.count.toLocaleString()} 
+            change={metrics.followers.growth} 
+          />
+          <MetricCard 
+            title="Engagement" 
+            value={`${metrics.engagement.rate}%`} 
+            change={metrics.engagement.growth} 
+          />
+          <MetricCard 
+            title="Post Reach" 
+            value={metrics.postReach.count.toLocaleString()} 
+            change={metrics.postReach.growth} 
+          />
+          <MetricCard 
+            title="Brand Mentions" 
+            value={metrics.brandMentions.count.toLocaleString()} 
+            change={metrics.brandMentions.growth} 
+          />
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 gap-6">
+          <div className="rounded-lg bg-zinc-800 p-4">
+            <h2 className="text-lg font-medium text-white">Social Media Performance</h2>
+            <p className="text-sm text-zinc-400">Engagement across platforms</p>
+            <div className="mt-4 h-[300px] rounded bg-zinc-700/50" />
+          </div>
+
+          <div className="rounded-lg bg-zinc-800 p-4">
+            <h2 className="text-lg font-medium text-white">Recent Posts</h2>
+            <p className="text-sm text-zinc-400">Performance of your latest content</p>
+            <div className="mt-4 space-y-3">
+              {recentPosts.map((post, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-3 rounded-lg bg-zinc-700/50 p-3"
+                >
+                  <Instagram className="h-6 w-6 text-zinc-400" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-white">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-zinc-400">
+                      {post.likes.toLocaleString()} likes • {post.reach.toLocaleString()} reach
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          
-          <div className="grid gap-6 lg:grid-cols-2">
-            <AddCompetitorButton onLoadCompetitor={handleLoadCompetitor} />
-            {competitors.map((competitor, index) => (
-              <CompetitorCard 
-                key={index}
-                name={competitor.name}
-                instagram={competitor.instagram[0]}
-                facebook={competitor.facebook[0]}
-              />
-            ))}
-          </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   )
 }
