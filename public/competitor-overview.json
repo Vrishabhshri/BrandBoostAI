@@ -1,0 +1,136 @@
+{
+    "competitorDashboard": {
+      "lastRefreshed": "2024-11-11T16:42:00-06:00",
+      "competitors": [
+        {
+          "name": "Uniqlo",
+          "logo": "https://example.com/uniqlo-logo.png",
+          "socialMedia": {
+            "instagram": {
+              "username": "uniqlo",
+              "followers": 2500000,
+              "growthRate": 6
+            }
+          },
+          "metrics": {
+            "followers": "2.5M",
+            "sharedFollowers": {
+              "percentage": 15,
+              "count": 375000
+            }
+          },
+          "tags": ["holidays", "favorite", "sweet", "cableknit", "family"]
+        }
+      ],
+      "addCompetitorButton": {
+        "text": "Add competitor"
+      }
+    },
+    "createNewCompetitor": {
+      "title": "Create new competitor",
+      "fields": [
+        {
+          "platform": "Instagram",
+          "inputPlaceholder": "@Username"
+        },
+        {
+          "platform": "Facebook",
+          "inputPlaceholder": "@Username"
+        },
+        {
+          "platform": "LinkedIn",
+          "inputPlaceholder": "@Username"
+        }
+      ],
+      "submitButton": {
+        "text": "Load in data"
+      }
+    },
+    "pageChat": {
+      "title": "Page chat",
+      "messages": [
+        {
+          "content": "Welcome! Add competitors to your dashboard to get started. You can also brainstorm potential competitors in the chat.",
+          "type": "system"
+        },
+        {
+          "content": "Hi. I have a small business that sells handmade clothing. What are some potential competitors to add to add?",
+          "type": "user"
+        },
+        {
+          "content": "General Handmade/Artisan Clothing:\n• Etsy Sellers: Independent artisans offering handmade clothing.\n• Big Cartel Stores: Small businesses that sell handmade clothing online.\n• Fashion Nova (for trendier designs): If your style aligns with fast fashion but handmade.\n\nNiche Handmade Clothing Companies:\n• Bohemian Styles:\n• Free People\n• Spell & The Gypsy Collective\n• Minimalist & Sustainable:\n• Everlane\n• Pact\n• Kotn\n• Luxury Handmade:\n• Christy Dawn\n• Reformation\n• Children's Clothing:\n• Hanna Andersson (sustainably made)\n• Little Cotton Clothes\n\nSustainable & Ethical Clothing:\n• Patagonia (ethical outdoor wear)",
+          "type": "assistant"
+        }
+      ],
+      "input": {
+        "placeholder": "Reply"
+      }
+    },
+    "overview": {
+      "metrics": {
+        "followers": {
+          "count": 45231,
+          "growth": 20.1
+        },
+        "engagement": {
+          "rate": 5.67,
+          "growth": 1.2
+        },
+        "postReach": {
+          "count": 95211,
+          "growth": 10.5
+        },
+        "brandMentions": {
+          "count": 1232,
+          "growth": 8.2
+        }
+      },
+      "recentPosts": [
+        {
+          "title": "Summer Collection Launch",
+          "likes": 2300,
+          "comments": 500,
+          "reach": 15000,
+          "growth": 15.5
+        },
+        {
+          "title": "Product Update",
+          "likes": 1800,
+          "comments": 300,
+          "reach": 12000,
+          "growth": 10.2
+        },
+        {
+          "title": "Customer Story",
+          "likes": 2100,
+          "comments": 450,
+          "reach": 13500,
+          "growth": 12.8
+        }
+      ]
+    },
+    "navigation": {
+      "logo": "flame-icon",
+      "menuItems": [
+        {
+          "name": "Overview",
+          "icon": "chart-icon"
+        },
+        {
+          "name": "Competitor Dashboard",
+          "icon": "building-icon"
+        },
+        {
+          "name": "Content Builder",
+          "icon": "pen-icon"
+        },
+        {
+          "name": "Settings",
+          "icon": "gear-icon"
+        }
+      ],
+      "userProfile": {
+        "icon": "user-icon"
+      }
+    }
+  }

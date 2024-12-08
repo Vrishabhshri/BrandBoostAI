@@ -1,0 +1,117 @@
+{
+    "overview": {
+      "metrics": {
+        "followers": {
+          "count": 45231,
+          "growth": 20.1,
+          "trend": "positive"
+        },
+        "engagement": {
+          "count": 23571,
+          "growth": 12.3,
+          "trend": "positive"
+        },
+        "postReach": {
+          "count": 95211,
+          "growth": 10.5,
+          "trend": "positive"
+        },
+        "brandMentions": {
+          "count": 1232,
+          "growth": -8.2,
+          "trend": "negative"
+        }
+      },
+      "socialMediaPerformance": {
+        "title": "Social Media Performance",
+        "subtitle": "Engagement across platforms",
+        "data": [
+          {
+            "platform": "Instagram",
+            "engagement": 15234,
+            "reach": 45678,
+            "date": "2024-12-01"
+          },
+          {
+            "platform": "Facebook",
+            "engagement": 8337,
+            "reach": 29533,
+            "date": "2024-12-01"
+          }
+        ]
+      },
+      "recentPosts": {
+        "title": "Recent Posts",
+        "subtitle": "Performance of your latest content",
+        "posts": [
+          {
+            "id": "post1",
+            "platform": "instagram",
+            "type": "Summer collection launch",
+            "engagements": 2300,
+            "reach": 15000,
+            "date": "2024-12-07"
+          },
+          {
+            "id": "post2",
+            "platform": "instagram",
+            "type": "Product Update",
+            "engagements": 2300,
+            "reach": 15000,
+            "date": "2024-12-06"
+          },
+          {
+            "id": "post3",
+            "platform": "instagram",
+            "type": "Customer Story",
+            "engagements": 2300,
+            "reach": 15000,
+            "date": "2024-12-05"
+          },
+          {
+            "id": "post4",
+            "platform": "instagram",
+            "type": "Summer collection launch",
+            "engagements": 2300,
+            "reach": 15000,
+            "date": "2024-12-04"
+          },
+          {
+            "id": "post5",
+            "platform": "instagram",
+            "type": "Summer collection launch",
+            "engagements": 2300,
+            "reach": 15000,
+            "date": "2024-12-03"
+          }
+        ]
+      }
+    },
+    "competitors": {
+      "general": [
+        {
+          "category": "General Handmade/Artisan Clothing",
+          "companies": [
+            {
+              "name": "Etsy Sellers",
+              "description": "Independent artisans offering handmade clothing"
+            },
+            {
+              "name": "Big Cartel Stores",
+              "description": "Small businesses that sell handmade clothing online"
+            },
+            {
+              "name": "Fashion Nova",
+              "description": "For trendier designs: If your style aligns with fast fashion but handmade"
+            }
+          ]
+        }
+      ]
+    },
+    "settings": {
+      "theme": "dark",
+      "notifications": true,
+      "updateFrequency": "daily",
+      "timezone": "UTC-8"
+    }
+  }

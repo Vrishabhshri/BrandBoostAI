@@ -1,0 +1,81 @@
+```json
+{
+  "companyName": "Nike, Inc.",
+  "tickerSymbol": "NKE",
+  "socialMedia": {
+    "facebook": {
+      "followers": 35000000,
+      "engagementRate": 0.03 
+    },
+    "instagram": {
+      "followers": 150000000,
+      "engagementRate": 0.05
+    },
+    "twitter": {
+      "followers": 12000000,
+      "engagementRate": 0.02
+    },
+    "youtube": {
+      "subscribers": 20000000,
+      "engagementRate": 0.04
+    },
+    "tiktok": {
+      "followers": 50000000,
+      "engagementRate": 0.10 
+    }
+  },
+  "keyPerformanceIndicators": {
+    "revenue": {
+      "year2022": 46700000000,  // in USD
+      "year2023": 49000000000, // in USD
+      "growthRate": 0.05 
+    },
+    "marketShare": {
+      "athleticFootwear": 0.25,
+      "athleticApparel": 0.20
+    },
+    "profitMargin": 0.12 // 12%
+  },
+  "marketPositioning": {
+    "targetAudience": "Athletes and fitness enthusiasts of all levels. Global reach.",
+    "competitiveAdvantages": [
+      "Strong brand recognition and loyalty",
+      "Innovation in product technology and design",
+      "Extensive global distribution network",
+      "Successful celebrity endorsements"
+    ],
+    "mainCompetitors": ["Adidas", "Under Armour", "Puma"]
+  },
+  "customerDemographics": {
+    "ageRange": "15-55+",
+    "gender": "Balanced",
+    "incomeLevel": "Mid-to-high income",
+    "location": "Global, with significant presence in North America, Europe, and Asia"
+  },
+  "brandMetrics": {
+    "brandAwareness": 0.95,  // Scale of 0-1
+    "brandSentiment": 0.80,   // Scale of 0-1
+    "brandTrust": 0.85     // Scale of 0-1
+  },
+  "recentCampaigns": [
+    {
+      "campaignName": "Nike Air Max Day 2023",
+      "platforms": ["Instagram", "TikTok", "Facebook", "YouTube"],
+      "performanceMetrics": {
+        "reach": 50000000,
+        "engagement": 2000000,
+        "salesIncrease": 0.15  //15% increase in Air Max sales
+      }
+    },
+    {
+      "campaignName": "Just Do It - Sustainability Focus",
+      "platforms": ["Instagram", "Twitter", "Website"],
+      "performanceMetrics": {
+        "reach": 30000000,
+        "engagement": 1500000,
+        "brandSentimentIncrease": 0.05 // 5% increase in positive brand sentiment
+      }
+    }
+  ]
+}
+```

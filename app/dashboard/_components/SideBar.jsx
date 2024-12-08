@@ -18,7 +18,7 @@ export default function DashboardSidebar() {
     { icon: TrendingUp, label: 'Performance', to: '/dashboard/pages/performance' },
     { icon: Users, label: 'Audience', to: '/dashboard/pages/audience' },
     { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard' },
-    { icon: FileText, label: 'Reports', to: '/dashboard/pages/reports' },
+    { icon: FileText, label: 'haris', to: '/dashboard/pages/haris-dashboard' },
     { icon: Settings, label: 'Settings', to: '/dashboard/pages/settings' },
   ];
     const socialAccounts = [

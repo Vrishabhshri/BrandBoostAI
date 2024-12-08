@@ -1,0 +1,91 @@
+```json
+{
+  "companyName": "Nike, Inc.",
+  "tickerSymbol": "NKE",
+  "socialMedia": {
+    "platform": [
+      {
+        "name": "Instagram",
+        "followers": 210000000,
+        "engagementRate": 0.025,  // 2.5%
+        "reach": 500000000
+      },
+      {
+        "name": "Facebook",
+        "followers": 40000000,
+        "engagementRate": 0.015,  // 1.5%
+        "reach": 20000000
+      },
+      {
+        "name": "Twitter",
+        "followers": 15000000,
+        "engagementRate": 0.03,   // 3%
+        "reach": 10000000
+      },
+      {
+        "name": "TikTok",
+        "followers": 80000000,
+        "engagementRate": 0.06,   // 6%
+        "reach": 40000000
+      },
+      {
+        "name": "YouTube",
+        "subscribers": 15000000,
+        "engagementRate": 0.02,  // 2%
+        "views": 1000000000
+      }
+    ]
+  },
+  "keyPerformanceIndicators": {
+    "revenue": {
+      "year2022": 46700000000,
+      "year2023": 47000000000,
+      "growthRate": 0.0064, // 0.64% (approx)
+      "currency": "USD"
+    },
+    "marketShare": {
+      "athleticFootwear": 0.35, // 35%
+      "athleticApparel": 0.28   // 28%
+    },
+    "profitMargin": 0.12 // 12%
+  },
+  "marketPositioning": {
+    "description": "Premium athletic footwear and apparel brand.  Leader in innovation and global reach.  Focus on athletic performance and lifestyle.",
+    "targetMarket": "Athletes of all levels, fitness enthusiasts, and fashion-conscious consumers",
+    "competitiveAdvantages": ["Brand recognition", "innovation", "global distribution", "strong endorsement deals", "sustainable practices"]
+
+  },
+  "customerDemographics": {
+    "ageRange": "15-55 (primary)",
+    "gender": "balanced",
+    "incomeLevel": "middle to high",
+    "location": "Global (concentrated in North America, Europe, and Asia)"
+  },
+  "brandMetrics": {
+    "brandAwareness": 0.95,  // 95%
+    "brandLoyalty": 0.70,  // 70%
+    "brandSentiment": 0.80   // 80% (positive)
+  },
+  "recentCampaigns": [
+    {
+      "name": "Dream Crazy",
+      "platform": ["TV", "Digital", "Social Media"],
+      "performance": {
+        "reach": 1000000000,
+        "engagement": "High",
+        "salesImpact": "Significant"
+      }
+    },
+    {
+      "name": "Move to Zero",
+      "platform": ["Digital", "Social Media", "In-store"],
+      "performance": {
+        "reach": 500000000,
+        "engagement": "Medium",
+        "salesImpact": "Positive"
+      }
+    }
+  ]
+}
+```
+**Note:**  The numerical values provided are estimations and intended to illustrate the JSON structure.  Actual Nike data would need to be sourced from financial reports and market research.  Engagement rates, market share, and brand metrics are complex and often involve various methodologies of calculation.

@@ -1,6 +1,9 @@
+import flask
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 import json
+import os
+from datetime import datetime
 
 # Configure the API key for Google Generative AI
 genai.configure(api_key="AIzaSyB1d-gwppbhFgB751VmLH8ks24UmZgijSA")
@@ -93,31 +96,121 @@ companies_data = {
 # Initialize Flask app
 app = Flask(__name__)
 
-# Function to handle user input from the terminal in an infinite loop
-def interactive_input():
-    while True:  # Infinite loop to continuously prompt for user input
-        company_name = input("Enter the company name: ").lower()
-        user_request = input("What would you like to know? (e.g., 'summary', 'advice to improve', etc.): ").lower()
-
-        # Search for the company in the data
-        company = next((comp for comp in companies_data["companies"] if comp["name"].lower() == company_name), None)
-
-        if company:
-            # Generate a response based on the request
-            prompt = f"Company: {company_name.capitalize()}\nRequest: {user_request.capitalize()}"
-            print(f"Prompt to Gemini: {prompt}")
-
-            # Call Gemini model to generate a response
-            response = model.generate_content(prompt)
-            print(f"Gemini Response: {response.text}")
-        else:
-            print("Company not found.")
+def generate_company_dataset(company_name: str):
+    dataset_prompt = f"""
+    Create a comprehensive JSON dataset for {company_name} including:
+    - Social media statistics (followers, engagement rates across platforms)
+    - Key performance indicators (revenue, growth rate, market share)
+    - Market positioning
+    - Customer demographics
+    - Brand metrics
+    - Recent campaigns and their performance
+    
+    Format the response as a clean JSON object with organized, realistic metrics.
+    """
+    
+    try:
+        response = model.generate_content(dataset_prompt)
         
-        # Option to continue or exit the loop
-        continue_input = input("Do you want to search for another company? (yes/no): ").lower()
-        if continue_input != "yes":
-            print("Exiting the interactive input loop.")
-            break  # Exit the loop if the user chooses 'no'
+        # Create a timestamp for the filename
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"dataset_{company_name.lower()}_{timestamp}.json"
+        filepath = os.path.join("app/dashboard/api/analyses", filename)
+        
+        # Ensure the directory exists
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        
+        # Save the response to a file
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write(response.text)
+            
+        return {
+            "success": True,
+            "filepath": filepath,
+            "response": response.text
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "error": str(e)
+        }
+
+def generate_company_analysis(company_name: str, analysis_type: str):
+    analysis_prompts = {
+        "summary": f"Provide a concise summary of {company_name}'s current market position and overall performance.",
+        "competitors": f"Analyze {company_name}'s main competitors and competitive advantages/disadvantages.",
+        "improvements": f"Suggest specific strategic improvements for {company_name} based on current market trends.",
+        "swot": f"Provide a detailed SWOT analysis for {company_name}.",
+        "trends": f"Analyze current trends affecting {company_name} and their potential impact."
+    }
+    
+    if analysis_type not in analysis_prompts:
+        return {
+            "success": False,
+            "error": "Invalid analysis type"
+        }
+    
+    try:
+        response = model.generate_content(analysis_prompts[analysis_type])
+        return {
+            "success": True,
+            "response": response.text
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "error": str(e)
+        }
+
+def interactive_input():
+    while True:
+        company_name = input("Enter the company name: ").lower()
+        
+        # First, generate and show the dataset
+        print("\nGenerating company dataset...")
+        dataset_result = generate_company_dataset(company_name)
+        
+        if dataset_result["success"]:
+            print(f"\nCompany dataset has been saved to: {dataset_result['filepath']}")
+            print("\nDataset Result:")
+            print(dataset_result["response"])
+            
+            # After showing the dataset, offer analysis options
+            while True:
+                print("\nAvailable analysis options:")
+                print("1. Summary")
+                print("2. Competitor Analysis")
+                print("3. Improvement Suggestions")
+                print("4. SWOT Analysis")
+                print("5. Market Trends")
+                print("6. Search new company")
+                print("7. Exit")
+                
+                choice = input("\nEnter your choice (1-7): ")
+                
+                if choice == "6":
+                    break
+                elif choice == "7":
+                    return
+                elif choice in ["1", "2", "3", "4", "5"]:
+                    analysis_types = {
+                        "1": "summary",
+                        "2": "competitors",
+                        "3": "improvements",
+                        "4": "swot",
+                        "5": "trends"
+                    }
+                    
+                    analysis_result = generate_company_analysis(company_name, analysis_types[choice])
+                    if analysis_result["success"]:
+                        print("\nAnalysis Result:")
+                        print(analysis_result["response"])
+                    else:
+                        print(f"\nError: {analysis_result['error']}")
+                else:
+                    print("\nInvalid choice. Please try again.")
+        else:
+            print(f"Error generating dataset: {dataset_result['error']}")
 
 # API endpoint to search for a company by name
 @app.route('/search_company', methods=['GET'])
@@ -130,6 +223,29 @@ def search_company():
         return jsonify(company)
     else:
         return jsonify({"error": "Company not found."}), 404
+
+# Update the API endpoint
+@app.route('/analyze_company', methods=['GET'])
+def analyze_company():
+    company_name = request.args.get('name', '').lower()
+    analysis_type = request.args.get('type', 'dataset').lower()
+    
+    if not company_name:
+        return jsonify({"error": "Company name is required"}), 400
+    
+    if analysis_type == 'dataset':
+        result = generate_company_dataset(company_name)
+    else:
+        result = generate_company_analysis(company_name, analysis_type)
+    
+    if result["success"]:
+        return jsonify({
+            "message": "Analysis generated successfully",
+            "filepath": result.get("filepath"),  # Only present for dataset
+            "analysis": result["response"]
+        })
+    else:
+        return jsonify({"error": result["error"]}), 500
 
 # Start the Flask app
 if __name__ == '__main__':
