@@ -135,18 +135,20 @@ export default function LandingPage() {
               See BrandBoost.ai in Action
             </h2>
             <motion.div 
-              className="relative rounded-lg overflow-hidden shadow-2xl"
+              className="relative max-w-4xl mx-auto rounded-lg overflow-hidden shadow-2xl"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 z-10"></div>
-              {/* \public\assets\hero.png */}
               <img 
-                src="/assets/hero.png?height=600&width=1200" 
+                src="/assets/hero.png"
                 alt="BrandBoost.ai Dashboard Preview" 
-                className="w-full h-auto"
+                width={1200}
+                height={600}
+                className="w-full h-auto object-cover aspect-video"
+                loading="lazy"
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <Button size="lg" className="bg-white text-zinc-900 hover:bg-zinc-200 font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 z-20">
