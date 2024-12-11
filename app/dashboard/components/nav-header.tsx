@@ -12,7 +12,7 @@ export function NavHeader() {
         </Link>
         <nav className="flex items-center gap-6">
           <Link
-            href="/dashboard/pages/competitor-dashboard"
+            href="/dashboard"
             className="flex items-center gap-2 text-sm text-zinc-200 hover:text-white"
           >
             <LayoutDashboard className="h-4 w-4" />

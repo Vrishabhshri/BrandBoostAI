@@ -1,79 +1,79 @@
 {
     "companies": [
       {
-        "name": "uniqlo",
+        "name": "target",
         "instagram": [
           {
-            "followers": 1200000,
-            "increase_percentage": 2.2,
-            "decrease_percentage": 1.9,
-            "hashtags": ["#uniqlo", "#fashion", "#style", "#streetwear", "#comfort"],
-            "content": "Discover the latest fall collection! Stylish, comfortable, and affordable fashion for everyone.",
+            "followers": 5100000,
+            "increase_percentage": 2.4,
+            "decrease_percentage": 1.6,
+            "hashtags": ["#target", "#targetstyle", "#targetfinds", "#targetdoesitagain", "#targetdeals"],
+            "content": "Discover joy in everyday moments with our latest home collection. Style that makes you smile!",
             "date_added": "2024-11-24"
           },
           {
-            "followers": 1226000,
-            "increase_percentage": 2.1,
-            "decrease_percentage": 1.8,
-            "hashtags": ["#uniqlo", "#sustainablefashion", "#autumnstyle", "#trendy", "#modernlook"],
-            "content": "Fall fashion is here! Shop our eco-friendly collection made from sustainable materials.",
+            "followers": 5200000,
+            "increase_percentage": 2.2,
+            "decrease_percentage": 1.5,
+            "hashtags": ["#target", "#targetrun", "#targetlife", "#targethome", "#targetfashion"],
+            "content": "New season, new style! Shop our exclusive designer collaborations now in stores.",
             "date_added": "2024-11-24"
           }
         ],
         "facebook": [
           {
-            "followers": 2000000,
-            "increase_percentage": 2.0,
-            "decrease_percentage": 1.7,
-            "hashtags": ["#uniqlo", "#fashion", "#sustainability", "#minimalist", "#trendy"],
-            "content": "Join us in supporting sustainable fashion. Check out our eco-friendly collections!",
+            "followers": 13000000,
+            "increase_percentage": 1.8,
+            "decrease_percentage": 1.4,
+            "hashtags": ["#target", "#targetdeals", "#targetcircle", "#targetfamily", "#targetexclusive"],
+            "content": "More savings, more joy! Join Target Circle for exclusive member deals and offers.",
             "date_added": "2024-11-24"
           },
           {
-            "followers": 2040000,
-            "increase_percentage": 2.0,
-            "decrease_percentage": 1.8,
-            "hashtags": ["#uniqlo", "#fashionforall", "#everybodyisbeautiful", "#inclusivefashion", "#affordable"],
-            "content": "We believe fashion is for everyone. Find the perfect fit for your style!",
+            "followers": 13200000,
+            "increase_percentage": 1.9,
+            "decrease_percentage": 1.3,
+            "hashtags": ["#target", "#targetstyle", "#targetholiday", "#targetgifts", "#targetfinds"],
+            "content": "Make your holidays magical with Target's festive decor and gift collections!",
             "date_added": "2024-11-24"
           }
         ]
       },
       {
-        "name": "nike",
+        "name": "amazon",
         "instagram": [
           {
-            "followers": 2500000,
-            "increase_percentage": 2.2,
-            "decrease_percentage": 1.9,
-            "hashtags": ["#nike", "#justdoit", "#sportstyle", "#fitfam", "#motivation"],
-            "content": "Unleash your inner athlete with the latest in Nike sportswear and gear.",
+            "followers": 3800000,
+            "increase_percentage": 2.6,
+            "decrease_percentage": 1.8,
+            "hashtags": ["#amazon", "#primeday", "#amazonfashion", "#amazonfinds", "#amazondeals"],
+            "content": "Prime members get exclusive access to amazing deals! Shop now before they're gone.",
             "date_added": "2024-11-24"
           },
           {
-            "followers": 2555000,
-            "increase_percentage": 2.1,
-            "decrease_percentage": 1.8,
-            "hashtags": ["#nike", "#running", "#trainhard", "#fitnessjourney", "#sportswear"],
-            "content": "Run faster, train harder, and be stronger with Nike’s performance apparel.",
+            "followers": 3900000,
+            "increase_percentage": 2.5,
+            "decrease_percentage": 1.7,
+            "hashtags": ["#amazon", "#amazonprime", "#amazonshopping", "#amazonmusthaves", "#amazonhome"],
+            "content": "Discover trending products and must-have items, all with fast Prime delivery!",
             "date_added": "2024-11-24"
           }
         ],
         "facebook": [
           {
-            "followers": 4000000,
-            "increase_percentage": 2.1,
-            "decrease_percentage": 1.8,
-            "hashtags": ["#nike", "#justdoit", "#sportswear", "#workout", "#fitnessgoals"],
-            "content": "Achieve your fitness goals with Nike’s latest collection of workout gear.",
+            "followers": 35000000,
+            "increase_percentage": 2.2,
+            "decrease_percentage": 1.5,
+            "hashtags": ["#amazon", "#primeday", "#amazondeals", "#primemember", "#amazonshopping"],
+            "content": "Your one-stop shop for everything you need. Shop millions of products with Prime!",
             "date_added": "2024-11-24"
           },
           {
-            "followers": 4080000,
+            "followers": 35700000,
             "increase_percentage": 2.0,
-            "decrease_percentage": 1.7,
-            "hashtags": ["#nike", "#crossfit", "#powerlifting", "#strength", "#athleticwear"],
-            "content": "Strength meets comfort with our new CrossFit gear. Train harder, lift stronger.",
+            "decrease_percentage": 1.4,
+            "hashtags": ["#amazon", "#amazonfinds", "#amazongifts", "#primebenefits", "#amazonlife"],
+            "content": "From daily essentials to holiday gifts, find everything you need on Amazon.",
             "date_added": "2024-11-24"
           }
         ]

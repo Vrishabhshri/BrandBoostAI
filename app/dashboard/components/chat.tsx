@@ -5,6 +5,7 @@ import { MessageCircle } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CompanyInfo } from "./company-info"
+import competitorData from '../data/competitor.json'
 
 interface GeminiAnalysis {
   type: string;
@@ -62,11 +63,9 @@ export function Chat() {
   useEffect(() => {
     const fetchCompanyData = async () => {
       try {
-        const response = await fetch('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/competer-gKaumRWhUCYiUwqe2egWoQEZDUf9gc.json')
-        const data = await response.json()
-        setCompanyData(data.companies)
+        setCompanyData(competitorData.companies)
       } catch (error) {
-        console.error('Failed to fetch company data:', error)
+        console.error('Failed to load company data:', error)
       }
     }
     fetchCompanyData()

@@ -1,0 +1,38 @@
+{
+  "companies": [
+    {
+      "name": "Target",
+      "instagram": [
+        {
+          "followers": 5200000,
+          "content": "Lifestyle products, home decor, fashion trends, seasonal collections",
+          "date_added": "2024-03-15"
+        }
+      ],
+      "facebook": [
+        {
+          "followers": 24000000,
+          "content": "Product promotions, deals, store updates, lifestyle inspiration",
+          "date_added": "2024-03-15"
+        }
+      ]
+    },
+    {
+      "name": "Amazon",
+      "instagram": [
+        {
+          "followers": 3800000,
+          "content": "Product highlights, Prime benefits, Amazon originals, tech launches",
+          "date_added": "2024-03-15"
+        }
+      ],
+      "facebook": [
+        {
+          "followers": 31000000,
+          "content": "Shopping deals, Prime Day events, product launches, customer stories",
+          "date_added": "2024-03-15"
+        }
+      ]
+    }
+  ]
+} 
