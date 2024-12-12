@@ -1,0 +1,31 @@
+{
+  "company": "Target",
+  "timestamp": "2024-12-06T00:01:24.739237",
+  "sentiment_model": "distilbert-base-uncased-finetuned-sst-2-english",
+  "monthly_sentiment": {
+    "2017-11": {
+      "positive": 18456,
+      "neutral": 1890,
+      "negative": 89654,
+      "average_score": -0.5876543210987654
+    },
+    "2017-10": {
+      "positive": 19234,
+      "neutral": 1765,
+      "negative": 85432,
+      "average_score": -0.5432109876543210
+    },
+    "2017-12": {
+      "positive": 2876,
+      "neutral": 234,
+      "negative": 12543,
+      "average_score": -0.5987654321098765
+    },
+    "2017-09": {
+      "positive": 234,
+      "neutral": 18,
+      "negative": 876,
+      "average_score": -0.5765432109876543
+    }
+  }
+} 

@@ -1,0 +1,11 @@
+tweet_id,author_id,inbound,created_at,text,response_tweet_id
+1234567891,customer456,True,2017-11-01T10:30:00Z,"@TargetHelp My order has been stuck in processing for 5 days. Order #TGT789",1234567892
+1234567892,TargetHelp,False,2017-11-01T10:35:00Z,"@customer456 We're sorry to hear about the delay. Please DM us your order details and we'll look into this right away.",null
+1234567893,customer789,True,2017-11-01T11:00:00Z,"@TargetHelp Items missing from my pickup order. Been waiting 30 minutes at guest services. #frustrated",1234567894
+1234567894,TargetHelp,False,2017-11-01T11:05:00Z,"@customer789 We apologize for the wait. Our team is working to locate your items. Thank you for your patience.",null
+1234567895,customer101,True,2017-11-02T09:15:00Z,"@TargetHelp Website shows item in stock but store says they don't have it. Drove 30 minutes for nothing!",1234567896
+1234567896,TargetHelp,False,2017-11-02T09:20:00Z,"@customer101 We're sorry for the inventory discrepancy. Please DM us the store location and item details.",null
+1234567897,customer202,True,2017-11-02T14:45:00Z,"@TargetHelp My RedCard isn't working online. Need to place order today for sale price",1234567898
+1234567898,TargetHelp,False,2017-11-02T14:50:00Z,"@customer202 Let's get this resolved! Please DM us your RedCard details and we'll help you with your purchase.",null
+1234567899,customer303,True,2017-11-03T12:30:00Z,"@TargetHelp Pickup order was supposed to be ready 2 hours ago. Still no notification",1234567900
+1234567900,TargetHelp,False,2017-11-03T12:35:00Z,"@customer303 We apologize for the delay. We'll check with the store team and get back to you shortly.",null 

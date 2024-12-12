@@ -1,0 +1,31 @@
+{
+  "timestamp": "2024-03-20T12:00:00Z",
+  "issues": [
+    {
+      "title": "Order Processing Delays",
+      "description": "25% increase in complaints about order processing times"
+    },
+    {
+      "title": "Inventory Accuracy",
+      "description": "Significant discrepancy between online and in-store inventory"
+    },
+    {
+      "title": "Pickup Order Delays",
+      "description": "Extended wait times for order pickup fulfillment"
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "Improve Inventory Sync",
+      "description": "Implement real-time inventory synchronization between online and store systems"
+    },
+    {
+      "title": "Optimize Pickup Process",
+      "description": "Streamline in-store pickup workflow to reduce wait times"
+    },
+    {
+      "title": "Enhanced Order Updates",
+      "description": "Provide more frequent and detailed order status notifications"
+    }
+  ]
+} 

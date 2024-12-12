@@ -1,95 +1,85 @@
 'use client'
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import HeroComponent from "./_components/HeroComponent";
-import Image from "next/image";
-import Logo from "../../public/assets/icons/Logo.svg";
+} from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Image from 'next/image'
+import Logo from "@/public/assets/icons/Logo.svg"
+import HeroComponent from "@/app/components/HeroComponent"
 
-const GetStarted = () => {
-  const router = useRouter();
-// update the sign up button to route to the sign up page, app\(auth)\sign-up
+const GetStarted: React.FC = () => {
+  const router = useRouter()
+
   const handleSignUp = () => {
-    router.push("/sign-up");
-  };
+    router.push('/auth-demo/signup')
+  }
 
   return (
-    <main className="min-h-screen w-full bg-[#302F2F] flex items-center justify-center p-6">
-      <div className="relative flex w-full max-w-[1100px] h-auto min-h-[600px] bg-gradient-to-r from-white to-[rgba(255,255,255,0.8)] rounded-3xl shadow-lg overflow-hidden flex-col md:flex-row">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gray-800 p-4">
+      <div className="w-full max-w-[1100px] bg-white rounded-[2rem] flex overflow-hidden">
         {/* Left Side */}
-        <div className="w-full md:w-1/2 p-4 md:p-8">
-          <Card className="flex h-full w-full bg-white rounded-3xl shadow-xl border-0">
-            <div className="w-full p-6">
-              <CardHeader className="p-0 mb-6">
-                <CardTitle className="text-xl font-karla font-bold text-black flex items-center gap-2">
-                  <Image
-                    src={Logo}
-                    alt="BrandBoostr.us Logo"
-                    width={24}
-                    height={24}
-                    className="filter invert"
-                    priority
-                  />
-                  <span className="sr-only">Brandboostr.us</span>
-                  Brandboostr.us
-                </CardTitle>
-              </CardHeader>
-
-              <CardContent className="p-0">
-                <div className="relative w-full mb-8">
-                  <HeroComponent />
-                </div>
-
-                <p className="text-base font-karla font-bold text-gray-800 leading-snug">
-                  Unlock AI powered insights, strategy recommendations, and competitive analysis
-                </p>
-              </CardContent>
+        <div className="w-1/2 p-8 bg-white">
+          <div className="mb-8">
+            <div className="flex items-center gap-2 mb-6">
+              <Image
+                src={Logo}
+                alt="BrandBoostr.us Logo"
+                width={24}
+                height={24}
+              />
+              <span className="text-xl font-semibold">Brandboostr.us</span>
             </div>
-          </Card>
+            
+            <div className="w-full aspect-square relative mb-6">
+                {/* public\assets\hero.png */}
+              <Image
+                src="/assets/hero.png"
+                alt="Workspace Illustration"
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            <p className="text-gray-800 text-lg font-medium">
+              Unlock AI powered insights, strategy recommendations, and competitive analysis
+            </p>
+          </div>
         </div>
 
         {/* Right Side */}
-        <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12">
-          <div className="w-full max-w-md">
-            <h2 className="text-[2rem] md:text-[2.5rem] font-karla font-semibold text-[rgb(30,30,30)] mb-4">
-              Begin crafting your brand story
-            </h2>
+        <div className="w-1/2 bg-gray-100 p-12 flex flex-col justify-center">
+          <h1 className="text-[2rem] font-bold text-gray-900 mb-6">
+            Begin crafting<br />your brand story
+          </h1>
 
-            {/* Progress Indicators */}
-            <div className="mb-6 flex gap-3" role="progressbar" aria-label="Sign up progress">
-              <div className="h-1.5 w-32 rounded-full bg-gray-400" />
-              <div className="h-1.5 w-32 rounded-full bg-gray-600" />
-            </div>
-
-            <Button
-              onClick={handleSignUp}
-              className="w-full h-12 text-lg font-medium rounded-lg hover:opacity-90 transition-opacity"
-              aria-label="Sign up for Brandboostr.us"
-            >
-              Sign up
-            </Button>
-
-            <Link 
-              href="/sign-in"
-              className="block text-center mt-6 text-base text-gray-700 font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md"
-              tabIndex={0}
-              role="button"
-              aria-label="Go to sign in page"
-            >
-              I already have an account
-            </Link>
+          <div className="flex gap-2 mb-8">
+            <div className="h-1 w-16 bg-gray-300 rounded-full"></div>
+            <div className="h-1 w-16 bg-gray-400 rounded-full"></div>
           </div>
+
+          <Button
+            onClick={handleSignUp}
+            className="w-full bg-gray-800 text-white py-6 rounded-lg text-lg font-medium hover:bg-gray-700"
+          >
+            Sign up
+          </Button>
+
+          <Link 
+            href="/auth-demo/login"
+            className="text-gray-600 text-center mt-6 hover:text-gray-800"
+          >
+            I already have an account
+          </Link>
         </div>
       </div>
-    </main>
-  );
-};
+    </div>
+  )
+}
 
-export default GetStarted;
+export default GetStarted

@@ -1,0 +1,12 @@
+{
+  "sentiment_data": [
+    {
+      "month": "2024-03",
+      "average_score": 0.75,
+      "positive": 1200,
+      "negative": 300,
+      "neutral": 500
+    }
+    // Add more monthly sentiment data
+  ]
+} 

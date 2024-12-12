@@ -2,6 +2,7 @@ import { Inter } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 import "./globals.css"
 import { AuthProvider } from '@/app/auth-demo/Auth/AuthContext'
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -23,6 +24,18 @@ export default function RootLayout({
             {children}
           </AuthProvider>
         </ClerkProvider>
+        <Toaster 
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: '#fff',
+              color: '#363636',
+              border: '1px solid #E2E8F0',
+              borderRadius: '8px',
+            },
+            duration: 3000,
+          }}
+        />
       </body>
     </html>
   )

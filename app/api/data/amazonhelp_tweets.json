@@ -1,0 +1,13 @@
+{
+  "tweets": [
+    {
+      "tweet_id": "1234567890",
+      "author_id": "customer123",
+      "inbound": true,
+      "created_at": "2024-03-20T10:30:00Z",
+      "text": "Having issues with my recent order #ABC123",
+      "response_tweet_id": "1234567891"
+    }
+    // Add more tweet data as needed
+  ]
+} 

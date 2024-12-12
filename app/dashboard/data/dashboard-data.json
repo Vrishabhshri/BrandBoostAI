@@ -1,0 +1,28 @@
+{
+  "competitorMetrics": {
+    "amazon": {
+      "followers": 2100000,
+      "engagementRate": 4.8,
+      "postReach": 5600000,
+      "brandMentions": 89000,
+      "growth": {
+        "followers": 12.5,
+        "engagement": 2.3,
+        "reach": 8.7,
+        "mentions": 15.2
+      }
+    },
+    "target": {
+      "followers": 1800000,
+      "engagementRate": 3.9,
+      "postReach": 4200000,
+      "brandMentions": 67000,
+      "growth": {
+        "followers": 10.2,
+        "engagement": 1.8,
+        "reach": 7.5,
+        "mentions": 12.8
+      }
+    }
+  }
+} 

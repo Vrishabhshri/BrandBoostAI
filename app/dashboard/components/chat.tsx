@@ -7,10 +7,43 @@ import { Input } from "@/components/ui/input"
 import { CompanyInfo } from "./company-info"
 import competitorData from '../data/competitor.json'
 
+interface Tweet {
+  tweet_id: string;
+  author_id: string;
+  inbound: boolean;
+  created_at: string;
+  text: string;
+  response_tweet_id?: string;
+}
+
+interface SentimentData {
+  month: string;
+  average_score: number;
+  positive: number;
+  negative: number;
+  neutral: number;
+}
+
+interface ServiceIssue {
+  title: string;
+  description: string;
+}
+
+interface AmazonAnalysis {
+  timestamp: string;
+  issues: ServiceIssue[];
+  recommendations: ServiceIssue[];
+}
+
 interface GeminiAnalysis {
   type: string;
   content: string;
   error?: boolean;
+  data?: {
+    tweets?: Tweet[];
+    sentiment?: SentimentData[];
+    analysis?: AmazonAnalysis;
+  };
 }
 
 interface Message {
@@ -35,15 +68,36 @@ interface CompanyData {
 }
 
 const CHAT_PATTERNS = {
-  data: /\b(\w+)\s+data\b/i,
-  analysis: {
-    summary: ['what is', 'tell me about', 'who is', 'describe'],
-    competitors: ['competitors', 'competition', 'similar to', 'companies like'],
-    improvements: ['how to improve', 'suggestions for', 'recommendations', 'better'],
-    swot: ['swot', 'strengths and weaknesses', 'opportunities'],
-    trends: ['trends', 'market trends', 'industry trends', 'future of']
-  }
+  tweets: /\b(tweets?|interactions?)\b/i,
+  sentiment: /\b(sentiment|mood|feeling)\b/i,
+  analysis: /\b(analysis|issues|recommendations)\b/i,
+  timeRange: /\b(\d{4}-\d{2}|\d{4})\b/,
 } as const;
+
+const CHAT_HELP = {
+  commands: [
+    {
+      type: 'Company Info',
+      examples: ['Tell me about Target', 'What is Amazon'],
+      description: 'Get general company information'
+    },
+    {
+      type: 'Sentiment Analysis',
+      examples: ['Show sentiment trends', 'Customer satisfaction'],
+      description: 'Analyze customer sentiment data'
+    },
+    {
+      type: 'Trend Analysis',
+      examples: ['Show trends', 'Pattern analysis'],
+      description: 'Identify patterns and changes'
+    },
+    {
+      type: 'Data Analysis',
+      examples: ['Analyze issues', 'Show problems'],
+      description: 'Deep dive into specific issues'
+    }
+  ]
+};
 
 export function Chat() {
   const [messages, setMessages] = useState<Message[]>([
@@ -116,49 +170,57 @@ export function Chat() {
   const generateResponse = async (userInput: string) => {
     const text = userInput.toLowerCase();
     
-    // Check for data request pattern
-    const dataMatch = text.match(CHAT_PATTERNS.data);
-    if (dataMatch) {
-      const companyName = dataMatch[1];
-      setShowCompanyData(true);
-      await analyzeCompany(companyName, 'dataset');
-      return;
-    }
+    // Determine which data sources to query based on input patterns
+    const queryTypes = {
+      tweets: CHAT_PATTERNS.tweets.test(text),
+      sentiment: CHAT_PATTERNS.sentiment.test(text),
+      analysis: CHAT_PATTERNS.analysis.test(text),
+    };
 
-    // Detect company name and analysis type
-    const words = text.split(' ');
-    let detectedCompany = null;
-    
-    // Check each word against company database
-    for (const word of words) {
-      if (companyData.some(company => 
-        company.name.toLowerCase() === word.toLowerCase()
-      )) {
-        detectedCompany = word;
-        break;
+    try {
+      const response = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: text,
+          queryTypes,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        setMessages(prev => [...prev, {
+          id: prev.length + 1,
+          text: `Error: ${data.error}`,
+          isUser: false,
+          type: 'error'
+        }]);
+        return;
       }
-    }
 
-    if (!detectedCompany) {
+      // Add response to messages
       setMessages(prev => [...prev, {
         id: prev.length + 1,
-        text: "I couldn't identify a company name. Could you please mention the company you'd like to learn about?",
-        isUser: false
+        text: {
+          type: 'analysis',
+          content: data.analysis.content,
+          data: data.analysis.data
+        },
+        isUser: false,
+        type: 'analysis'
       }]);
-      return;
-    }
 
-    // Detect analysis type based on patterns
-    let analysisType: string = 'summary';
-    for (const [type, patterns] of Object.entries(CHAT_PATTERNS.analysis)) {
-      if (patterns.some(pattern => text.includes(pattern))) {
-        analysisType = type;
-        break;
-      }
+    } catch (error) {
+      setMessages(prev => [...prev, {
+        id: prev.length + 1,
+        text: 'Failed to analyze data. Please try again.',
+        isUser: false,
+        type: 'error'
+      }]);
     }
-
-    setShowCompanyData(false);
-    await analyzeCompany(detectedCompany, analysisType);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -183,9 +245,27 @@ export function Chat() {
       return message.text;
     }
     
-    // Handle GeminiAnalysis object
     if (typeof message.text === 'object' && 'content' in message.text) {
-      return message.text.content;
+      const analysis = message.text as GeminiAnalysis;
+      
+      // Render different data types
+      if (analysis.data?.tweets) {
+        return (
+          <div className="space-y-2">
+            <p>{analysis.content}</p>
+            <div className="mt-2 space-y-1">
+              {analysis.data.tweets.map((tweet, index) => (
+                <div key={index} className="text-sm border-l-2 border-zinc-700 pl-2">
+                  <span className="text-zinc-400">{new Date(tweet.created_at).toLocaleDateString()}</span>
+                  <p className="text-zinc-200">{tweet.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+      
+      return analysis.content;
     }
 
     return 'Invalid message format';
@@ -257,6 +337,7 @@ export function Chat() {
           </Button>
         </form>
       </div>
+
     </div>
   );
 }

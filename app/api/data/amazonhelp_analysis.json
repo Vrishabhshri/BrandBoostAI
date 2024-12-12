@@ -1,0 +1,17 @@
+{
+  "timestamp": "2024-03-20T12:00:00Z",
+  "issues": [
+    {
+      "title": "Delivery Delays",
+      "description": "20% increase in delivery-related complaints"
+    }
+    // Add more issues
+  ],
+  "recommendations": [
+    {
+      "title": "Improve Delivery Updates",
+      "description": "Implement more frequent status updates"
+    }
+    // Add more recommendations
+  ]
+} 
