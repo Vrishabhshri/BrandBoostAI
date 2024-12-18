@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react'
 import dashboardData from './data/dashboard-data.json'
 import amazonTweets from '@/public/amazonhelp_tweets.csv'
 import targetTweets from '@/public/target_tweets.csv'
+import { useUser } from "@clerk/nextjs"
 
 // Define interface for post data
 interface Post {
@@ -123,6 +124,13 @@ export default function OverviewPage() {
     setRecentPosts(posts)
   }, [])
 
+    // get username from clerk
+    const { user } = useUser();
+  
+  // Fallback if user or user.fullName is not available
+  const name = user?.fullName || 'Amazon';
+
+
   return (
     <div className="flex min-h-screen flex-col bg-zinc-900">
       <NavHeader />
@@ -130,7 +138,8 @@ export default function OverviewPage() {
         {/* Welcome Message */}
         <div className="mb-8 bg-zinc-800 rounded-lg p-6 border border-zinc-700">
           <h1 className="text-3xl font-bold text-white">
-            Welcome back, {userName}
+            {/* use the name from clerk user */}
+            Welcome back, {name}
           </h1>
           <p className="text-zinc-400 mt-3 text-lg">
             Track your competitive performance against Target with real-time metrics and insights

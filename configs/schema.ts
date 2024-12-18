@@ -5,5 +5,4 @@ export const USER_TABLE=pgTable("users", {
   name:varchar().notNull(),
   email:varchar().notNull(),
   business:varchar().notNull(),
-  password:varchar().notNull()
 })

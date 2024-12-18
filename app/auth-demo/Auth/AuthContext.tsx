@@ -1,8 +1,6 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
 
 interface User {
   // Add User interface definition here
