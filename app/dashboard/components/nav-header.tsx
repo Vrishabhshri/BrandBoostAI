@@ -26,7 +26,7 @@ export function NavHeader() {
             Competitor Dashboard
           </Link>
           <Link
-            href="#"
+            href="/dashboard/ContentBuilder"
             className="flex items-center gap-2 text-sm text-zinc-200 hover:text-white"
           >
             <Wand2 className="h-4 w-4" />
