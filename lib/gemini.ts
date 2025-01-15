@@ -21,9 +21,14 @@ export async function getCompanyInfo(companyName: string) {
     let parsedResponse;
     try {
       parsedResponse = JSON.parse(text);
-    } catch (parseError) {
+    } catch (parseError: unknown) {
       console.error("Error parsing Gemini response:", parseError);
-      throw new Error(`Failed to parse Gemini response: ${parseError.message}. Raw response: ${text}`);
+      // Type guard to ensure parseError is an instance of Error
+      if (parseError instanceof Error) {
+        throw new Error(`Failed to parse Gemini response: ${parseError.message}. Raw response: ${text}`);
+      } else {
+        throw new Error(`Failed to parse Gemini response: Unknown error. Raw response: ${text}`);
+      }
     }
 
     if (!parsedResponse || Object.keys(parsedResponse).length === 0) {
@@ -39,9 +44,13 @@ export async function getCompanyInfo(companyName: string) {
     }
 
     return parsedResponse;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Error in getCompanyInfo:", error);
-    throw new Error(`Failed to get company info: ${error.message}`);
+    // Type guard for error to be sure it is an instance of Error
+    if (error instanceof Error) {
+      throw new Error(`Failed to get company info: ${error.message}`);
+    } else {
+      throw new Error("Failed to get company info: Unknown error");
+    }
   }
 }
-

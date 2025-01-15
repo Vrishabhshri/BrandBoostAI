@@ -28,7 +28,6 @@ const tweetsCSV = fs.readFileSync(path.join(process.cwd(), 'public', 'amazonhelp
 const allTweets = parse(tweetsCSV, {
   columns: true,
   skip_empty_lines: true,
-  relax: true,
   relax_quotes: true,
   relax_column_count: true,
   quote: '"',
@@ -46,6 +45,7 @@ const allTweets = parse(tweetsCSV, {
     };
   }
 });
+
 
 interface Tweet {
   tweet_id: string;
@@ -129,7 +129,6 @@ const loadCompanyData = (company: string): CompanyData => {
     const tweets = parse(tweetsCSV, {
       columns: true,
       skip_empty_lines: true,
-      relax: true,
       relax_quotes: true,
       relax_column_count: true,
       quote: '"',

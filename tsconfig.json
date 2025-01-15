@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
+    "jsx": "preserve", // Use 'react-jsx' for React 17+ JSX support
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "noEmit": true,
     "incremental": true,
     "module": "esnext",
@@ -12,7 +17,6 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
     "plugins": [
       {
         "name": "next"
@@ -20,16 +24,21 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "app/dashboard/layout.jsx", "app/dashboard/page.tsx", "configs/schema.js"  ],
+    "**/*.tsx",
+    "app/dashboard/layout.jsx",
+    "app/dashboard/page.tsx",
+    "configs/schema.js"
+  ],
   "exclude": [
-    "node_modules",
+    "node_modules"
   ]
 }

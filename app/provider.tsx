@@ -19,19 +19,27 @@ function Provider({ children }: ProviderProps) {
     }, [user]);
 
     const CheckINewUser = async () => {
+        const email = user?.primaryEmailAddress?.emailAddress;
+
+        // Ensure email is defined before proceeding
+        if (!email) {
+            console.warn("User email is undefined.");
+            return;
+        }
+
         const result = await db
             .select()
             .from(USER_TABLE)
-            .where(eq(USER_TABLE.email, user?.primaryEmailAddress?.emailAddress));
+            .where(eq(USER_TABLE.email, email));
         console.log(result);
 
         if (result?.length === 0) {
             const userResponse = await db
                 .insert(USER_TABLE)
                 .values({
-                    name: user?.fullName,
-                    email: user?.primaryEmailAddress?.emailAddress,
-                    business: "default business", // Default value for "business"
+                    name: user?.fullName || "Unknown User",
+                    email,
+                    business: "default business",
                 })
                 .returning({ id: USER_TABLE.id });
 
