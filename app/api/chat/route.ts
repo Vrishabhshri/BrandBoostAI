@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" })
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
     const result = await model.generateContent(message)
     const response = await result.response
     const text = response.text()
