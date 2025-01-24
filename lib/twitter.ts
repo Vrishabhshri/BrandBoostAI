@@ -1,23 +1,37 @@
-const BEARER_TOKEN = process.env.BEARER_TOKEN
-const SEARCH_URL = process.env.SEARCH_URL
+import { TwitterApi } from 'twitter-api-v2';
 
-export async function searchTweets(query: string) {
+const client = new TwitterApi({
+  appKey: process.env.TWITTER_API_KEY || '',
+  appSecret: process.env.TWITTER_API_SECRET || '',
+  accessToken: process.env.TWITTER_ACCESS_TOKEN || '',
+  accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET || '',
+});
+
+export const getTwitterData = async (companyName: string) => {
   try {
-    const response = await fetch(`${SEARCH_URL}?query=${encodeURIComponent(query)}`, {
-      headers: {
-        Authorization: `Bearer ${BEARER_TOKEN}`,
-      },
-    })
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+    if (!process.env.TWITTER_API_KEY) {
+      console.warn('Twitter API credentials not found');
+      return null;
     }
 
-    const data = await response.json()
-    return data
+    const searchResults = await client.v2.usersByUsernames([companyName], {
+      'user.fields': ['public_metrics'],
+    });
+
+    if (!searchResults.data || searchResults.data.length === 0) {
+      return null;
+    }
+
+    const user = searchResults.data[0];
+    
+    return {
+      followers_count: user.public_metrics?.followers_count || null,
+      likes_count: user.public_metrics?.like_count || null,
+      tweets_count: user.public_metrics?.tweet_count || null,
+    };
   } catch (error) {
-    console.error("Error searching tweets:", error)
-    return null
+    console.error('Error fetching Twitter data:', error);
+    return null;
   }
-}
+};
 

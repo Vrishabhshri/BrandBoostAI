@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCompanyInfo } from "@/lib/gemini";
+import { getTwitterData } from "@/lib/twitter";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -13,23 +14,30 @@ export async function GET(request: Request) {
   }
 
   try {
+    // Get company info sequentially
     const companyInfo = await getCompanyInfo(companyName);
-    console.log("Company info retrieved:", companyInfo);
+    
+    // Get Twitter data
+    const twitterData = await getTwitterData(companyName);
+    
+    // Combine the data
+    const combinedData = {
+      ...companyInfo,
+      socialStats: {
+        followers: twitterData?.followers_count || null,
+        likes: twitterData?.likes_count || null,
+        tweets: twitterData?.tweets_count || null
+      }
+    };
 
-    if (!companyInfo || Object.keys(companyInfo).length === 0) {
-      throw new Error("Empty or invalid company info received from Gemini");
+    if (!combinedData) {
+      throw new Error("Failed to fetch company information");
     }
 
-    return NextResponse.json(companyInfo);
+    return NextResponse.json(combinedData);
   } catch (error) {
     console.error("Error in GET /api/company-info:", error);
-
-    // Narrowing the type of `error`
-    const errorMessage =
-      error instanceof Error
-        ? error.message
-        : "Failed to fetch company information";
-
+    const errorMessage = error instanceof Error ? error.message : "Failed to fetch company information";
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
