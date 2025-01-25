@@ -36,7 +36,8 @@
     "recharts": "^2.14.1",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "twitter-api-v2": "^1.19.0"
   },
   "devDependencies": {
     "@types/react": "18.3.12",
