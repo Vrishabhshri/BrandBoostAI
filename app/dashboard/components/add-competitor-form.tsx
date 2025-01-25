@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle, Loader2 } from "lucide-react";
+import { AlertCircle, Loader2, Save, Search, Twitter } from "lucide-react";
+import { toast } from "react-hot-toast";
+import { cn } from "@/lib/utils";
 
 interface CompanyInfo {
   name: string;
@@ -27,6 +29,25 @@ interface LoadingStates {
   hashtags: boolean;
 }
 
+interface TweetAnalysis {
+  sentiment: string;
+  sentimentScore: number;
+  trends: string[];
+  summary: string;
+  keyInsights: string[];
+}
+
+interface TwitterData {
+  name: string;
+  id: string;
+  description: string;
+  tweets: {
+    text: string;
+    createdAt: string;
+  }[];
+  analysis?: TweetAnalysis;
+}
+
 export function AddCompetitorForm() {
   const [companyName, setCompanyName] = useState("");
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
@@ -39,6 +60,10 @@ export function AddCompetitorForm() {
     hashtags: false,
   });
   const [error, setError] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [twitterData, setTwitterData] = useState<TwitterData | null>(null);
+  const [isTwitterLoading, setIsTwitterLoading] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const fetchCompanyInfo = async () => {
     const response = await fetch(`/api/company-info?name=${encodeURIComponent(companyName)}`);
@@ -84,6 +109,110 @@ export function AddCompetitorForm() {
     }
   };
 
+  const handleSave = async () => {
+    if (!companyInfo) return;
+    
+    setIsSaving(true);
+    try {
+      const response = await fetch('/api/save-company', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(companyInfo),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save company');
+      }
+
+      toast.success('Company saved successfully');
+    } catch (error) {
+      console.error('Error saving company:', error);
+      toast.error('Failed to save company');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleTwitterSearch = async () => {
+    if (!companyName) return;
+    
+    setIsTwitterLoading(true);
+    setError(null);
+    setTwitterData(null);
+
+    try {
+      const response = await fetch(`/api/twitter-search?name=${encodeURIComponent(companyName)}`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to fetch Twitter data');
+      }
+
+      setTwitterData(data);
+    } catch (error: any) {
+      console.error('Twitter search error:', error);
+      setError(error.message || 'Failed to fetch Twitter data');
+    } finally {
+      setIsTwitterLoading(false);
+    }
+  };
+
+  const handleAnalyzeTweets = async () => {
+    if (!twitterData) return;
+    
+    setIsAnalyzing(true);
+    try {
+      const response = await fetch('/api/analyze-tweets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(twitterData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to analyze tweets');
+      }
+
+      const analysis = await response.json();
+      setTwitterData(prev => prev ? { ...prev, analysis } : null);
+      toast.success('Tweets analyzed successfully');
+    } catch (error) {
+      console.error('Analysis error:', error);
+      toast.error('Failed to analyze tweets');
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const handleSaveTwitterData = async () => {
+    if (!twitterData) return;
+    
+    setIsSaving(true);
+    try {
+      const response = await fetch('/api/save-twitter-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(twitterData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save Twitter data');
+      }
+
+      toast.success('Twitter data saved successfully');
+    } catch (error) {
+      console.error('Save error:', error);
+      toast.error('Failed to save Twitter data');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const LoadingSpinner = () => (
     <Loader2 className="h-4 w-4 animate-spin" />
   );
@@ -101,9 +230,22 @@ export function AddCompetitorForm() {
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
           />
-          <Button type="submit" disabled={loading}>
-            {loading ? "Searching..." : "Search"}
-          </Button>
+          <div className="flex gap-2">
+            <Button type="submit" disabled={loading} className="flex items-center gap-2">
+              <Search className="h-4 w-4" />
+              {loading ? "Searching..." : "General Search"}
+            </Button>
+            <Button 
+              type="button"
+              onClick={handleTwitterSearch}
+              disabled={isTwitterLoading}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <Twitter className="h-4 w-4" />
+              {isTwitterLoading ? "Searching..." : "Twitter Search"}
+            </Button>
+          </div>
         </form>
 
         {error && (
@@ -178,7 +320,97 @@ export function AddCompetitorForm() {
                   </div>
                 )}
               </div>
+
+              <div className="flex justify-end mt-4">
+                <Button
+                  onClick={handleSave}
+                  disabled={isSaving}
+                  className="flex items-center gap-2"
+                >
+                  <Save className="h-4 w-4" />
+                  {isSaving ? 'Saving...' : 'Save Company'}
+                </Button>
+              </div>
             </div>
+          </div>
+        )}
+
+        {twitterData && (
+          <div className="mt-4 space-y-4 border-t pt-4">
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-semibold">Twitter Data</h3>
+              <div className="flex gap-2">
+                <Button
+                  onClick={handleAnalyzeTweets}
+                  disabled={isAnalyzing}
+                  variant="outline"
+                  className="flex items-center gap-2"
+                >
+                  <Loader2 className={cn("h-4 w-4", isAnalyzing && "animate-spin")} />
+                  {isAnalyzing ? "Analyzing..." : "Analyze Tweets"}
+                </Button>
+                <Button
+                  onClick={handleSaveTwitterData}
+                  disabled={isSaving || !twitterData.analysis}
+                  className="flex items-center gap-2"
+                >
+                  <Save className="h-4 w-4" />
+                  {isSaving ? "Saving..." : "Save Analysis"}
+                </Button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <p><span className="font-medium">Name:</span> {twitterData.name}</p>
+              <p><span className="font-medium">ID:</span> {twitterData.id}</p>
+              <p><span className="font-medium">Description:</span> {twitterData.description}</p>
+              
+              <div className="space-y-2">
+                <h4 className="font-medium">Recent Tweets:</h4>
+                {twitterData.tweets.map((tweet, index) => (
+                  <div key={index} className="bg-gray-50 p-3 rounded-lg">
+                    <p className="text-sm">{tweet.text}</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {new Date(tweet.createdAt).toLocaleString()}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {twitterData.analysis && (
+              <div className="mt-4 space-y-4 bg-gray-50 p-4 rounded-lg">
+                <h4 className="font-semibold">Analysis</h4>
+                <div className="grid gap-4">
+                  <div>
+                    <p className="font-medium">Sentiment</p>
+                    <p className="text-sm">{twitterData.analysis.sentiment} ({twitterData.analysis.sentimentScore})</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">Summary</p>
+                    <p className="text-sm">{twitterData.analysis.summary}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">Trends</p>
+                    <div className="flex flex-wrap gap-2">
+                      {twitterData.analysis.trends.map((trend, index) => (
+                        <span key={index} className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
+                          {trend}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="font-medium">Key Insights</p>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                      {twitterData.analysis.keyInsights.map((insight, index) => (
+                        <li key={index}>{insight}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </CardContent>

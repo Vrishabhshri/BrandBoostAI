@@ -3,54 +3,105 @@ import { GoogleGenerativeAI } from "@google/generative-ai"
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
 
 export async function getCompanyInfo(companyName: string) {
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-  const prompt = `Provide information about the company "${companyName}" in JSON format. Include the following fields: name, description, hashtags (array), estimatedFollowers, estimatedLikes, topCompetitors (array of names). If any information is not available, use null or an empty array.`;
-
   try {
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const prompt = `Give me information about ${companyName} in this exact JSON format:
+    {
+      "name": "company name",
+      "description": "brief description",
+      "hashtags": ["array of relevant hashtags"],
+      "topCompetitors": ["array of top competitors"]
+    }`;
+
     const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
-
-    console.log("Raw Gemini response:", text);
-
-    if (!text) {
-      throw new Error("Empty response from Gemini API");
-    }
-
-    let parsedResponse;
+    const text = result.response.text();
+    
+    // Remove markdown formatting and extract JSON
+    const jsonString = text.replace(/```json\n|\n```/g, '').trim();
+    
     try {
-      parsedResponse = JSON.parse(text);
-    } catch (parseError: unknown) {
-      console.error("Error parsing Gemini response:", parseError);
-      // Type guard to ensure parseError is an instance of Error
+      const data = JSON.parse(jsonString);
+      return data;
+    } catch (parseError) {
       if (parseError instanceof Error) {
-        throw new Error(`Failed to parse Gemini response: ${parseError.message}. Raw response: ${text}`);
-      } else {
-        throw new Error(`Failed to parse Gemini response: Unknown error. Raw response: ${text}`);
+        throw new Error(`Invalid JSON format: ${parseError.message}`);
       }
+      throw new Error('Failed to parse response');
     }
-
-    if (!parsedResponse || Object.keys(parsedResponse).length === 0) {
-      throw new Error("Empty or invalid JSON object returned from Gemini API");
-    }
-
-    // Ensure all required fields are present
-    const requiredFields = ['name', 'description', 'hashtags', 'estimatedFollowers', 'estimatedLikes', 'topCompetitors'];
-    for (const field of requiredFields) {
-      if (!(field in parsedResponse)) {
-        parsedResponse[field] = field === 'hashtags' || field === 'topCompetitors' ? [] : null;
-      }
-    }
-
-    return parsedResponse;
-  } catch (error: unknown) {
-    console.error("Error in getCompanyInfo:", error);
-    // Type guard for error to be sure it is an instance of Error
+  } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Failed to get company info: ${error.message}`);
-    } else {
-      throw new Error("Failed to get company info: Unknown error");
     }
+    throw new Error("Failed to get company info: Unknown error");
+  }
+}
+
+export async function analyzeData(data: any) {
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const analyses = [];
+
+  try {
+    // Step 1: Basic Info Analysis
+    const basicInfoPrompt = `Analyze this data and provide basic information in this exact JSON format:
+    {
+      "name": "company name or null if not found",
+      "description": "brief description or null",
+      "summary": "brief summary of overall content"
+    }`;
+
+    const basicInfoResult = await model.generateContent(basicInfoPrompt);
+    const basicInfo = JSON.parse(basicInfoResult.response.text().replace(/```json\n|\n```/g, '').trim());
+    analyses.push(basicInfo);
+
+    // Step 2: Metrics Analysis
+    const metricsPrompt = `Analyze the metrics and provide in this exact JSON format:
+    {
+      "followers": number or null,
+      "likes": number or null,
+      "engagement": "high/medium/low based on available metrics",
+      "trending": boolean
+    }`;
+
+    const metricsResult = await model.generateContent(metricsPrompt);
+    const metrics = JSON.parse(metricsResult.response.text().replace(/```json\n|\n```/g, '').trim());
+    analyses.push(metrics);
+
+    // Step 3: Sentiment Analysis
+    const sentimentPrompt = `Analyze the content sentiment and provide in this exact JSON format:
+    {
+      "sentiment": "positive/negative/neutral",
+      "sentimentScore": number between -1 and 1,
+      "keyPhrases": ["array of important phrases"],
+      "emotionalTone": "description of emotional tone"
+    }`;
+
+    const sentimentResult = await model.generateContent(sentimentPrompt);
+    const sentiment = JSON.parse(sentimentResult.response.text().replace(/```json\n|\n```/g, '').trim());
+    analyses.push(sentiment);
+
+    // Step 4: Recommendations
+    const recommendationsPrompt = `Based on the analysis, provide recommendations in this exact JSON format:
+    {
+      "recommendations": ["array of actionable recommendations"],
+      "improvements": ["array of potential improvements"],
+      "opportunities": ["array of identified opportunities"]
+    }`;
+
+    const recommendationsResult = await model.generateContent(recommendationsPrompt);
+    const recommendations = JSON.parse(recommendationsResult.response.text().replace(/```json\n|\n```/g, '').trim());
+    analyses.push(recommendations);
+
+    // Combine all analyses
+    return {
+      basicInfo: analyses[0],
+      metrics: analyses[1],
+      sentiment: analyses[2],
+      recommendations: analyses[3],
+      analyzedAt: new Date().toISOString()
+    };
+
+  } catch (error) {
+    console.error('Error in sequential analysis:', error);
+    throw new Error('Failed to complete analysis');
   }
 }
