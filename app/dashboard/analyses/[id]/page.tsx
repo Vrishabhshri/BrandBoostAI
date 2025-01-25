@@ -54,10 +54,28 @@ export default function AnalysisDetailPage() {
 
     setAnalyzing(true);
     try {
-      const response = await fetch(`/analyses/default.json`);
+      const response = await fetch(`/api/view-file?name=${selectedFile}`);
       if (!response.ok) throw new Error('Failed to analyze file');
       const data = await response.json();
-      setAnalysis(data.data);
+      
+      console.log('Fetched data:', data); // Log the fetched data
+
+      const analysisResponse = await fetch('/api/analyze-file', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (!analysisResponse.ok) {
+        throw new Error('Failed to analyze file');
+      }
+
+      const analysisData = await analysisResponse.json();
+      console.log('Analysis data:', analysisData); // Log the analysis data
+
+      setAnalysis(analysisData);
       toast.success('Analysis complete');
     } catch (error) {
       console.error('Error analyzing file:', error);
@@ -165,29 +183,29 @@ export default function AnalysisDetailPage() {
               {/* Basic Info */}
               <div className="space-y-2">
                 <h4 className="font-medium">Overview</h4>
-                <p className="text-gray-600">{analysis.analysis.basicInfo.description}</p>
-                <p className="text-sm text-gray-600">{analysis.analysis.basicInfo.summary}</p>
+                <p className="text-gray-600">{analysis.analysis.basicInfo?.description || 'No description available'}</p>
+                <p className="text-sm text-gray-600">{analysis.analysis.basicInfo?.summary || 'No summary available'}</p>
               </div>
 
               {/* Metrics */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <MetricCard
                   title="Followers"
-                  value={analysis.analysis.metrics.followers?.toLocaleString() ?? 'N/A'}
+                  value={analysis.analysis.metrics?.followers?.toLocaleString() ?? 'N/A'}
                 />
                 <MetricCard
                   title="Likes"
-                  value={analysis.analysis.metrics.likes?.toLocaleString() ?? 'N/A'}
+                  value={analysis.analysis.metrics?.likes?.toLocaleString() ?? 'N/A'}
                 />
                 <MetricCard
                   title="Engagement"
-                  value={analysis.analysis.metrics.engagement}
-                  className={analysis.analysis.metrics.engagement === 'high' ? 'text-green-600' : 'text-yellow-600'}
+                  value={analysis.analysis.metrics?.engagement}
+                  className={analysis.analysis.metrics?.engagement === 'high' ? 'text-green-600' : 'text-yellow-600'}
                 />
                 <MetricCard
                   title="Trending"
-                  value={analysis.analysis.metrics.trending ? 'Yes' : 'No'}
-                  className={analysis.analysis.metrics.trending ? 'text-green-600' : 'text-gray-600'}
+                  value={analysis.analysis.metrics?.trending ? 'Yes' : 'No'}
+                  className={analysis.analysis.metrics?.trending ? 'text-green-600' : 'text-gray-600'}
                 />
               </div>
 

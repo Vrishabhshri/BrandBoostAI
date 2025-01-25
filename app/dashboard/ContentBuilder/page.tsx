@@ -1,14 +1,27 @@
+"use client"
+
+import { NavHeader } from "../components/nav-header"
 import { AddCompetitorForm } from "../components/add-competitor-form"
 import { RecentFilesList } from "../components/recent-files-list"
 
-
 export default function ContentBuilder() {
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <AddCompetitorForm />
-        <RecentFilesList />
+    <div className="flex min-h-screen flex-col bg-zinc-900">
+      <NavHeader />
+      <div className="flex flex-1">
+        
+        <main className="flex-1 p-6">
+          <div className="mb-6 flex items-center justify-between">
+            <h1 className="text-2xl font-semibold text-white">
+              Content Builder
+            </h1>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <AddCompetitorForm />
+            <RecentFilesList />
+          </div>
+        </main>
       </div>
     </div>
   )

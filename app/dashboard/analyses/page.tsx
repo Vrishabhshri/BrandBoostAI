@@ -30,7 +30,7 @@ export default function AnalysesPage() {
 
   const fetchAnalysis = async (fileName: string) => {
     try {
-      const response = await fetch(`/analyses/default.json`);
+      const response = await fetch(`/dashboard/analyses/default.json`);
       if (!response.ok) throw new Error('Failed to fetch analysis');
       const data = await response.json();
       setAnalysis(data.data);

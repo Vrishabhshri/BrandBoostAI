@@ -53,7 +53,7 @@ export function RecentFilesList() {
               <li key={file.name} className="flex justify-between items-center">
                 <span>{file.name}</span>
                 <Button asChild>
-                  <Link href={`/analyses/default.json`}>
+                  <Link href={`/dashboard/analyses/default.json`}>
                     View
                   </Link>
                 </Button>

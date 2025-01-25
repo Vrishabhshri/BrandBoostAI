@@ -4,7 +4,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
 
 export async function getCompanyInfo(companyName: string) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const prompt = `Give me information about ${companyName} in this exact JSON format:
     {
       "name": "company name",
@@ -37,7 +37,7 @@ export async function getCompanyInfo(companyName: string) {
 }
 
 export async function analyzeData(data: any) {
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const analyses = [];
 
   try {
