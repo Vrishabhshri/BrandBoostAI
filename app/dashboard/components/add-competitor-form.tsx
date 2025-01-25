@@ -8,6 +8,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, Loader2, Save, Search, Twitter } from "lucide-react";
 import { toast } from "react-hot-toast";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 interface CompanyInfo {
   name: string;
@@ -64,6 +65,7 @@ export function AddCompetitorForm() {
   const [twitterData, setTwitterData] = useState<TwitterData | null>(null);
   const [isTwitterLoading, setIsTwitterLoading] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const router = useRouter();
 
   const fetchCompanyInfo = async () => {
     const response = await fetch(`/api/company-info?name=${encodeURIComponent(companyName)}`);
@@ -147,6 +149,9 @@ export function AddCompetitorForm() {
       const data = await response.json();
 
       if (!response.ok) {
+        if (response.status === 429) {
+          throw new Error('Rate limit reached. Please try again in a few minutes.');
+        }
         throw new Error(data.error || 'Failed to fetch Twitter data');
       }
 
@@ -210,6 +215,15 @@ export function AddCompetitorForm() {
       toast.error('Failed to save Twitter data');
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleViewFile = async (fileName: string) => {
+    try {
+      router.push(`/dashboard/analyses/${encodeURIComponent(fileName)}`);
+    } catch (error) {
+      console.error('Error viewing file:', error);
+      toast.error('Failed to view file');
     }
   };
 

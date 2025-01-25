@@ -1,50 +1,63 @@
 import { NextResponse } from "next/server";
-import { TwitterApi } from "twitter-api-v2";
+import { TwitterApi, TweetV2 } from "twitter-api-v2";
 
-const client = new TwitterApi({
-  appKey: process.env.TWITTER_API_KEY || '',
-  appSecret: process.env.TWITTER_API_SECRET || '',
-  accessToken: process.env.TWITTER_ACCESS_TOKEN || '',
-  accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET || '',
-});
+const client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN!);
+
+// Add rate limiting
+let lastRequestTime = 0;
+const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes in milliseconds
+const MAX_REQUESTS = 180; // Twitter's standard rate limit
+let requestCount = 0;
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const companyName = searchParams.get("name");
+    // Check rate limiting
+    const now = Date.now();
+    if (now - lastRequestTime > RATE_LIMIT_WINDOW) {
+      // Reset counter if window has passed
+      requestCount = 0;
+      lastRequestTime = now;
+    }
 
-    if (!companyName) {
+    if (requestCount >= MAX_REQUESTS) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
+    const { searchParams } = new URL(request.url);
+    const name = searchParams.get("name");
+
+    if (!name) {
       return NextResponse.json({ error: "Company name is required" }, { status: 400 });
     }
 
-    // Get user by username
-    const user = await client.v2.userByUsername(companyName, {
-      "user.fields": ["description", "id", "name"],
+    requestCount++;
+    const result = await client.v2.search(`${name} -is:retweet`, {
+      'tweet.fields': ['created_at', 'public_metrics'],
+      max_results: 10,
     });
 
-    if (!user.data) {
-      throw new Error("User not found");
-    }
-
-    // Get recent tweets
-    const tweets = await client.v2.userTimeline(user.data.id, {
-      max_results: 5,
-      "tweet.fields": ["created_at"],
-    });
-
-    const twitterData = {
-      name: user.data.name,
-      id: user.data.id,
-      description: user.data.description,
-      tweets: tweets.data.data.map(tweet => ({
+    return NextResponse.json({
+      name: name,
+      id: result.meta.newest_id,
+      description: `Twitter data for ${name}`,
+      tweets: result.data.data.map((tweet: TweetV2) => ({
         text: tweet.text,
         createdAt: tweet.created_at,
-      })),
-    };
-
-    return NextResponse.json(twitterData);
-  } catch (error) {
+      }))
+    });
+  } catch (error: any) {
     console.error("Twitter API error:", error);
+    
+    if (error.code === 429) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     return NextResponse.json(
       { error: "Failed to fetch Twitter data" },
       { status: 500 }

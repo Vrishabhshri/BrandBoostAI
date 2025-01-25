@@ -42,7 +42,9 @@ export async function analyzeData(data: any) {
 
   try {
     // Step 1: Basic Info Analysis
-    const basicInfoPrompt = `Analyze this data and provide basic information in this exact JSON format:
+    const basicInfoPrompt = `Analyze this data: ${JSON.stringify(data)}
+    
+    Provide basic information in this exact JSON format:
     {
       "name": "company name or null if not found",
       "description": "brief description or null",
@@ -50,11 +52,14 @@ export async function analyzeData(data: any) {
     }`;
 
     const basicInfoResult = await model.generateContent(basicInfoPrompt);
-    const basicInfo = JSON.parse(basicInfoResult.response.text().replace(/```json\n|\n```/g, '').trim());
+    const basicInfoText = basicInfoResult.response.text();
+    const basicInfo = JSON.parse(basicInfoText.replace(/```json\n|\n```/g, '').trim());
     analyses.push(basicInfo);
 
     // Step 2: Metrics Analysis
-    const metricsPrompt = `Analyze the metrics and provide in this exact JSON format:
+    const metricsPrompt = `For this data: ${JSON.stringify(data)}
+    
+    Provide metrics in this exact JSON format:
     {
       "followers": number or null,
       "likes": number or null,
@@ -63,40 +68,14 @@ export async function analyzeData(data: any) {
     }`;
 
     const metricsResult = await model.generateContent(metricsPrompt);
-    const metrics = JSON.parse(metricsResult.response.text().replace(/```json\n|\n```/g, '').trim());
+    const metricsText = metricsResult.response.text();
+    const metrics = JSON.parse(metricsText.replace(/```json\n|\n```/g, '').trim());
     analyses.push(metrics);
 
-    // Step 3: Sentiment Analysis
-    const sentimentPrompt = `Analyze the content sentiment and provide in this exact JSON format:
-    {
-      "sentiment": "positive/negative/neutral",
-      "sentimentScore": number between -1 and 1,
-      "keyPhrases": ["array of important phrases"],
-      "emotionalTone": "description of emotional tone"
-    }`;
-
-    const sentimentResult = await model.generateContent(sentimentPrompt);
-    const sentiment = JSON.parse(sentimentResult.response.text().replace(/```json\n|\n```/g, '').trim());
-    analyses.push(sentiment);
-
-    // Step 4: Recommendations
-    const recommendationsPrompt = `Based on the analysis, provide recommendations in this exact JSON format:
-    {
-      "recommendations": ["array of actionable recommendations"],
-      "improvements": ["array of potential improvements"],
-      "opportunities": ["array of identified opportunities"]
-    }`;
-
-    const recommendationsResult = await model.generateContent(recommendationsPrompt);
-    const recommendations = JSON.parse(recommendationsResult.response.text().replace(/```json\n|\n```/g, '').trim());
-    analyses.push(recommendations);
-
-    // Combine all analyses
+    // Combine analyses
     return {
       basicInfo: analyses[0],
       metrics: analyses[1],
-      sentiment: analyses[2],
-      recommendations: analyses[3],
       analyzedAt: new Date().toISOString()
     };
 

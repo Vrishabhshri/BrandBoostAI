@@ -1,0 +1,27 @@
+{
+  "fileName": "default.json",
+  "analyzedAt": "2024-03-20T12:00:00Z",
+  "originalData": {
+    "name": "Example Company",
+    "description": "A technology company focused on innovation",
+    "tweets": [
+      {
+        "text": "Excited to announce our latest product launch! #tech #innovation",
+        "createdAt": "2024-03-20T10:00:00Z"
+      }
+    ]
+  },
+  "analysis": {
+    "basicInfo": {
+      "name": "Example Company",
+      "description": "A leading technology company in the innovation space",
+      "summary": "The company shows strong social media presence with positive engagement"
+    },
+    "metrics": {
+      "followers": 10000,
+      "likes": 5000,
+      "engagement": "high",
+      "trending": true
+    }
+  }
+} 
