@@ -1,53 +1,59 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { eq } from "drizzle-orm";
 import { db } from "../configs/db";
 import { USER_TABLE } from "../configs/schema";
 import { useUser } from "@clerk/nextjs";
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 interface ProviderProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 function Provider({ children }: ProviderProps) {
-    const { user } = useUser();
+  const { user } = useUser();
+  const [userCredits, setUserCredits] = useState<number | null>(null);
 
-    useEffect(() => {
-        if (user) {
-            CheckINewUser();
-        }
-    }, [user]);
+  useEffect(() => {
+    if (user) {
+      CheckINewUser();
+    }
+  }, [user]);
 
-    const CheckINewUser = async () => {
-        const email = user?.primaryEmailAddress?.emailAddress;
+  const CheckINewUser = async () => {
+    const email = user?.primaryEmailAddress?.emailAddress;
 
-        // Ensure email is defined before proceeding
-        if (!email) {
-            console.warn("User email is undefined.");
-            return;
-        }
+    if (!email) {
+      console.warn("User email is undefined.");
+      return;
+    }
 
-        const result = await db
-            .select()
-            .from(USER_TABLE)
-            .where(eq(USER_TABLE.email, email));
-        console.log(result);
+    const result = await db
+      .select()
+      .from(USER_TABLE)
+      .where(eq(USER_TABLE.email, email));
+    
+    if (result?.length > 0) {
+      setUserCredits(result[0].credits);
+    } else {
+      const userResponse = await db
+        .insert(USER_TABLE)
+        .values({
+          name: user?.fullName || "Unknown User",
+          email,
+          business: "default business",
+        })
+        .returning({ id: USER_TABLE.id });
 
-        if (result?.length === 0) {
-            const userResponse = await db
-                .insert(USER_TABLE)
-                .values({
-                    name: user?.fullName || "Unknown User",
-                    email,
-                    business: "default business",
-                })
-                .returning({ id: USER_TABLE.id });
+      console.log(userResponse);
+    }
+  };
 
-            console.log(userResponse);
-        }
-    };
-
-    return <div>{children}</div>;
+  return (
+    <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAPPAL_Client_ID || '' }}>
+      <div>{children}</div>
+    </PayPalScriptProvider>
+  )
 }
 
 export default Provider;

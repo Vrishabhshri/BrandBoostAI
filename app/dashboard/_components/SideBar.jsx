@@ -12,14 +12,9 @@ export default function DashboardSidebar() {
   const mainNavItems = [
     { icon: LayoutGrid, label: 'Dashboard', to: '/dashboard' },
     { icon: BarChart3, label: 'Analytics', to: '/dashboard/pages/analytics' },
-    { icon: MessageSquare, label: 'Posts', to: '/dashboard/pages/posts' },
-    { icon: Calendar, label: 'Content', to: '/dashboard/pages/calendar' },
-    { icon: Hash, label: 'Manager', to: '/dashboard/pages/hashtags' },
-    { icon: TrendingUp, label: 'Performance', to: '/dashboard/pages/performance' },
-    { icon: Users, label: 'Audience', to: '/dashboard/pages/audience' },
+    { icon: TrendingUp, label: 'Subscription', to: '/dashboard/pages/buy-subscription' },
     { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard' },
     { icon: FileText, label: 'haris', to: '/dashboard/pages/haris-dashboard' },
-    { icon: Settings, label: 'Settings', to: '/dashboard/pages/settings' },
   ]
 
   const socialAccounts = [

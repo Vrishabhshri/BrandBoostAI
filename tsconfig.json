@@ -37,7 +37,7 @@
     "app/dashboard/layout.jsx",
     "app/dashboard/page.tsx",
     "configs/schema.js"
-  ],
+, "configs/db.js"  ],
   "exclude": [
     "node_modules"
   ]
