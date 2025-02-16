@@ -1,4 +1,3 @@
-```json
 {
   "companyName": "Nike, Inc.",
   "tickerSymbol": "NKE",
@@ -26,15 +25,15 @@
   },
   "keyPerformanceIndicators": {
     "revenue": {
-      "year2022": 46700000000,  // in USD
-      "year2023": 49000000000, // in USD
+      "year2022": 46700000000,
+      "year2023": 49000000000,
       "growthRate": 0.05 
     },
     "marketShare": {
       "athleticFootwear": 0.25,
       "athleticApparel": 0.20
     },
-    "profitMargin": 0.12 // 12%
+    "profitMargin": 0.12
   },
   "marketPositioning": {
     "targetAudience": "Athletes and fitness enthusiasts of all levels. Global reach.",
@@ -53,9 +52,9 @@
     "location": "Global, with significant presence in North America, Europe, and Asia"
   },
   "brandMetrics": {
-    "brandAwareness": 0.95,  // Scale of 0-1
-    "brandSentiment": 0.80,   // Scale of 0-1
-    "brandTrust": 0.85     // Scale of 0-1
+    "brandAwareness": 0.95,
+    "brandSentiment": 0.80,
+    "brandTrust": 0.85 
   },
   "recentCampaigns": [
     {
@@ -64,7 +63,7 @@
       "performanceMetrics": {
         "reach": 50000000,
         "engagement": 2000000,
-        "salesIncrease": 0.15  //15% increase in Air Max sales
+        "salesIncrease": 0.15 
       }
     },
     {
@@ -73,9 +72,8 @@
       "performanceMetrics": {
         "reach": 30000000,
         "engagement": 1500000,
-        "brandSentimentIncrease": 0.05 // 5% increase in positive brand sentiment
+        "brandSentimentIncrease": 0.05
       }
     }
   ]
 }
-```

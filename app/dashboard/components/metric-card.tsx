@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils"
 interface MetricCardProps {
   title: string
   value: string | number
+  change?: number
+  competitor?: string
   className?: string
 }
 

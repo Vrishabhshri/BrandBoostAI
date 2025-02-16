@@ -10,6 +10,7 @@ import dashboardData from './data/dashboard-data.json'
 import amazonTweets from '@/public/amazonhelp_tweets.csv'
 import targetTweets from '@/public/target_tweets.csv'
 import { useUser } from "@clerk/nextjs"
+import AddCredits from "../components/AddCredits"
 
 // Define interface for post data
 interface Post {
@@ -38,7 +39,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
       <div className="bg-zinc-800 p-3 rounded-lg border border-zinc-700 shadow-lg">
         <p className="text-zinc-400 font-medium mb-2">{label}</p>
         {payload.map((entry: any, index: number) => (
-          <p key={index} className="text-sm" style={{ color: entry.color }}>
+          <p key={index} className={`text-sm ${entry.color === '#00a1ff' ? 'text-[#00a1ff]' : 'text-[#ff0000]'}`}>
             {entry.name}: {entry.value.toFixed(3)}
           </p>
         ))}
@@ -290,6 +291,7 @@ export default function OverviewPage() {
           </div>
         </div>
       </main>
+      <AddCredits/>
     </div>
   )
 }

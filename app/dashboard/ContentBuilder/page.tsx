@@ -2,7 +2,6 @@
 
 import { NavHeader } from "../components/nav-header"
 import { AddCompetitorForm } from "../components/add-competitor-form"
-import { RecentFilesList } from "../components/recent-files-list"
 
 export default function ContentBuilder() {
   return (
@@ -17,9 +16,8 @@ export default function ContentBuilder() {
             </h1>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 ">
             <AddCompetitorForm />
-            <RecentFilesList />
           </div>
         </main>
       </div>

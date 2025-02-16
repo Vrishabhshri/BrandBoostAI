@@ -37,11 +37,16 @@ export function CompetitorForm({ onLoadCompetitor }: CompetitorFormProps) {
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/competer-gKaumRWhUCYiUwqe2egWoQEZDUf9gc.json')
+      const response = await fetch('/api/search-competitor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ searchTerm }),
+      })
       const data = await response.json()
-      const company = data.companies.find((c: CompanyData) => c.name.toLowerCase() === searchTerm.toLowerCase())
-      if (company) {
-        setCompanyData(company)
+      if (response.ok && data.company) {
+        setCompanyData(data.company)
       } else {
         setError('Company not found')
       }
