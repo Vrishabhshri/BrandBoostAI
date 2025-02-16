@@ -12,7 +12,8 @@ export default function DashboardSidebar() {
   const mainNavItems = [
     { icon: LayoutGrid, label: 'Dashboard', to: '/dashboard' },
     { icon: BarChart3, label: 'Analytics', to: '/dashboard/pages/analytics' },
-    { icon: TrendingUp, label: 'Subscription', to: '/dashboard/pages/buy-subscription' },
+    { icon: TrendingUp, label: 'Subscription', to: '/dashboard/pages/subscription' },
+    { icon: Users, label: 'Audience', to: '/dashboard/pages/audience' },
     { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard' },
     { icon: FileText, label: 'haris', to: '/dashboard/pages/haris-dashboard' },
   ]
