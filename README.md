@@ -13,6 +13,7 @@ Brandboost.ai is an AI-powered platform designed to help users manage their bran
 - **Next.js**: Full-stack application built using [Next.js](https://nextjs.org).
 - **Tailwind CSS**: Styling framework for responsive, utility-first design.
 - **Drizzle ORM**: For efficient interactions with the PostgreSQL database.
+- **Enhanced Analytics**: New features for analyzing social media performance and customer sentiment.
 
 ## Getting Started
 
@@ -29,23 +30,25 @@ First, clone the repository and install the required dependencies:
 git clone https://github.com/{repository}/brandboost-ai.git
 cd brandboost-ai
 npm install
-Set up Environment Variables
-Create a .env.local file in the root of the project and add the following:
+```
 
-bash
-Copy code
+### Set up Environment Variables
+
+Create a `.env.local` file in the root of the project and add the following:
+
+```bash
 NEXT_PUBLIC_DATABASE_CONNECTION_STRING= [Enter your string here from your Neon database]
-
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= [Enter your key]
 CLERK_SECRET_KEY= [Enter your key]
-
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-Running the Development Server
+```
+
+### Running the Development Server
+
 To run the app locally in development mode, use:
 
-bash
-Copy code
+```bash
 npm run dev
 # or
 yarn dev
@@ -53,24 +56,26 @@ yarn dev
 pnpm dev
 # or
 bun dev
-Open http://localhost:3000 with your browser to see the result.
+```
 
-The page will auto-update as you edit the files.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. The page will auto-update as you edit the files.
 
-Project Structure
+## Project Structure
+
 The project is structured as follows:
 
-graphql
-Copy code
+```
 .
 ├── app/                     # Next.js application files
 ├── components/              # Reusable components
 ├── styles/                  # Global CSS and Tailwind 
 ├── .env.local               # Environment variables 
-├── package.json             # Project dependencies and 
+├── package.json             # Project dependencies and scripts
 └── tailwind.config.js       # Tailwind CSS configuration
 ```
+
 ## Technologies Used
+
 - Next.js: A React-based framework for building full-stack applications.
 - Clerk: Authentication service for secure sign-in and sign-up.
 - PostgreSQL: Relational database for storing brand data.
@@ -79,14 +84,15 @@ Copy code
 - Tailwind CSS: Utility-first CSS framework for styling.
 - TypeScript: Type-safe JavaScript for better developer experience.
 - Drizzle ORM: A lightweight ORM for interacting with the PostgreSQL database.
-- Learn More
+
+## Learn More
+
 To learn more about Next.js, take a look at the following resources:
 
-Next.js Documentation - learn about Next.js features and API.
-Learn Next.js - an interactive Next.js tutorial.
-You can check out the Next.js GitHub repository - your feedback and contributions are welcome!
+- Next.js Documentation - learn about Next.js features and API.
+- Learn Next.js - an interactive Next.js tutorial.
+- You can check out the Next.js GitHub repository - your feedback and contributions are welcome!
 
-Deploy on Vercel
-The easiest way to deploy your Next.js app is to use the Vercel Platform from the creators of Next.js.
+## Deploy on Vercel
 
-Check out our Next.js deployment documentation for more 
+The easiest way to deploy your Next.js app is to use the Vercel Platform from the creators of Next.js. Check out our Next.js deployment documentation for more information. 
