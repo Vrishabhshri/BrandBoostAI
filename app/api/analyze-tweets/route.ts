@@ -1,11 +1,6 @@
 import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// Define the interface for a tweet
-interface Tweet {
-  text: string;
-}
-
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function POST(request: Request) {
@@ -13,9 +8,8 @@ export async function POST(request: Request) {
     const twitterData = await request.json();
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    // Type the tweets array using the Tweet interface
     const prompt = `Analyze these tweets from ${twitterData.name}:
-    ${twitterData.tweets.map((t: Tweet) => t.text).join('\n')}
+    ${twitterData.tweets.map(t => t.text).join('\n')}
     
     Provide analysis in this JSON format:
     {
