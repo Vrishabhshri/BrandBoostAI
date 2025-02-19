@@ -11,6 +11,7 @@ import amazonTweets from '@/public/amazonhelp_tweets.csv'
 import targetTweets from '@/public/target_tweets.csv'
 import { useUser } from "@clerk/nextjs"
 import AddCredits from "../components/AddCredits"
+import { ClipLoader } from "react-spinners";
 
 // Define interface for post data
 interface Post {
@@ -107,6 +108,7 @@ export default function OverviewPage() {
   const [performanceData, setPerformanceData] = useState(combineSentimentData())
   const [recentPosts, setRecentPosts] = useState<Post[]>([])
   const metrics = dashboardData.competitorMetrics
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const metricIcons = {
     followers: <Users className="h-5 w-5 text-blue-400" />,
@@ -118,6 +120,12 @@ export default function OverviewPage() {
   useEffect(() => {
     const data = combineSentimentData()
     setPerformanceData(data)
+
+    // Showing dashboard after data has been loaded
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
   }, [])
 
   useEffect(() => {
@@ -131,8 +139,15 @@ export default function OverviewPage() {
   // Fallback if user or user.fullName is not available
   const name = user?.fullName || 'Amazon';
 
+  // isLoading variable when false shows loading page, then from useEffect hooks gets set to false allowing page to show
+  return isLoading ? (
 
-  return (
+    <div className="flex min-h-screen flex-col bg-zinc-900 justify-center items-center">
+      <p className="text-zinc-400 mt-3 text-lg mb-4">Loading market trends...</p>
+      <ClipLoader color="#007bff" size={50} />
+    </div>
+
+  ) : (
     <div className="flex min-h-screen flex-col bg-zinc-900">
       <NavHeader />
       <main className="flex-1 p-6">

@@ -11,11 +11,16 @@ import { ArrowRight, BarChart2, Zap, Shield, Sparkles, Play } from 'lucide-react
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { GlowingStars } from "@/components/ui/glowing-stars"
 import { FloatingNavDemo } from "@/components/ui/floating-navbar"
+import { useRouter } from 'next/navigation'
 
 export default function LandingPage() {
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   const [activeTab, setActiveTab] = useState("overview")
+  const [loading, setLoading] = useState(false)
+
+  // Useful variables
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +39,13 @@ export default function LandingPage() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const getStartedClick = () => {
+
+    setLoading(true)
+    router.push('/dashboard')
+
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black text-white overflow-hidden">
@@ -85,13 +97,16 @@ export default function LandingPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.5, delay: 0 }}
             >
-              <Link href="/dashboard">
-                <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+              <Button 
+                onClick={getStartedClick} 
+                disabled={loading}
+                size="lg" 
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
+              >
+                {loading ? "Preparing..." : <>Get Started <ArrowRight className="ml-2 h-5 w-5" /></>}
+              </Button>
             </motion.div>
           </motion.div>
           <motion.div 
