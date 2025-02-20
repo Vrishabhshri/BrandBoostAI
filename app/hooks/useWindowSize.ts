@@ -14,6 +14,9 @@ const useWindowSize = (): WindowSize => {
   });
 
   useEffect(() => {
+    // Ensure this runs only in the browser
+    if (typeof window === 'undefined') return;
+
     const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
@@ -21,17 +24,13 @@ const useWindowSize = (): WindowSize => {
       });
     };
 
-    // Add event listener
     window.addEventListener('resize', handleResize);
-    
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
+    handleResize(); // Update state with initial window size
 
-    // Remove event listener on cleanup
     return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
+  }, []);
 
   return windowSize;
 };
 
-export default useWindowSize; 
+export default useWindowSize;

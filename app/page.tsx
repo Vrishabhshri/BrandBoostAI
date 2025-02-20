@@ -2,8 +2,15 @@
 
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import LandingPage from "./landing-page";
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div>
       <div className="flex justify-between p-2 bg-slate-100">
@@ -18,7 +25,7 @@ export default function Home() {
         </div>
       </div>
       <div className="m-0 p-0 justify-center">
-        <LandingPage />
+        {isClient && <LandingPage />}
       </div>
     </div>
   );
