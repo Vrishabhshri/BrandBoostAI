@@ -1,0 +1,100 @@
+[
+    {
+      "name": "Nike",
+      "id": "415859364",
+      "description": "Winning Isn't For Everyone. It's for those who do whatever it takes.",
+      "tweets": [
+        {
+          "text": "@GSL2019 Hey there! Please head over to https://t.co/tYQwhH6kRl or send us a DM on Nike Instagram for assistance.",
+          "createdAt": "2025-01-24T20:06:34.000Z"
+        },
+        {
+          "text": "@RunDaddyRun16 We just responded to your DM on Instagram!",
+          "createdAt": "2025-01-24T14:56:45.000Z"
+        },
+        {
+          "text": "@RunDaddyRun16 Hey Mike. Please head over to https://t.co/tYQwhH6kRl or send us a DM on Nike Instagram, so we can take a closer look this for you.",
+          "createdAt": "2025-01-24T13:33:55.000Z"
+        },
+        {
+          "text": "@PeterGriffin30 ¡Hola un gusto saludarte!\nNo te preocupes, estamos dispuestos a ayudarte, por favor ponte en contacto con nosotros por Whatsapp al +54 9 11 2799-6935. \n\nTe esperamos 🙂\nNIKE",
+          "createdAt": "2025-01-24T12:53:36.000Z"
+        },
+        {
+          "text": "@prezidnt510 Not what we like to see. Send us a DM on Nike Instagram or head over to https://t.co/1YlgJFGMQO, and we'll take a look at your options.",
+          "createdAt": "2025-01-24T02:09:56.000Z"
+        }
+      ],
+      "analysis": {
+        "sentiment": "positive",
+        "sentimentScore": 0.7,
+        "trends": [
+          "customer service",
+          "product assistance"
+        ],
+        "summary": "These tweets from Nike's official Twitter account provide customer service support and assistance to users experiencing issues with their products or inquiries. Nike directs customers to their Instagram DM or a specific URL for further assistance.",
+        "keyInsights": [
+          "Nike prioritizes customer satisfaction by offering multiple channels for support.",
+          "The tweets demonstrate a consistent and helpful approach to customer interactions.",
+          "Nike's customer service is accessible through various platforms, including WhatsApp and Instagram DM."
+        ]
+      },
+      "savedAt": "2025-01-25T01:26:22.373Z"
+    },
+    {
+      "basicInfo": {
+        "name": "Nike",
+        "description": "Winning Isn't For Everyone. It's for those who do whatever it takes.",
+        "summary": "Nike's customer service tweets provide support and assistance to users facing product issues or inquiries. They guide customers to contact via Instagram DM or a specified URL for further help."
+      },
+      "metrics": {
+        "followers": null,
+        "likes": null,
+        "engagement": "medium",
+        "trending": false
+      },
+      "analyzedAt": "2025-01-25T01:30:53.796Z"
+    },
+    {
+      "basicInfo": {
+        "name": "Nike",
+        "description": "Winning Isn't For Everyone. It's for those who do whatever it takes.",
+        "summary": "Nike's customer service tweets provide support and assistance to users facing product issues or inquiries. They guide customers to contact via Instagram DM or a specified URL for further help."
+      },
+      "metrics": {
+        "followers": null,
+        "likes": null,
+        "engagement": "medium",
+        "trending": false
+      },
+      "analyzedAt": "2025-01-25T01:33:12.477Z"
+    },
+    {
+      "basicInfo": {
+        "name": "Nike",
+        "description": "Winning Isn't For Everyone. It's for those who do whatever it takes.",
+        "summary": "Nike's customer service tweets provide support and assistance to users facing product issues or inquiries. They guide customers to contact via Instagram DM or a specified URL for further help."
+      },
+      "metrics": {
+        "followers": null,
+        "likes": null,
+        "engagement": "medium",
+        "trending": false
+      },
+      "analyzedAt": "2025-01-25T01:33:15.301Z"
+    },
+    {
+      "basicInfo": {
+        "name": "Nike",
+        "description": "Winning Isn't For Everyone. It's for those who do whatever it takes.",
+        "summary": "Nike's customer service tweets provide support and assistance to users facing product issues or inquiries. They guide customers to contact via Instagram DM or a specified URL for further help."
+      },
+      "metrics": {
+        "followers": null,
+        "likes": null,
+        "engagement": "medium",
+        "trending": false
+      },
+      "analyzedAt": "2025-01-25T01:33:18.316Z"
+    }
+  ]

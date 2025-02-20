@@ -35,3 +35,7 @@ export const getTwitterData = async (companyName: string) => {
   }
 };
 
+export const searchTweets = async (query: string) => {
+  // Your logic to search tweets based on the query
+};
+
