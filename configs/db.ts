@@ -1,5 +1,17 @@
 import { drizzle } from 'drizzle-orm/neon-http';
+import { Pool } from "pg";
 
-const db = drizzle(process.env.NEXT_PUBLIC_DATABASE_CONNECTION_STRING!); // Assert that it is not undefined
+const connectionString = process.env.NEXT_PUBLIC_DATABASE_CONNECTION_STRING;
+let pool;
 
-export { db };
+if (!connectionString) {
+  throw new Error("DATABASE_URL is not defined");
+}
+else {
+    pool = new Pool({
+        connectionString: connectionString,
+        ssl: true,
+    });
+}
+
+export const db = drizzle(pool);
