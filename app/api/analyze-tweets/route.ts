@@ -3,13 +3,18 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
+// Define an interface for the tweet structure
+interface Tweet {
+  text: string;
+}
+
 export async function POST(request: Request) {
   try {
-    const twitterData = await request.json();
+    const twitterData: { name: string; tweets: Tweet[] } = await request.json();
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     const prompt = `Analyze these tweets from ${twitterData.name}:
-    ${twitterData.tweets.map(t => t.text).join('\n')}
+    ${twitterData.tweets.map((t: Tweet) => t.text).join('\n')}
     
     Provide analysis in this JSON format:
     {
