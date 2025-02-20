@@ -19,6 +19,10 @@ export default function LandingPage() {
   const [activeTab, setActiveTab] = useState("overview")
   const [isClient, setIsClient] = useState(false)
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false)
+
+  // Useful variables
+  const router = useRouter()
 
   useEffect(() => {
     setIsClient(true);
@@ -44,6 +48,13 @@ export default function LandingPage() {
       return () => window.removeEventListener("scroll", handleScroll);
     }
   }, [isClient]);
+
+  const getStartedClick = () => {
+
+    setLoading(true)
+    router.push('/dashboard')
+
+  }
 
   return (
     <div className="relative">
@@ -98,11 +109,14 @@ export default function LandingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                <Link href="/dashboard">
-                  <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                    Get Started <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
+                <Button 
+                  onClick={getStartedClick} 
+                  disabled={loading}
+                  size="lg" 
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
+                >
+                  {loading ? "Preparing..." : <>Get Started <ArrowRight className="ml-2 h-5 w-5" /></>}
+                </Button>
               </motion.div>
             </motion.div>
             <motion.div 
