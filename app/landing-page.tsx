@@ -57,6 +57,8 @@ export default function LandingPage() {
   }
 
   return (
+
+    // Parent class
     <div className="relative">
       <GlowingStars />
       <div className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black text-white overflow-hidden">
@@ -79,7 +81,9 @@ export default function LandingPage() {
           },
         ]} />
 
+        {/* Main page section under floating navbar */}
         <main>
+          {/* Title section with "Get started" button */}
           <section className="relative h-screen flex items-center justify-center overflow-hidden">
             <Meteors number={20} />
             <motion.div 
@@ -125,6 +129,7 @@ export default function LandingPage() {
             />
           </section>
 
+          {/* Powerful Features section */}
           <section id="features" className="py-20 bg-zinc-900">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -154,6 +159,7 @@ export default function LandingPage() {
             </div>
           </section>
 
+          {/* Demo section */}
           <section id="demo" className="py-20 bg-gradient-to-b from-zinc-900 to-black">
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -184,6 +190,7 @@ export default function LandingPage() {
             </div>
           </section>
 
+          {/* Client testimonials section */}
           <section id="testimonials" className="py-20 bg-zinc-900">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -219,6 +226,7 @@ export default function LandingPage() {
             </div>
           </section>
 
+          {/* Pricing and plan section */}
           <section id="pricing" className="py-20 bg-black">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -265,6 +273,7 @@ export default function LandingPage() {
           </section>
         </main>
 
+        {/* Footer section */}
         <footer className="bg-zinc-900 py-12">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
