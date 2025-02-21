@@ -233,6 +233,7 @@ export default function LandingPage() {
                 Choose Your Plan
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Plans */}
                 {[
                   { name: "Starter", price: "$49", features: ["Basic Analytics", "Content Suggestions", "1 Social Account"] },
                   { name: "Pro", price: "$99", features: ["Advanced Analytics", "AI Content Generation", "5 Social Accounts", "Competitor Tracking"] },
@@ -240,9 +241,10 @@ export default function LandingPage() {
                 ].map((plan, index) => (
                   <motion.div 
                     key={index} 
-                    className="bg-zinc-800 rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105"
+                    className="bg-zinc-800 rounded-lg overflow-hidden transition-all duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
