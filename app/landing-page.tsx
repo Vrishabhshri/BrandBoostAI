@@ -11,6 +11,7 @@ import { ArrowRight, BarChart2, Zap, Shield, Sparkles, Play } from 'lucide-react
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { GlowingStars } from "@/components/ui/glowing-stars"
 import { FloatingNavDemo } from "@/components/ui/floating-navbar"
+import { useRouter } from 'next/navigation'
 
 export default function LandingPage() {
   const { scrollYProgress } = useScroll()
@@ -18,6 +19,10 @@ export default function LandingPage() {
   const [activeTab, setActiveTab] = useState("overview")
   const [isClient, setIsClient] = useState(false)
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false)
+
+  // Useful variables
+  const router = useRouter()
 
   useEffect(() => {
     setIsClient(true);
@@ -44,7 +49,16 @@ export default function LandingPage() {
     }
   }, [isClient]);
 
+  const getStartedClick = () => {
+
+    setLoading(true)
+    router.push('/dashboard')
+
+  }
+
   return (
+
+    // Parent class
     <div className="relative">
       <GlowingStars />
       <div className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black text-white overflow-hidden">
@@ -67,7 +81,9 @@ export default function LandingPage() {
           },
         ]} />
 
+        {/* Main page section under floating navbar */}
         <main>
+          {/* Title section with "Get started" button */}
           <section className="relative h-screen flex items-center justify-center overflow-hidden">
             <Meteors number={20} />
             <motion.div 
@@ -97,11 +113,14 @@ export default function LandingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                <Link href="/dashboard">
-                  <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                    Get Started <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
+                <Button 
+                  onClick={getStartedClick} 
+                  disabled={loading}
+                  size="lg" 
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
+                >
+                  {loading ? "Preparing..." : <>Get Started <ArrowRight className="ml-2 h-5 w-5" /></>}
+                </Button>
               </motion.div>
             </motion.div>
             <motion.div 
@@ -110,6 +129,7 @@ export default function LandingPage() {
             />
           </section>
 
+          {/* Powerful Features section */}
           <section id="features" className="py-20 bg-zinc-900">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -139,6 +159,7 @@ export default function LandingPage() {
             </div>
           </section>
 
+          {/* Demo section */}
           <section id="demo" className="py-20 bg-gradient-to-b from-zinc-900 to-black">
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -169,6 +190,7 @@ export default function LandingPage() {
             </div>
           </section>
 
+          {/* Client testimonials section */}
           <section id="testimonials" className="py-20 bg-zinc-900">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -204,6 +226,7 @@ export default function LandingPage() {
             </div>
           </section>
 
+          {/* Pricing and plan section */}
           <section id="pricing" className="py-20 bg-black">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -250,6 +273,7 @@ export default function LandingPage() {
           </section>
         </main>
 
+        {/* Footer section */}
         <footer className="bg-zinc-900 py-12">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
