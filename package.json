@@ -47,6 +47,8 @@
     "twitter-api-v2": "^1.19.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.4",
     "@types/react": "18.3.12",
     "csv-loader": "^3.0.5",
     "drizzle-kit": "^0.28.1",
