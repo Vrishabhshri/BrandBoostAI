@@ -12,11 +12,13 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAAUgxwEAAAAAguiNIGTGWHqMKlecAjOEjWBOXMY%3DKDuuRX91dEmn1ip0b9AHtZQmwvSOAeUe9XHAOXlWtdoQ0uo6qs'
 SEARCH_URL = "https://api.twitter.com/2/tweets/search/recent"
 
+
 # Authenticate to Twitter API
 def bearer_oauth(r):
     r.headers["Authorization"] = f"Bearer {BEARER_TOKEN}"
     r.headers["User-Agent"] = "v2RecentSearchPython"
     return r
+
 
 # Search for tweets
 def search_twitter(query):
@@ -27,6 +29,7 @@ def search_twitter(query):
         return None
     return response.json()
 
+
 # Save JSON data to a file
 def save_json(data, folder_path, filename):
     os.makedirs(folder_path, exist_ok=True)
@@ -35,9 +38,11 @@ def save_json(data, folder_path, filename):
         json.dump(data, f, indent=4)
     print(f"\nData saved to {file_path}")
 
+
 # Scan folder for JSON files
 def scan_folder(folder_path):
     return [f for f in os.listdir(folder_path) if f.endswith('.json')]
+
 
 # Generate a prompt for Gemini
 def generate_prompt(company_name, analysis_type):
@@ -51,6 +56,7 @@ def generate_prompt(company_name, analysis_type):
     }
     return prompts.get(analysis_type, prompts['summary'])
 
+
 # Interact with Gemini AI
 def interact_with_gemini(prompt):
     print("\nGenerating response from Gemini...")
@@ -60,6 +66,7 @@ def interact_with_gemini(prompt):
         print(response.text)
     except Exception as e:
         print(f"Error: {e}. Please check the API call or library version.")
+
 
 # Analyze a saved file with AI
 def analyze_saved_file(file_path, analysis_type):
@@ -71,6 +78,7 @@ def analyze_saved_file(file_path, analysis_type):
             interact_with_gemini(prompt)
     except Exception as e:
         print(f"Error analyzing file: {e}")
+
 
 # Main menu
 def main_menu(folder_path):
@@ -146,6 +154,7 @@ def main_menu(folder_path):
 
         else:
             print("\nInvalid choice. Please try again.")
+
 
 if __name__ == '__main__':
     folder_path = './public/'

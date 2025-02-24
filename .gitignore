@@ -54,3 +54,8 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/tests
+/e2e
+/tests-examples
+
+.cursorrules

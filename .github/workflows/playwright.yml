@@ -22,7 +22,7 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
       env: 
-        NEXT_PUBLIC_DATABASE_CONNECTION_STRING: ${{ secrets.NEXT_PUBLIC_DATABASE_CONNECTION_STRING }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
         NEXT_PUBLIC_PAPPAL_Client_ID: ${{ secrets.NEXT_PUBLIC_PAPPAL_Client_ID }}
         NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
         CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
@@ -34,7 +34,7 @@ jobs:
         FLASK_API_URL: ${{ secrets.FLASK_API_URL }}
         BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
         SEARCH_URL: ${{ secrets.SEARCH_URL }}
-        STRIPE_WEBHOOKS_SECRET: ${{ secrets.STRIPE_WEBHOOKS_SECRET }}
+        STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
         STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
         STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
         NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}

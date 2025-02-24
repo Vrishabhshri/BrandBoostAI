@@ -18,7 +18,6 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen w-screen bg-cover bg-center flex flex-col items-center justify-center"
-      style={{ backgroundImage: `url('./Background.png')` }}
     >
       <section className="w-full py-12 px-6 sm:px-12 lg:px-24 text-center">
         <h2 className="text-4xl font-bold text-white drop-shadow-lg">
