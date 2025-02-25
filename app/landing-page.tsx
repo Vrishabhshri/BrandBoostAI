@@ -146,7 +146,7 @@ export default function LandingPage() {
                     key={index} 
                     className="bg-zinc-800 p-6 rounded-lg shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
@@ -206,7 +206,7 @@ export default function LandingPage() {
                     key={index} 
                     className="bg-zinc-800 p-6 rounded-lg shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
