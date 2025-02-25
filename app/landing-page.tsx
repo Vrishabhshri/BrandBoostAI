@@ -300,4 +300,3 @@ interface Price {
     </div>
   )
 }
-
