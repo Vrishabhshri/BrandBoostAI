@@ -2,18 +2,19 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export const config = {
-  api: {
-    bodyParser: false, // Disable Next.js default body parsing
-  },
+    api: {
+        bodyParser: false, // Disables body parsing
+    },
 };
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
-  const rawBody = await req.text(); // Read raw body
-  const sig = req.headers.get("stripe-signature");
+const rawBody = await req.text();
+const sig = req.headers.get("stripe-signature");
 
-  try {
+
+try {
     const event = stripe.webhooks.constructEvent(
       rawBody,
       sig,
@@ -26,6 +27,7 @@ export async function POST(req) {
       const session = event.data.object;
       console.log("Payment successful for:", session.customer_email);
       // TODO: Update database with payment details
+      app.use("/api/order/checkout/webhook", express.raw({ type: "*/" }));
     }
 
     return new NextResponse("Webhook received", { status: 200 });
