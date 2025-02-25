@@ -25,8 +25,8 @@ export default async function Success({ searchParams }) {
         <p>
           We appreciate your business! A confirmation email will be sent to{' '}
           {customerEmail}. If you have any questions, please email{' '}
+          <a href="mailto:info@brandboostr.us">info@brandboostr.us</a>.
         </p>
-        <a href="mailto:info@brandboostr.us">info@brandboostr.us</a>.
       </section>
     )
   }
