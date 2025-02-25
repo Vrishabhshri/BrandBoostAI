@@ -14,9 +14,9 @@ const handler = async (
 
         try {
             const sig = req.headers['stripe-signature'];
-            // const body = await buffer(req);
+            const body = await buffer(req);
             event = STRIPE.webhooks.constructEvent(
-                req.body,
+                body,
                 sig as string,
                 STRIPE_ENDPOINT_SECRET
             );
