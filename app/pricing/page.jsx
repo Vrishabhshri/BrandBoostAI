@@ -20,13 +20,6 @@ const Pricing = () => {
       console.error('Failed to fetch prices:', error);
       // Consider adding user-facing error state here
     }
-    const fetchPrices = async () => {
-    try {
-      const { data } = await axios.get('/api/getproducts');
-      setPrices(data);
-    } catch (error) {
-      console.error('Failed to fetch prices: ', error);
-    }
   };
 
   return (
