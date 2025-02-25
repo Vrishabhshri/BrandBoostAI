@@ -12,8 +12,13 @@ const Pricing = () => {
 
 
   const fetchPrices = async () => {
-    const { data } = await axios.get('/api/getproducts');
-    setPrices(data);
+    try {
+      const { data } = await axios.get('/api/getproducts');
+      setPrices(data);
+    } catch (error) {
+      console.error('Failed to fetch prices:', error);
+      // Consider adding user-facing error state here
+    }
   };
 
   return (
