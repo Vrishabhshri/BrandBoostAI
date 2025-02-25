@@ -27,7 +27,8 @@ try {
       const session = event.data.object;
       console.log("Payment successful for:", session.customer_email);
       // TODO: Update database with payment details
-      app.use("/api/order/checkout/webhook", express.raw({ type: "*/" }));
+      console.log("Payment successful for:", session.customer_email);
+      // TODO: Update database with payment details
     }
 
     return new NextResponse("Webhook received", { status: 200 });
