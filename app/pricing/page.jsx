@@ -9,16 +9,21 @@ const Pricing = () => {
   useEffect(() => {
   fetchPrices()
   }, [])
+  
 
 
   const fetchPrices = async () => {
-    const { data } = await axios.get('/api/getproducts');
-    setPrices(data);
+    try {
+      const { data } = await axios.get('/api/getproducts');
+      setPrices(data);
+    } catch (error) {
+      console.error('Failed to fetch prices:', error);
+      // Consider adding user-facing error state here
+    }
   };
 
   return (
-    <div className="min-h-screen w-screen bg-cover bg-center flex flex-col items-center justify-center"
-      style={{ backgroundImage: `url('./Background.png')` }}
+    <div className="min-h-screen w-screen bg-zinc-900 bg-center flex flex-col items-center justify-center"
     >
       <section className="w-full py-12 px-6 sm:px-12 lg:px-24 text-center">
         <h2 className="text-4xl font-bold text-white drop-shadow-lg">

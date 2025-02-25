@@ -1,6 +1,5 @@
 "use client"
-
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Meteors } from "@/components/ui/meteors"
@@ -12,6 +11,8 @@ import { ArrowRight, BarChart2, Zap, Shield, Sparkles, Play } from 'lucide-react
 import { GlowingStars } from "@/components/ui/glowing-stars"
 import { FloatingNavDemo } from "@/components/ui/floating-navbar"
 import { useRouter } from 'next/navigation'
+import axios from 'axios';
+import PricingCard from "./components/PricingCard";
 
 export default function LandingPage() {
   const { scrollYProgress } = useScroll()
@@ -20,6 +21,7 @@ export default function LandingPage() {
   const [isClient, setIsClient] = useState(false)
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
   const [loading, setLoading] = useState(false)
+    const [prices, setPrices] = React.useState<Price[]>([]);
 
   // Useful variables
   const router = useRouter()
@@ -53,12 +55,24 @@ export default function LandingPage() {
 
     setLoading(true)
     router.push('/dashboard')
-
   }
 
-  return (
 
-    // Parent class
+interface Price {
+  id: string;
+}
+
+  // Fetch subscription prices
+  useEffect(() => {
+    fetchPrices();
+  }, []);
+
+  const fetchPrices = async () => {
+    const { data } = await axios.get("/api/getproducts");
+    setPrices(data);
+  };
+
+  return (
     <div className="relative">
       <GlowingStars />
       <div className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black text-white overflow-hidden">
@@ -81,9 +95,7 @@ export default function LandingPage() {
           },
         ]} />
 
-        {/* Main page section under floating navbar */}
         <main>
-          {/* Title section with "Get started" button */}
           <section className="relative h-screen flex items-center justify-center overflow-hidden">
             <Meteors number={20} />
             <motion.div 
@@ -129,7 +141,6 @@ export default function LandingPage() {
             />
           </section>
 
-          {/* Powerful Features section */}
           <section id="features" className="py-20 bg-zinc-900">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -159,7 +170,6 @@ export default function LandingPage() {
             </div>
           </section>
 
-          {/* Demo section */}
           <section id="demo" className="py-20 bg-gradient-to-b from-zinc-900 to-black">
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -190,7 +200,6 @@ export default function LandingPage() {
             </div>
           </section>
 
-          {/* Client testimonials section */}
           <section id="testimonials" className="py-20 bg-zinc-900">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -226,56 +235,25 @@ export default function LandingPage() {
             </div>
           </section>
 
-          {/* Pricing and plan section */}
-          <section id="pricing" className="py-20 bg-black">
+            {/* Pricing Section Updated */}
+          <section id="pricing" className="py-20 bg-zinc-900">
             <div className="container mx-auto px-4">
               <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
                 Choose Your Plan
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Plans */}
-                {[
-                  { name: "Starter", price: "$49", features: ["Basic Analytics", "Content Suggestions", "1 Social Account"] },
-                  { name: "Pro", price: "$99", features: ["Advanced Analytics", "AI Content Generation", "5 Social Accounts", "Competitor Tracking"] },
-                  { name: "Enterprise", price: "Custom", features: ["Full Suite Access", "Dedicated Account Manager", "Unlimited Social Accounts", "Custom Integrations"] },
-                ].map((plan, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="bg-zinc-800 rounded-lg overflow-hidden transition-all duration-300"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="p-6 bg-gradient-to-r from-purple-600 to-blue-600">
-                      <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                      <p className="text-4xl font-extrabold">{plan.price}</p>
-                      <p className="text-sm text-zinc-200">per month</p>
-                    </div>
-                    <div className="p-6">
-                      <ul className="mb-6 space-y-2">
-                        {plan.features.map((feature, i) => (
-                          <li key={i} className="flex items-center">
-                            <svg className="h-5 w-5 text-green-500 mr-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                              <path d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                      <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-300">
-                        Get Started
-                      </Button>
-                    </div>
-                  </motion.div>
-                ))}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 bg-opacity-30 p-6 rounded-lg max-w-7xl mx-auto">
+                {prices.length > 0 ? (
+                  prices.map((price) => (
+                    <PricingCard price={price} key={price.id} />
+                  ))
+                ) : (
+                  <p className="text-center text-zinc-400">Loading plans...</p>
+                )}
               </div>
             </div>
           </section>
         </main>
 
-        {/* Footer section */}
         <footer className="bg-zinc-900 py-12">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -293,7 +271,7 @@ export default function LandingPage() {
                   <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">About Us</Link></li>
                   <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Careers</Link></li>
                   <li><Link href="#" className="text-zinc-400 hover:text-white transition-colors">Contact</Link></li>
-                  <li><Link href="/privacy-policy" className="text-zinc-400 hover:text-white transition-colors">Privacy Policy</Link></li>
+                  <li><Link href="./privacy-policy" className="text-zinc-400 hover:text-white transition-colors">Privacy Policy</Link></li>
                 </ul>
               </div>
               <div>
@@ -322,4 +300,3 @@ export default function LandingPage() {
     </div>
   )
 }
-

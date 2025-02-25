@@ -1,7 +1,10 @@
+import { drizzle } from 'drizzle-orm/neon-http';
+
+const db = drizzle(process.env.NEXT_PUBLIC_DATABASE_CONNECTION_STRING!);
+
+export { db };
 // "use server"
 
-import { drizzle } from 'drizzle-orm/neon-http';
-import { Pool } from "pg";
 
 // const connectionString = process.env.NEXT_PUBLIC_DATABASE_CONNECTION_STRING;
 // let pool;

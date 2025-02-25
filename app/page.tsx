@@ -13,8 +13,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex justify-between p-2 bg-slate-100">
-        <div>Hello There</div>
+      <div className="flex items-end p-2 bg-slate-100">
         <div className="bg-slate-200 p-1 rounded-lg cursor justify-center">
           <SignedOut>
             <SignInButton mode="modal" />
