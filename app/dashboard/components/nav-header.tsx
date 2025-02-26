@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link"
 import { Flame, LayoutDashboard, Settings, Wand2 } from 'lucide-react'
 import { SignedIn, UserButton } from "@clerk/nextjs";
