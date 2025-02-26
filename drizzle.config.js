@@ -4,5 +4,6 @@ export default defineConfig({
   dialect: "postgresql",
   schema: "./configs/schema.ts",
   dbCredentials:{
-    url: process.env.local.NEXT_PUBLIC_DATABASE_CONNECTION_STRING  }
+    url:'postgresql://test-runs_owner:mYG2LXPUs7Cv@ep-damp-breeze-a54ttdon.us-east-2.aws.neon.tech/Brandboost-ai?sslmode=require'
+  }
 });
