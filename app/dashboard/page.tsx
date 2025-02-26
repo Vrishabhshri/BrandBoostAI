@@ -306,7 +306,7 @@ export default function OverviewPage() {
           </div>
         </div>
       </main>
-      <AddCredits/>
+      {/* <AddCredits/> */}
     </div>
   )
 }
