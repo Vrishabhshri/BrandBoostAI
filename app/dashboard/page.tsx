@@ -157,7 +157,7 @@ export default function OverviewPage() {
             Welcome back, {name}
           </h1>
           <p className="text-zinc-400 mt-3 text-lg">
-            Track your competitive performance against Target with real-time metrics and insights
+            {/* Track your competitive performance against Target with real-time metrics and insights */}
           </p>
         </div>
 
