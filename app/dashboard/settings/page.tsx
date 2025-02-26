@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-hot-toast";
+import { SignIn } from "@clerk/nextjs";
 
 export default function ProfilePage() {
   const [name, setName] = useState("");
@@ -70,7 +71,7 @@ export default function ProfilePage() {
 
   return (
     <div className="flex flex-col p-6 bg-zinc-900">
-      <h1 className="text-2xl font-semibold text-white">Profile</h1>
+      {/* <h1 className="text-2xl font-semibold text-white">Profile</h1>
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="mb-4">
           <label className="block text-white">Name</label>
@@ -86,7 +87,10 @@ export default function ProfilePage() {
         <Button variant="destructive" onClick={handleDeleteAccount} disabled={loading}>
           Delete Account
         </Button>
-      </form>
+      </form> */}
+
+      <SignIn />
+
     </div>
   );
 } 
