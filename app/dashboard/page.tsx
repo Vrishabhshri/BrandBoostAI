@@ -181,7 +181,7 @@ export default function OverviewPage() {
         
         <div className="grid grid-cols-4 gap-4">
           <MetricCard 
-            title="Amazon Followers" 
+            title="Followers" 
             value={`${(metrics.amazon.followers / 1000000).toFixed(1)}M`}
             change={metrics.amazon.growth.followers}
             competitor={`Target: ${(metrics.target.followers / 1000000).toFixed(1)}M`}
