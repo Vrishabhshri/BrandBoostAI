@@ -164,7 +164,7 @@ export default function OverviewPage() {
 
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl font-semibold text-white">Competitor Overview</h2>
+            <h2 className="text-xl font-semibold text-white">Overview</h2>
             <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800 rounded-full border border-zinc-700">
               <Target className="h-4 w-4 text-red-500" />
               <span className="text-sm text-zinc-300">vs Target</span>
