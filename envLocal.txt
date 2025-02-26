@@ -18,7 +18,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3000
 BEARER_TOKEN=AAAAAAAAAAAAAAAAAAAAAAUgxwEAAAAAguiNIGTGWHqMKlecAjOEjWBOXMY%3DKDuuRX91dEmn1ip0b9AHtZQmwvSOAeUe9XHAOXlWtdoQ0uo6qs
 SEARCH_URL=https://api.twitter.com/2/tweets/search/recent
 
-
+STRIPE_SECRET_KEY=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
 
                     ###     pasted env from original brandboost repo:      ###
 #Port

@@ -10,7 +10,6 @@ import dashboardData from './data/dashboard-data.json'
 import amazonTweets from '@/public/amazonhelp_tweets.csv'
 import targetTweets from '@/public/target_tweets.csv'
 import { useUser } from "@clerk/nextjs"
-import AddCredits from "../components/AddCredits"
 import { ClipLoader } from "react-spinners";
 
 // Define interface for post data
@@ -306,7 +305,6 @@ export default function OverviewPage() {
           </div>
         </div>
       </main>
-      <AddCredits/>
     </div>
   )
 }
