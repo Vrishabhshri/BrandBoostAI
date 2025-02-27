@@ -14,6 +14,7 @@ query_params = {
     'place.fields': 'country_code,name'
 }
 
+
 def bearer_oauth(r):
     """
     Method required by bearer token authentication.
@@ -21,6 +22,7 @@ def bearer_oauth(r):
     r.headers["Authorization"] = f"Bearer {bearer_token}"
     r.headers["User-Agent"] = "v2RecentSearchPython"
     return r
+
 
 def connect_to_endpoint(url, params):
     """
@@ -33,15 +35,16 @@ def connect_to_endpoint(url, params):
         raise Exception("Rate limit exceeded: Try again later.")
     elif response.status_code != 200:
         raise Exception(response.status_code, response.text)
-    
+
     return response.json()
+
 
 def scan_directory(directory_path, file_extension=".json"):
     """
     Scans a directory for files with a specific extension and processes them.
     """
     matching_files = []
-    
+
     # Check if the directory exists
     if not os.path.exists(directory_path):
         print(f"The directory {directory_path} does not exist.")
@@ -56,6 +59,7 @@ def scan_directory(directory_path, file_extension=".json"):
 
     return matching_files
 
+
 def display_json_content(file_path):
     """
     Displays the content of a JSON file in a readable format.
@@ -67,6 +71,7 @@ def display_json_content(file_path):
         print(json.dumps(data, indent=4))
     except Exception as e:
         print(f"An error occurred while reading the file: {e}")
+
 
 def user_selection_loop(directory):
     """
@@ -95,6 +100,7 @@ def user_selection_loop(directory):
         else:
             print("Invalid choice. Please try again.")
 
+
 def main():
     try:
         # Get tweets
@@ -117,9 +123,10 @@ def main():
         # Start the user selection loop
         print("\nStarting the JSON file viewer...")
         user_selection_loop(directory)
-    
+
     except Exception as e:
         print(f"An error occurred: {e}")
+
 
 if __name__ == '__main__':
     main()

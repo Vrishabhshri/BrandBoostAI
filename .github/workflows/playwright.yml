@@ -21,23 +21,6 @@ jobs:
       run: npx playwright install chromium
     - name: Run Playwright tests
       run: npx playwright test
-      env: 
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        NEXT_PUBLIC_PAPPAL_Client_ID: ${{ secrets.NEXT_PUBLIC_PAPPAL_Client_ID }}
-        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
-        CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
-        NEXT_PUBLIC_CLERK_SIGN_IN_URL: ${{ secrets.NEXT_PUBLIC_CLERK_SIGN_IN_URL }}
-        NEXT_PUBLIC_CLERK_SIGN_UP_URL: ${{ secrets.NEXT_PUBLIC_CLERK_SIGN_UP_URL }}
-        NEXT_PUBLIC_GEMINI_API_KEY: ${{ secrets.NEXT_PUBLIC_GEMINI_API_KEY }}
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-        FLASK_API_URL: ${{ secrets.FLASK_API_URL }}
-        BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
-        SEARCH_URL: ${{ secrets.SEARCH_URL }}
-        STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
-        STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-        STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
-        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
