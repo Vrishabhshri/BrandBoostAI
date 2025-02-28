@@ -6,7 +6,8 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "build": "next build"
   },
   "dependencies": {
     "@clerk/elements": "^0.22.0",
