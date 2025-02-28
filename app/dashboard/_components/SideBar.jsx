@@ -11,6 +11,14 @@ const fetchConnectedAccounts = async () => {
   return ['Instagram', 'Twitter'] // Example: User is logged into Instagram and Twitter
 }
 
+/**
+ * Renders the dashboard sidebar for the dashboard interface.
+ *
+ * The component displays main navigation links alongside connected social media accounts.
+ * When mounted, it asynchronously fetches the list of connected accounts using a mock fetch
+ * function and filters the social accounts to only display those that are connected.
+ * An "Add Account" option is always available to allow users to connect new accounts.
+ */
 export default function DashboardSidebar() {
   const pathname = usePathname()
   const [connectedAccounts, setConnectedAccounts] = useState<string[]>([])
