@@ -46,7 +46,7 @@ const PricingCard = ({ price }) => {
 
         <Dialog>
           <DialogTrigger asChild>
-            <button className="mt-10 mb-4 w-[75%] flex justify-center mx-10 rounded-lg border border-transparent bg-[RGBA(12,12,12,0.8)] text-opacity-40 backdrop-blur py-2 px-4 text-2xl font-semibold text-slate-300 line-through shadow-sm hover:bg-opacity-50 transition-all">
+            <button className="mt-10 mb-4 w-[75%] flex justify-center mx-10 rounded-lg border border-transparent bg-[RGBA(12,12,12,0.8)] text-opacity-95 backdrop-blur py-2 px-4 text-2xl font-semibold text-slate-300 shadow-sm hover:bg-opacity-50 transition-all">
               Subscribe
             </button>
           </DialogTrigger>

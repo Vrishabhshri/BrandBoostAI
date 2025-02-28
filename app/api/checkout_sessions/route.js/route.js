@@ -8,13 +8,12 @@ export async function POST() {
     const headersList = await headers()
     const origin = headersList.get('origin')
     const request = await req.json()
-    const { priceID } = request
+    const { priceId } = request
 
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
-          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
           price: priceId,
           quantity: 1,
         },

@@ -30,7 +30,7 @@ const Pricing = () => {
           Expand your social media presence with <span className="text-blue-400">Brandboostr-AI</span>
         </h2>
         <p className="mt-4 text-2xl text-red-300">
-          ⏳ Sorry for the Wait! Subscription Plans Launching Shortly.🚀
+          Subscription Plans Launching Shortly.🚀
         </p>
       </section>
 

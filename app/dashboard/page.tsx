@@ -158,17 +158,20 @@ export default function OverviewPage() {
             Welcome back, {name}
           </h1>
           <p className="text-zinc-400 mt-3 text-lg">
-            Track your competitive performance against Target with real-time metrics and insights
+            Track your competitive performance with real-time metrics and insights
           </p>
         </div>
 
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl font-semibold text-white">Competitor Overview</h2>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800 rounded-full border border-zinc-700">
-              <Target className="h-4 w-4 text-red-500" />
-              <span className="text-sm text-zinc-300">vs Target</span>
-            </div>
+            <h2 className="text-xl font-semibold text-white">Overview</h2>
+
+             {/* Removed the Target name and logo to just have overview page.  */}
+
+            {/* <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800 rounded-full border border-zinc-700">
+              {/* <Target className="h-4 w-4 text-red-500" />
+              <span className="text-sm text-zinc-300">vs Target</span> }
+            </div> */}
           </div>
           <button 
             className="flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-2 hover:bg-zinc-800 transition-colors"
@@ -306,7 +309,7 @@ export default function OverviewPage() {
           </div>
         </div>
       </main>
-      <AddCredits/>
+      {/* <AddCredits/> */}
     </div>
   )
 }
