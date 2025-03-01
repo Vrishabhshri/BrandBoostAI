@@ -101,6 +101,15 @@ const combineRecentPosts = (): Post[] => {
     .slice(0, 5)
 }
 
+/**
+ * Renders the dashboard overview page for competitive performance metrics.
+ *
+ * The component initially shows a loading spinner while simulating data fetching for social media sentiment and recent posts.
+ * Once the data is loaded, it displays a dashboard that includes a welcome message (using the authenticated user's name or "Amazon" as a fallback),
+ * key metric cards with associated icons, a line chart comparing sentiment scores, and a section analyzing recent social media posts.
+ *
+ * @returns A React element representing the dashboard overview page with performance metrics and insights.
+ */
 export default function OverviewPage() {
   const { overview } = useCompetitorOverview();
   const { lockStatus } = overview;

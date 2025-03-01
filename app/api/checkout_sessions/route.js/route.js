@@ -3,6 +3,18 @@ import { headers } from 'next/headers'
 
 import { stripe } from '../../../lib/stripe'
 
+/**
+ * Handles an HTTP POST request to create a subscription-based Stripe Checkout session.
+ *
+ * This asynchronous function retrieves the origin of the request from the headers and extracts the price ID from the JSON payload.
+ * It then creates a checkout session with a single line item configured for a subscription using the Stripe API.
+ * On success, the function responds with a 303 redirect to the session URL. If an error occurs during the process,
+ * it returns a JSON response containing the error message along with an appropriate HTTP status code.
+ *
+ * @async
+ * @returns {Promise<NextResponse>} A promise that resolves to a NextResponse object, either redirecting the client to the
+ *                                  checkout session URL or providing a JSON error response.
+ */
 export async function POST() {
   try {
     const headersList = await headers()
