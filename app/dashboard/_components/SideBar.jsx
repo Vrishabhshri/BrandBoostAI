@@ -10,11 +10,11 @@ export default function DashboardSidebar() {
   const pathname = usePathname()
   
   const mainNavItems = [
-    { icon: LayoutGrid, label: 'Dashboard', to: '/dashboard' },
+    { icon: LayoutGrid, label: 'Dashboard', to: '/dashboard', disabled: false },
     // { icon: BarChart3, label: 'Analytics', to: '/dashboard/pages/analytics' },
-    { icon: TrendingUp, label: 'Subscription (Up Coming)', to: '/dashboard/pages/subscription' },
-    { icon: Users, label: 'AddCredits (Up Coming)', to: '/dashboard/pages/audience' },
-    { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard' },
+    { icon: TrendingUp, label: 'Subscription (Up Coming)', to: '/dashboard/pages/subscription', disabled: false },
+    { icon: Users, label: 'AddCredits (Up Coming)', to: '/dashboard/pages/audience', disabled: true },
+    { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard', disabled: false },
     // { icon: FileText, label: 'haris', to: '/dashboard/pages/haris-dashboard' },
   ]
 
@@ -25,12 +25,12 @@ export default function DashboardSidebar() {
     { icon: Youtube, label: 'YouTube', href: '/accounts/youtube' },
   ]
 
-  const NavItem = ({ icon: Icon, label, to }) => {
+  const NavItem = ({ icon: Icon, label, to, disabled }) => {
     const isActive = pathname === to
     
     return (
       <Link
-        href={to}
+        href={disabled ? '/dashboard' : to}
         className={cn(
           'flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors',
           'hover:bg-secondary/80 focus-visible:outline-none focus-visible:ring-2',
