@@ -14,7 +14,7 @@ export default function DashboardSidebar() {
     // { icon: BarChart3, label: 'Analytics', to: '/dashboard/pages/analytics' },
     { icon: TrendingUp, label: 'Subscription (Up Coming)', to: '/dashboard/pages/subscription', disabled: false },
     { icon: Users, label: 'AddCredits (Up Coming)', to: '/dashboard/pages/audience', disabled: true },
-    { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard', disabled: false },
+    // { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard', disabled: false },
     // { icon: FileText, label: 'haris', to: '/dashboard/pages/haris-dashboard' },
   ]
 
