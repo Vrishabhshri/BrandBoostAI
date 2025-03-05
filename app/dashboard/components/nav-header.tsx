@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link"
-import { Flame, LayoutDashboard, Settings, Wand2, ArrowLeft } from 'lucide-react'
+import { Flame, LayoutDashboard, Settings, Wand2, ArrowLeft, BookUser, Castle } from 'lucide-react'
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import { useState } from "react";
 
@@ -23,7 +23,7 @@ export function NavHeader() {
             href="/dashboard"
             className="flex items-center gap-2 text-sm text-zinc-200 hover:text-white"
           >
-            <LayoutDashboard className="h-4 w-4" />
+            <BookUser className="h-4 w-4" />
             Overview
           </Link>
           {/* Competitor Dashbord Button */}
@@ -31,7 +31,7 @@ export function NavHeader() {
             href="/dashboard/competitor"
             className="flex items-center gap-2 text-sm text-zinc-200 hover:text-white"
           >
-            <LayoutDashboard className="h-4 w-4" />
+            <Castle className="h-4 w-4" />
             Competitor Dashboard
           </Link>
           {/* Content Builder Button */}
