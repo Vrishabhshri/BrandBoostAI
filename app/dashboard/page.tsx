@@ -179,28 +179,34 @@ export default function OverviewPage() {
           </button>
         </div>
         
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-5 gap-4">
           <MetricCard 
-            title="Followers" 
-            value={`${(metrics.amazon.followers / 1000000).toFixed(1)}M`}
+            title="Total Followers" 
+            value={`40.4M`}
             change={metrics.amazon.growth.followers}
             competitor={`Target: ${(metrics.target.followers / 1000000).toFixed(1)}M`}
           />
           <MetricCard 
-            title="Engagement Rate" 
-            value={`${metrics.amazon.engagementRate}%`}
+            title="Total Engagements" 
+            value={`15M`}
             change={metrics.amazon.growth.engagement}
             competitor={`Target: ${metrics.target.engagementRate}%`}
           />
           <MetricCard 
-            title="Post Reach" 
-            value={`${(metrics.amazon.postReach / 1000000).toFixed(1)}M`}
+            title="Total Impressions / Views" 
+            value={`2,015M`}
             change={metrics.amazon.growth.reach}
             competitor={`Target: ${(metrics.target.postReach / 1000000).toFixed(1)}M`}
           />
           <MetricCard 
-            title="Brand Mentions" 
-            value={`${(metrics.amazon.brandMentions / 1000).toFixed(0)}K`}
+            title="Total Reach" 
+            value={`714.5M`}
+            change={metrics.amazon.growth.mentions}
+            competitor={`Target: ${(metrics.target.brandMentions / 1000).toFixed(0)}K`}
+          />
+          <MetricCard 
+            title="Total Mentions" 
+            value={`1M`}
             change={metrics.amazon.growth.mentions}
             competitor={`Target: ${(metrics.target.brandMentions / 1000).toFixed(0)}K`}
           />
