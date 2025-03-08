@@ -1,18 +1,21 @@
- 
 'use client'
-
-import { BarChart3, Settings, Users, MessageSquare, Calendar, Hash, LayoutGrid, PlusCircle, 
-  Instagram, Twitter, Facebook, Youtube, TrendingUp, FileText, Bell } from 'lucide-react'
+import {
+  BarChart3, Settings, Users, MessageSquare, Calendar, Hash, LayoutGrid, PlusCircle,
+  Instagram, Twitter, Facebook, Youtube, TrendingUp, FileText, Bell
+} from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 
+
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+
 export default function DashboardSidebar() {
   const pathname = usePathname()
-  
+
   const mainNavItems = [
     { icon: LayoutGrid, label: 'Dashboard', to: '/dashboard' },
-    { icon: BarChart3, label: 'Analytics', to: '/dashboard/pages/analytics' },
+    // { icon: BarChart3, label: 'Analytics', to: '/dashboard/pages/analytics' },
     { icon: TrendingUp, label: 'Subscription', to: '/dashboard/pages/subscription' },
     // { icon: Users, label: 'AddCredits', to: '/dashboard/pages/audience' },
     { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard' },
@@ -28,7 +31,7 @@ export default function DashboardSidebar() {
 
   const NavItem = ({ icon: Icon, label, to }) => {
     const isActive = pathname === to
-    
+
     return (
       <Link
         href={to}
@@ -70,18 +73,26 @@ export default function DashboardSidebar() {
             <h2 className="px-3 text-xs font-semibold text-muted-foreground">
               Connected Accounts
             </h2>
-            {socialAccounts.map((account) => (
-              <Link
-                key={account.href}
-                href={account.href}
-                className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80"
-              >
-                <account.icon className="h-4 w-4" />
-                <span>{account.label}</span>
-              </Link>
-            ))}
+            {isLoading ? (
+              <div className="px-3 py-2 text-sm text-muted-foreground">Loading accounts...</div>
+            ) : socialAccounts.length === 0 ? (
+              <div className="px-3 py-2 text-sm text-muted-foreground">No connected accounts</div>
+            ) : (
+              socialAccounts
+                .filter((account) => socialAccounts.includes(account.label))
+                .map((account) => (
+                  <Link
+                    key={account.href}
+                    href={account.href}
+                    className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80"
+                  >
+                    <account.icon className="h-4 w-4" />
+                    <span>{account.label}</span>
+                  </Link>
+                ))
+            )}
             <Link
-              href="/accounts/add"
+              href="https://localhost:3000/dashboard/pages/add-account"
               className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80 text-muted-foreground"
             >
               <PlusCircle className="h-4 w-4" />

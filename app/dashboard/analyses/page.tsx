@@ -4,7 +4,7 @@ import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
-import { MetricCard } from "../components/metric-card";
+import { MetricCard } from "../components/metricCard";
 import { RecommendationList } from "../components/recommendation-list";
 import { Analysis } from "@/types/analysis";
 

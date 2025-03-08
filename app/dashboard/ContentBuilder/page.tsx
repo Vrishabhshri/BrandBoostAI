@@ -1,6 +1,6 @@
 "use client"
 
-import { NavHeader } from "../components/nav-header"
+import { NavHeader } from "../components/navHeader"
 import { AddCompetitorForm } from "../components/add-competitor-form"
 
 export default function ContentBuilder() {
