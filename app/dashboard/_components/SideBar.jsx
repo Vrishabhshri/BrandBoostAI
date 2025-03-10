@@ -6,27 +6,31 @@ import {
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
-
-
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { useState, useEffect } from 'react' // Import useState & useEffect
 
 export default function DashboardSidebar() {
   const pathname = usePathname()
+  const [isLoading, setIsLoading] = useState(true) // Define isLoading state
+  const [socialAccounts, setSocialAccounts] = useState([])
+
+  // Simulate fetching connected accounts (replace with real API call)
+  useEffect(() => {
+    setTimeout(() => {
+      setSocialAccounts([
+        { icon: Instagram, label: 'Instagram', href: '/accounts/instagram' },
+        { icon: Twitter, label: 'Twitter', href: '/accounts/twitter' },
+        { icon: Facebook, label: 'Facebook', href: '/accounts/facebook' },
+        { icon: Youtube, label: 'YouTube', href: '/accounts/youtube' }
+      ])
+      setIsLoading(false)
+    }, 2000) // Simulate a delay
+  }, [])
 
   const mainNavItems = [
     { icon: LayoutGrid, label: 'Dashboard', to: '/dashboard' },
-    // { icon: BarChart3, label: 'Analytics', to: '/dashboard/pages/analytics' },
     { icon: TrendingUp, label: 'Subscription', to: '/dashboard/pages/subscription' },
-    // { icon: Users, label: 'AddCredits', to: '/dashboard/pages/audience' },
     { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard' },
-    // { icon: FileText, label: 'haris', to: '/dashboard/pages/haris-dashboard' },
-  ]
-
-  const socialAccounts = [
-    { icon: Instagram, label: 'Instagram', href: '/accounts/instagram' },
-    { icon: Twitter, label: 'Twitter', href: '/accounts/twitter' },
-    { icon: Facebook, label: 'Facebook', href: '/accounts/facebook' },
-    { icon: Youtube, label: 'YouTube', href: '/accounts/youtube' },
   ]
 
   const NavItem = ({ icon: Icon, label, to }) => {
@@ -50,11 +54,18 @@ export default function DashboardSidebar() {
   }
 
   return (
-    <aside className="fixed left-0 top-0 z-30 flex h-full w-64 flex-col border-r bg-background">
+    <aside className="fixed left-0 top-0 z-30 flex h-full w-64 flex-col border-r bg-slate-700">
       <div className="flex h-14 items-center border-b px-4">
         <div className="flex items-center gap-x-2">
-          <div className="h-8 w-8 rounded-lg bg-primary" />
-          <span className="text-lg font-semibold">BrandBoost.ai</span>
+        <div>
+          <Avatar className="h-8 w-8">
+            <AvatarImage src="./assets/icons/userAlt.svg" alt="Profile" />
+            
+            <AvatarFallback></AvatarFallback>
+          </Avatar>
+          
+          </div>
+          <span className="text-lg font-semibold">BrandBoostr-AI</span>
         </div>
       </div>
 
@@ -78,21 +89,19 @@ export default function DashboardSidebar() {
             ) : socialAccounts.length === 0 ? (
               <div className="px-3 py-2 text-sm text-muted-foreground">No connected accounts</div>
             ) : (
-              socialAccounts
-                .filter((account) => socialAccounts.includes(account.label))
-                .map((account) => (
-                  <Link
-                    key={account.href}
-                    href={account.href}
-                    className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80"
-                  >
-                    <account.icon className="h-4 w-4" />
-                    <span>{account.label}</span>
-                  </Link>
-                ))
+              socialAccounts.map((account) => (
+                <Link
+                  key={account.href}
+                  href={account.href}
+                  className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80"
+                >
+                  <account.icon className="h-4 w-4" />
+                  <span>{account.label}</span>
+                </Link>
+              ))
             )}
             <Link
-              href="https://localhost:3000/dashboard/pages/add-account"
+              href="dashboard/Login"
               className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80 text-muted-foreground"
             >
               <PlusCircle className="h-4 w-4" />
