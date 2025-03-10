@@ -101,7 +101,7 @@ export default function DashboardSidebar() {
               ))
             )}
             <Link
-              href="dashboard/Login"
+              href="/dashboard/Login"
               className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80 text-muted-foreground"
             >
               <PlusCircle className="h-4 w-4" />
