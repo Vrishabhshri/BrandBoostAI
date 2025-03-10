@@ -54,7 +54,7 @@ export default function DashboardSidebar() {
   }
 
   return (
-    <aside className="fixed left-0 top-0 z-30 flex h-full w-64 flex-col border-r bg-slate-700">
+    <aside className="fixed left-0 top-0 z-30 flex h-full w-64 flex-col border-r bg-gray-300">
       <div className="flex h-14 items-center border-b px-4">
         <div className="flex items-center gap-x-2">
         <div>

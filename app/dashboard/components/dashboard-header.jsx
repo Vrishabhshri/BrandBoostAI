@@ -54,8 +54,10 @@ export default function DashboardHeader() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="/assets/icons/userAlt.svg" alt="User profile avatar" />
-                  <AvatarFallback>JD</AvatarFallback>
+                  <AvatarImage src="/assets/icons/userAlt.svg" alt="User profile" />
+                  <AvatarFallback>
+                    <span className="text-xs font-medium">JD</span>
+                  </AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
@@ -75,4 +77,3 @@ export default function DashboardHeader() {
     </header>
   )
 }
-
