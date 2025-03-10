@@ -1,36 +1,44 @@
 'use client'
-
-import { BarChart3, Settings, Users, MessageSquare, Calendar, Hash, LayoutGrid, PlusCircle, 
-  Instagram, Twitter, Facebook, Youtube, TrendingUp, FileText, Bell } from 'lucide-react'
+import {
+  BarChart3, Settings, Users, MessageSquare, Calendar, Hash, LayoutGrid, PlusCircle,
+  Instagram, Twitter, Facebook, Youtube, TrendingUp, FileText, Bell
+} from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { useState, useEffect } from 'react' // Import useState & useEffect
 
 export default function DashboardSidebar() {
   const pathname = usePathname()
-  
+  const [isLoading, setIsLoading] = useState(true) // Define isLoading state
+  const [socialAccounts, setSocialAccounts] = useState([])
+
+  // Simulate fetching connected accounts (replace with real API call)
+  useEffect(() => {
+    setTimeout(() => {
+      setSocialAccounts([
+        { icon: Instagram, label: 'Instagram', href: '/accounts/instagram' },
+        { icon: Twitter, label: 'Twitter', href: '/accounts/twitter' },
+        { icon: Facebook, label: 'Facebook', href: '/accounts/facebook' },
+        { icon: Youtube, label: 'YouTube', href: '/accounts/youtube' }
+      ])
+      setIsLoading(false)
+    }, 2000) // Simulate a delay
+  }, [])
+
   const mainNavItems = [
-    { icon: LayoutGrid, label: 'Dashboard', to: '/dashboard', disabled: false },
-    // { icon: BarChart3, label: 'Analytics', to: '/dashboard/pages/analytics' },
-    { icon: TrendingUp, label: 'Subscription (Up Coming)', to: '/dashboard/pages/subscription', disabled: false },
-    { icon: Users, label: 'AddCredits (Up Coming)', to: '/dashboard/pages/audience', disabled: true },
-    // { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard', disabled: false },
-    // { icon: FileText, label: 'haris', to: '/dashboard/pages/haris-dashboard' },
+    { icon: LayoutGrid, label: 'Dashboard', to: '/dashboard' },
+    { icon: TrendingUp, label: 'Subscription', to: '/dashboard/pages/subscription' },
+    { icon: Bell, label: 'Competitor', to: '/dashboard/pages/competitor-dashboard' },
   ]
 
-  const socialAccounts = [
-    { icon: Instagram, label: 'Instagram', href: '/accounts/instagram' },
-    { icon: Twitter, label: 'Twitter', href: '/accounts/twitter' },
-    { icon: Facebook, label: 'Facebook', href: '/accounts/facebook' },
-    { icon: Youtube, label: 'YouTube', href: '/accounts/youtube' },
-  ]
-
-  const NavItem = ({ icon: Icon, label, to, disabled }) => {
+  const NavItem = ({ icon: Icon, label, to }) => {
     const isActive = pathname === to
-    
+
     return (
       <Link
-        href={disabled ? '/dashboard' : to}
+        href={to}
         className={cn(
           'flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors',
           'hover:bg-secondary/80 focus-visible:outline-none focus-visible:ring-2',
@@ -46,11 +54,18 @@ export default function DashboardSidebar() {
   }
 
   return (
-    <aside className="fixed left-0 top-0 z-30 flex h-full w-64 flex-col border-r bg-background">
+    <aside className="fixed left-0 top-0 z-30 flex h-full w-64 flex-col border-r bg-gray-300">
       <div className="flex h-14 items-center border-b px-4">
         <div className="flex items-center gap-x-2">
-          <div className="h-8 w-8 rounded-lg bg-primary" />
-          <span className="text-lg font-semibold">BrandBoost.ai</span>
+        <div>
+          <Avatar className="h-8 w-8">
+            <AvatarImage src="./assets/icons/userAlt.svg" alt="Profile" />
+            
+            <AvatarFallback></AvatarFallback>
+          </Avatar>
+          
+          </div>
+          <span className="text-lg font-semibold">BrandBoostr-AI</span>
         </div>
       </div>
 
@@ -69,18 +84,24 @@ export default function DashboardSidebar() {
             <h2 className="px-3 text-xs font-semibold text-muted-foreground">
               Connected Accounts
             </h2>
-            {socialAccounts.map((account) => (
-              <Link
-                key={account.href}
-                href={account.href}
-                className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80"
-              >
-                <account.icon className="h-4 w-4" />
-                <span>{account.label}</span>
-              </Link>
-            ))}
+            {isLoading ? (
+              <div className="px-3 py-2 text-sm text-muted-foreground">Loading accounts...</div>
+            ) : socialAccounts.length === 0 ? (
+              <div className="px-3 py-2 text-sm text-muted-foreground">No connected accounts</div>
+            ) : (
+              socialAccounts.map((account) => (
+                <Link
+                  key={account.href}
+                  href={account.href}
+                  className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80"
+                >
+                  <account.icon className="h-4 w-4" />
+                  <span>{account.label}</span>
+                </Link>
+              ))
+            )}
             <Link
-              href="/accounts/add"
+              href="dashboard/Login"
               className="flex items-center gap-x-2 px-3 py-2 text-sm rounded-lg transition-colors hover:bg-secondary/80 text-muted-foreground"
             >
               <PlusCircle className="h-4 w-4" />

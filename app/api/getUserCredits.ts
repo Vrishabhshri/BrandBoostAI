@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { db } from '@/lib/db'; // Adjust the import path as necessary
+import { db } from '@/lib/db';
 import { USER_TABLE } from '@/configs/schema';
 import { eq } from 'drizzle-orm';
 

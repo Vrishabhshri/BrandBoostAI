@@ -2,15 +2,14 @@
 
 import { Instagram, Lock, Target, TrendingUp, Users, Share2, MessageSquare, Twitter } from "lucide-react"
 import { useCompetitorOverview } from "./hooks/useCompetitorOverview"
-import { MetricCard } from "@/app/dashboard/components/metric-card"
-import { NavHeader } from "@/app/dashboard/components/nav-header"
+import { MetricCard } from "@/app/dashboard/components/metricCard"
+import { NavHeader } from "@/app/dashboard/components/navHeader"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import { useState, useEffect } from 'react'
 import dashboardData from './data/dashboard-data.json'
 import amazonTweets from '@/public/amazonhelp_tweets.csv'
 import targetTweets from '@/public/target_tweets.csv'
 import { useUser } from "@clerk/nextjs"
-import AddCredits from "../components/AddCredits"
 import { ClipLoader } from "react-spinners";
 
 // Define interface for post data
@@ -101,6 +100,15 @@ const combineRecentPosts = (): Post[] => {
     .slice(0, 5)
 }
 
+/**
+ * Renders the dashboard overview page for competitive performance metrics.
+ *
+ * The component initially shows a loading spinner while simulating data fetching for social media sentiment and recent posts.
+ * Once the data is loaded, it displays a dashboard that includes a welcome message (using the authenticated user's name or "Amazon" as a fallback),
+ * key metric cards with associated icons, a line chart comparing sentiment scores, and a section analyzing recent social media posts.
+ *
+ * @returns A React element representing the dashboard overview page with performance metrics and insights.
+ */
 export default function OverviewPage() {
   const { overview } = useCompetitorOverview();
   const { lockStatus } = overview;
@@ -158,17 +166,20 @@ export default function OverviewPage() {
             Welcome back, {name}
           </h1>
           <p className="text-zinc-400 mt-3 text-lg">
-            {/* Track your competitive performance against Target with real-time metrics and insights */}
+            Track your competitive performance with real-time metrics and insights
           </p>
         </div>
 
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <h2 className="text-xl font-semibold text-white">Overview</h2>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800 rounded-full border border-zinc-700">
-              <Target className="h-4 w-4 text-red-500" />
-              <span className="text-sm text-zinc-300">vs Target</span>
-            </div>
+
+             {/* Removed the Target name and logo to just have overview page.  */}
+
+            {/* <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800 rounded-full border border-zinc-700">
+              {/* <Target className="h-4 w-4 text-red-500" />
+              <span className="text-sm text-zinc-300">vs Target</span> }
+            </div> */}
           </div>
           <button 
             className="flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-2 hover:bg-zinc-800 transition-colors"
@@ -179,34 +190,28 @@ export default function OverviewPage() {
           </button>
         </div>
         
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-4 gap-4">
           <MetricCard 
-            title="Total Followers" 
-            value={`40.4M`}
+            title="Amazon Followers" 
+            value={`${(metrics.amazon.followers / 1000000).toFixed(1)}M`}
             change={metrics.amazon.growth.followers}
             competitor={`Target: ${(metrics.target.followers / 1000000).toFixed(1)}M`}
           />
           <MetricCard 
-            title="Total Engagements" 
-            value={`15M`}
+            title="Engagement Rate" 
+            value={`${metrics.amazon.engagementRate}%`}
             change={metrics.amazon.growth.engagement}
             competitor={`Target: ${metrics.target.engagementRate}%`}
           />
           <MetricCard 
-            title="Total Impressions / Views" 
-            value={`2,015M`}
+            title="Post Reach" 
+            value={`${(metrics.amazon.postReach / 1000000).toFixed(1)}M`}
             change={metrics.amazon.growth.reach}
             competitor={`Target: ${(metrics.target.postReach / 1000000).toFixed(1)}M`}
           />
           <MetricCard 
-            title="Total Reach" 
-            value={`714.5M`}
-            change={metrics.amazon.growth.mentions}
-            competitor={`Target: ${(metrics.target.brandMentions / 1000).toFixed(0)}K`}
-          />
-          <MetricCard 
-            title="Total Mentions" 
-            value={`1M`}
+            title="Brand Mentions" 
+            value={`${(metrics.amazon.brandMentions / 1000).toFixed(0)}K`}
             change={metrics.amazon.growth.mentions}
             competitor={`Target: ${(metrics.target.brandMentions / 1000).toFixed(0)}K`}
           />
@@ -267,7 +272,7 @@ export default function OverviewPage() {
               <MessageSquare className="h-5 w-5 text-pink-400" />
               Recent Posts Analysis
             </h2>
-            <p className="text-sm text-zinc-400 mt-1">Latest social media activity across platforms</p>
+            <p className="text-sm text-zinc-400 mt-1">Connect Your Social Media Accounts</p>
             <div className="mt-6 space-y-4">
               {recentPosts.map((post) => (
                 <div
@@ -316,3 +321,4 @@ export default function OverviewPage() {
     </div>
   )
 }
+
