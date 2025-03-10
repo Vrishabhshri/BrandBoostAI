@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx", // Use 'react-jsx' for React 17+ JSX support
+    "jsx": "preserve", // Use 'react-jsx' for React 17+ JSX support
     "target": "ES2017",
     "lib": [
       "dom",
@@ -28,9 +28,17 @@
       "@/*": [
         "./*"
       ]
-    },
+    }
     // "forceConsistentCasingInFileNames": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/dashboard/components/dashboard-header.jsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/dashboard/components/dashboard-header.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
