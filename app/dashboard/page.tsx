@@ -2,15 +2,14 @@
 
 import { Instagram, Lock, Target, TrendingUp, Users, Share2, MessageSquare, Twitter } from "lucide-react"
 import { useCompetitorOverview } from "./hooks/useCompetitorOverview"
-import { MetricCard } from "@/app/dashboard/components/metric-card"
-import { NavHeader } from "@/app/dashboard/components/nav-header"
+import { MetricCard } from "@/app/dashboard/components/metricCard"
+import { NavHeader } from "@/app/dashboard/components/navHeader"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import { useState, useEffect } from 'react'
 import dashboardData from './data/dashboard-data.json'
 import amazonTweets from '@/public/amazonhelp_tweets.csv'
 import targetTweets from '@/public/target_tweets.csv'
 import { useUser } from "@clerk/nextjs"
-import AddCredits from "../components/AddCredits"
 import { ClipLoader } from "react-spinners";
 
 // Define interface for post data
@@ -273,7 +272,7 @@ export default function OverviewPage() {
               <MessageSquare className="h-5 w-5 text-pink-400" />
               Recent Posts Analysis
             </h2>
-            <p className="text-sm text-zinc-400 mt-1">Latest social media activity across platforms</p>
+            <p className="text-sm text-zinc-400 mt-1">Connect Your Social Media Accounts</p>
             <div className="mt-6 space-y-4">
               {recentPosts.map((post) => (
                 <div

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { RefreshCw } from 'lucide-react'
-import { NavHeader } from "../components/nav-header"
+import { NavHeader } from "../components/navHeader"
 import { CompetitorCard } from "../components/competitor-card"
 import { AddCompetitorButton } from "../components/add-competitor-button"
 import { Chat } from "../components/chat"

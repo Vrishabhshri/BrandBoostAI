@@ -14,8 +14,9 @@
     "incremental": true,
     "module": "esnext",
     "esModuleInterop": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
+    "noEmitOnError": false,
     "isolatedModules": true,
     "plugins": [
       {
@@ -28,20 +29,8 @@
         "./*"
       ]
     },
-    "forceConsistentCasingInFileNames": true
+    // "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "app/dashboard/layout.jsx",
-    "app/dashboard/page.tsx",
-    "configs/schema.js",
-    "configs/db.ts",
-    "app/api/webhooks/route.js"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

@@ -64,7 +64,7 @@ const PricingCard = ({ price }) => {
                 // <button className="mt-10 mb-4 w-[75%] flex justify-center mx-10 align-items align-content rounded-lg border border-transparent space-x- bg-[RGBA(12,12,12,0.8)] backdrop-blur py-2 px-4 text-2xl font-semibold text-slate-200 shadow-sm" onClick={handleSubscription}>
 
                 className="bg-white text-indigo-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-all"
-                onClick={() => console.log("Closed")}
+                onClick={() => {}}
               >
                 Got it!
               </button>
@@ -77,4 +77,3 @@ const PricingCard = ({ price }) => {
 }
 
 export default PricingCard
-//

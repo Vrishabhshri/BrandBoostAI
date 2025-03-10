@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Loader2, ArrowLeft, FileSearch, FileText } from "lucide-react";
-import { MetricCard } from "../../components/metric-card";
+import { MetricCard } from "../../components/metricCard";
 import { toast } from "react-hot-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Analysis } from "@/types/analysis";

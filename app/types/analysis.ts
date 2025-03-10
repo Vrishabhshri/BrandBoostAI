@@ -18,5 +18,5 @@ export interface AnalysisData {
 export interface Analysis {
   analysis: AnalysisData;
   analyzedAt: string;
-  originalData: any;
+  originalData: unknown;
 } 

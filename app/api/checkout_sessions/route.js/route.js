@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { headers } from 'next/headers'
 
-import { stripe } from '../../../lib/stripe'
+import { stripe } from '../../../lib/stripe.ts'
 
 /**
  * Handles an HTTP POST request to create a subscription-based Stripe Checkout session.
