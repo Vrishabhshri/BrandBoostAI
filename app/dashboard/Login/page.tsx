@@ -1,16 +1,17 @@
 'use client'
 
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Facebook, Twitter } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { useToast } from "@/hooks/use-toast";
-import { Provider } from "@supabase/supabase-js";
+import Toast from "@/components/ui/Toast";
+import { Provider } from '@supabase/supabase-js';
 
 const Login = () => {
   const router = useRouter();
-  const { toast } = useToast();
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error'; } | null>(null);
 
   const handleSocialLogin = async (provider: Provider) => {
     try {
@@ -37,27 +38,18 @@ const Login = () => {
 
       if (error) {
         console.error("Auth error:", error);
-        toast({
-          variant: "destructive",
-          title: "Authentication Error",
-          description: error.message,
-        });
+        setToast({ message: error.message, type: 'error' });
       } else {
-        toast({
-          title: "Connecting to " + provider,
-          description: "Please wait while we connect your account...",
-        });
+        setToast({ message: `Connecting to ${provider}`, type: 'success' });
         router.push('/dashboard');
       }
     } catch (error) {
       console.error("Login error:", error);
-      toast({
-        variant: "destructive",
-        title: "Authentication Error",
-        description: "Failed to connect to provider",
-      });
+      setToast({ message: "Failed to connect to provider", type: 'error' });
     }
   };
+
+  const closeToast = () => setToast(null);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black opacity-90 text-white p-4">
@@ -100,6 +92,7 @@ const Login = () => {
           </Button>
         </CardContent>
       </Card>
+      {toast && <Toast message={toast.message} type={toast.type} onClose={closeToast} />}
     </div>
   );
 };

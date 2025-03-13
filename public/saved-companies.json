@@ -1,0 +1,32 @@
+[
+  {
+    "name": "OpenAI",
+    "description": "A leading artificial intelligence research company developing and deploying advanced AI technologies, including large language models like ChatGPT and DALL-E.",
+    "hashtags": [
+      "#OpenAI",
+      "#AI",
+      "#ArtificialIntelligence",
+      "#MachineLearning",
+      "#DeepLearning",
+      "#LLM",
+      "#LargeLanguageModel",
+      "#ChatGPT",
+      "#DALL-E",
+      "#AIResearch",
+      "#GenerativeAI"
+    ],
+    "topCompetitors": [
+      "Google AI",
+      "DeepMind",
+      "Meta AI",
+      "Anthropic",
+      "Cohere"
+    ],
+    "socialStats": {
+      "followers": null,
+      "likes": null,
+      "tweets": null
+    },
+    "savedAt": "2025-02-26T04:33:10.118Z"
+  }
+]
