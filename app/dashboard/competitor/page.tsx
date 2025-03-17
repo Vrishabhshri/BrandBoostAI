@@ -1,13 +1,10 @@
 "use client"
 
 import { useRef, useState, useEffect } from 'react'
-import { RefreshCw, Space } from 'lucide-react'
-import { NavHeader } from "../components/navHeader"
-import { CompetitorCard } from "../components/competitor-card"
-import { Chat } from "../components/chat"
+import NavHeader from "../components/navHeaderNew";
+import PageChat from "../components/pageChat"
 import Image from 'next/image';
-import { Flame, LayoutDashboard, Settings, Wand2, ArrowLeft, BookUser, Castle, RotateCw } from 'lucide-react'
-import './styles.css';
+import { RotateCw } from 'lucide-react'
 import { Karla } from 'next/font/google'
 
 const karla = Karla({ subsets: ['latin'] })
@@ -31,12 +28,7 @@ interface CompanyData {
 
 export default function CompetitorDashboardPage() {
   const [competitors, setCompetitors] = useState<CompanyData[]>([]);
-  const [messages, setMessages] = useState([
-    { response: "Welcome! Add competitors to your dashboard to get started. You can also brainstorm potential competitors in the chat. ", sender: "bot"},
-  ]);
-  const [input, setInput] = useState("");
   const [lastRefresh, setLastRefresh] = useState(new Date());
-  const chatRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<string>("target");
 
   const brandWords = ["spring", "floral", "pizza", "garden", "collab"]
@@ -51,13 +43,6 @@ export default function CompetitorDashboardPage() {
   
   }
 
-  useEffect(() => {
-    // Auto-scroll to bottom when messages update
-    if (chatRef.current) {
-      chatRef.current.scrollTop = chatRef.current.scrollHeight;
-    }
-  }, [messages]);
-
   const changeTab = (tab: string) => {
 
     setActiveTab(tab);
@@ -70,36 +55,27 @@ export default function CompetitorDashboardPage() {
 
   }
 
-  const handleSendMessage = () => {
-    if (!input.trim()) return;
-
-    console.log("hello");
-
-    setMessages([...messages, { response: input, sender: "user" }]);
-    setInput("");
-  };
-
   const handleLoadCompetitor = (competitor: CompanyData) => {
     setCompetitors((prev) => [...prev, competitor])
   }
 
-  const handlePinCompany = (company: CompanyData) => {
-    if (!pinnedCompanies.some(pinned => pinned.name === company.name)) {
-      setPinnedCompanies((prev) => [...prev, company])
-    }
-  }
+  // const handlePinCompany = (company: CompanyData) => {
+  //   if (!pinnedCompanies.some(pinned => pinned.name === company.name)) {
+  //     setPinnedCompanies((prev) => [...prev, company])
+  //   }
+  // }
 
-  const handleUnpinCompany = (company: CompanyData) => {
-    setPinnedCompanies((prev) => prev.filter(pinned => pinned.name !== company.name))
-  }
+  // const handleUnpinCompany = (company: CompanyData) => {
+  //   setPinnedCompanies((prev) => prev.filter(pinned => pinned.name !== company.name))
+  // }
 
-  const handleViewCompany = (company: CompanyData) => {
-    setSelectedCompany(company); // Set the selected company to display its full card
-  }
+  // const handleViewCompany = (company: CompanyData) => {
+  //   setSelectedCompany(company); // Set the selected company to display its full card
+  // }
 
-  const handleUnviewCompany = () => {
-    setSelectedCompany(null); // Clear the selected company
-  }
+  // const handleUnviewCompany = () => {
+  //   setSelectedCompany(null); // Clear the selected company
+  // }
 
   // Function to format the date
   const formatDate = (date: Date) => {
@@ -116,105 +92,14 @@ export default function CompetitorDashboardPage() {
 
   useEffect(() => {
     const now = new Date();
-    setLastRefreshed(formatDate(now));
+    setLastRefresh(now);
   }, []);
 
   return (
     <div className={`flex min-h-screen flex-col bg-[#302f2f] overflow-x-hidden ${karla.className} font-medium`}>
 
       {/* Nav container */}
-      <div className={`flex flex-row justify-start items-center
-                        padding-0
-                        backdrop-blur-2xl shadow-2xl
-                        bg-[#d9d9d940]
-                        text-white`}>
-
-        {/* Flame icon */}
-        <Image 
-          src="/assets/icons/flame.svg" 
-          className="m-3"
-          alt='flame image'
-          width={30}
-          height={30}
-        />
-
-        {/* Nav categories */}
-        <div className={`
-                        flex flex-row items-center
-                        h-10 ml-10 gap-4
-                        `}>
-
-          {/* Overview Link */}
-          <div className={`
-                          text-[15px]
-                          flex flex-row items-center justify-center
-                          hover:text-[#ffffff80]
-                          cursor-pointer`}>
-
-            <Image
-              src={'/assets/icons/Book.svg'}
-              alt='book user icon'
-              width={15}
-              height={15}
-            />
-            <span className='ml-1 mr-1'>Overview</span>
-
-          </div>
-
-          {/* Competitor Dashboard Link */}
-          <div className={`
-                          text-[15px]
-                          flex flex-row items-center justify-center
-                          hover:text-[#ffffff80]
-                          cursor-pointer`}>
-
-            <Image
-              src={'/assets/icons/ChessRook.svg'}
-              alt='chess rook icon'
-              width={15}
-              height={15}
-            />
-            <span className='ml-1 mr-1'>Competitor Dashboard</span>
-
-          </div>
-
-          {/* Content Builder Link */}
-          <div className={`
-                          text-[15px]
-                          flex flex-row items-center justify-center
-                          hover:text-[#ffffff80]
-                          cursor-pointer`}>
-
-            <Image
-              src={'/assets/icons/Magic.svg'}
-              alt='magic icon'
-              width={15}
-              height={15}
-            />
-            <span className='ml-1 mr-1'>Content Builder</span>
-
-          </div>
-
-          {/* Settings Link */}
-          <div className={`
-                          text-[15px]
-                          flex flex-row items-center justify-center
-                          hover:text-[#ffffff80]
-                          cursor-pointer`}>
-
-            <Image
-              src={'/assets/icons/Cog.svg'}
-              alt='settings icon'
-              width={15}
-              height={15}
-            />
-            <span className='ml-1 mr-1'>Settings</span>
-
-          </div>
-
-        </div>
-
-      </div>
+      <NavHeader/>
 
       {/* Main Content */}
       <div className={`relative bg-radial-gradient
@@ -226,59 +111,9 @@ export default function CompetitorDashboardPage() {
         {/* Container of main content */}
         <div className='relative z-10 flex flex-row'>
 
-          {/* Chatbot */}
-          <div className={`
-                          flex flex-col
-                          bg-[rgba(217,217,217,0.05)]
-                          w-[40%] h-[calc(100vh-68px)]
-                          p-6`}>
+          <PageChat/>
 
-            {/* Chatbot title */}
-            <div className='flex flex-row gap-4 text-white'>
-              <Wand2 className="h-6 w-6"/> 
-              <span className='text-[20px]'>Page Chat</span>
-            </div>
-
-            {/* Messages Container */}
-            <div
-              ref={chatRef}
-              className="overflow-y-auto mt-4 space-y-3 text-sm h-[560px] custom-scrollbar"
-              style={{ whiteSpace: 'pre-line' }}
-            >
-              {messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`${ msg.sender === "bot" ? "text-white" : "text-[#ffffff80]" }`}
-                >
-                  {msg.response}
-                </div>
-              ))}
-            </div>
-
-            {/* Message input */}
-            <div className="relative border border-white mt-7 flex items-center gap-2 p-2 rounded-[1.5rem]">
-              <div className="absolute top-[-10px] left-1/4 transform -translate-x-1/2 bg-[#302f2f] px-2 text-white text-sm">
-                Ask a question
-              </div>
-              <input
-                type="text"
-                placeholder="Reply"
-                className="flex-1 p-2 bg-transparent text-white border-none outline-none placeholder-gray-400 italic"
-              />
-              <div className='bg-white rounded-full p-2 cursor-pointer' onClick={handleSendMessage}>
-                <Image
-                  src={'/assets/icons/comment.svg'}
-                  alt='Message icon'
-                  width={20}
-                  height={20}
-                  className='invert-[70%] brightness-150'
-                />
-              </div>
-            </div>
-
-          </div>
-
-          {/* Stats Pages */}
+          {/* Page Content */}
           <div className='w-full h-full p-7'>
 
               <div className='flex flex-row gap-12 mb-5'>
@@ -289,7 +124,7 @@ export default function CompetitorDashboardPage() {
                   <span className='text-white text-[2.5rem]'>Competitor Dashboard</span>
 
                   <div className='flex flex-row items-center gap-2'>
-                    <RotateCw className='w-4 h-4 text-white cursor-pointer transition-all duration-100 hover:scale-110' onClick={refreshDate}/>
+                    <RotateCw className='w-4 h-4 text-white cursor-pointer' onClick={refreshDate}/>
                     <span className='text-[#ffffff]'>Last refreshed: {lastRefresh.toISOString()}</span>
                   </div>
 
@@ -490,7 +325,7 @@ export default function CompetitorDashboardPage() {
             <CompetitorAnalysis onPinCompany={handlePinCompany} />
           </div>
 
-          {/* Render pinned companies in a scrollable container */}
+          Render pinned companies in a scrollable container
           <h2 className="text-lg font-semibold text-white mt-6">Pinned Companies</h2>
           <div className="max-h-[300px] overflow-y-auto flex flex-wrap justify-center items-start mt-4 border border-zinc-700 rounded-lg p-4 bg-zinc-800 shadow-md">
             {pinnedCompanies.map((company) => (
@@ -508,7 +343,7 @@ export default function CompetitorDashboardPage() {
             ))}
           </div>
 
-          {/* Display the selected pinned company card */}
+          Display the selected pinned company card
           {selectedCompany && (
             <div className="mt-6">
               <h2 className="text-lg font-semibold text-white">Selected Company</h2>

@@ -1,3 +1,5 @@
+/* Scrollbar styling for pagechat */
+
 .custom-scrollbar::-webkit-scrollbar {
     width: 4px; /* Thin scrollbar */
 }
