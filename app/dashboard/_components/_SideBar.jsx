@@ -65,7 +65,7 @@ export default function DashboardSidebar() {
           </Avatar>
           
           </div>
-          <span className="text-lg font-semibold">BrandBoostr-AI</span>
+          <span className="text-lg font-semibold">BrandBoostr.ai</span>
         </div>
       </div>
 
