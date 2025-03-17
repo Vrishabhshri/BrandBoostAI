@@ -17,6 +17,15 @@ module.exports = {
 		},
 	},
 	extend: {
+		backgroundImage: {
+			'card-subtle': 'linear-gradient(102.887deg, rgba(255, 255, 255, 10%) 0%, rgba(255, 255, 255, 8%) 100%)',
+			'card-strong': 'linear-gradient(102.887deg, #FFFFFF 0%, rgba(255, 255, 255, 80%) 100%)',
+			'monochrome-button': 'linear-gradient(49.47deg, rgba(81, 81, 81, 80%) 0%, rgba(16, 16, 16, 80%) 100%)',
+			'radial-gradient': 'linear-gradient(#20E4B7, #3381FF, #9759FF)',
+			'accent-sherbert': 'linear-gradient(-139.802deg, #FEB872 0%, #FE6897 100%)',
+			'accent-sherbert-strong': 'linear-gradient(-134.678deg, #FFA44A 0%, #FF548A 100%)',
+			'accent-spumoni': 'linear-gradient(-137.62deg, #FFB599 0%, #FFB599 28%, #56E6A8 100%)',
+		},
 		colors: {
 		  border: "hsl(var(--border))",
 		  input: "hsl(var(--input))",

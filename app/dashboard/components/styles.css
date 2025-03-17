@@ -1,0 +1,18 @@
+/* Scrollbar styling for pagechat */
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px; /* Thin scrollbar */
+}
+  
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent; /* Invisible track */
+}
+  
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2); /* Slightly visible scrollbar */
+    border-radius: 10px;
+}
+  
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4); /* More visible on hover */
+}
