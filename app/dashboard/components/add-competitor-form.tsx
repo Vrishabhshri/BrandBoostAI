@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -67,6 +67,28 @@ export function AddCompetitorForm() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const router = useRouter();
 
+  // Define the missing variables
+  const [fileContent, setFileContent] = useState(""); // Adjust type as needed
+  const [fileType, setFileType] = useState("competitor"); // Default value
+  const [description, setDescription] = useState(""); // Adjust type as needed
+  const [currentUser, setCurrentUser] = useState<{ id: number } | null>(null); // State for current user
+
+  // Fetch current user (replace with your actual user fetching logic)
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      // Replace with your actual API call or context logic
+      const response = await fetch('/api/current-user'); // Example endpoint
+      if (response.ok) {
+        const user = await response.json();
+        setCurrentUser(user);
+      } else {
+        console.error('Failed to fetch current user');
+      }
+    };
+
+    fetchCurrentUser();
+  }, []);
+
   const fetchCompanyInfo = async () => {
     const response = await fetch(`/api/company-info?name=${encodeURIComponent(companyName)}`);
     const data = await response.json();
@@ -112,26 +134,38 @@ export function AddCompetitorForm() {
   };
 
   const handleSave = async () => {
-    if (!companyInfo) return;
-    
+    if (!companyInfo || !currentUser) return; // Ensure currentUser is available
+
     setIsSaving(true);
     try {
+      const dataToSave = {
+        userId: currentUser.id, // Use the actual user ID
+        companyName: companyName,
+        fileContent: fileContent,
+        fileType: fileType,
+        description: description,
+      };
+
+      console.log('Data to save:', dataToSave); // Log the data being sent
+
       const response = await fetch('/api/save-company', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(companyInfo),
+        body: JSON.stringify(dataToSave),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to save company');
+        const errorData = await response.json();
+        console.error('Error response from API:', errorData); // Log the error response
+        throw new Error(errorData.error || 'Failed to save company');
       }
 
-      toast.success('Company saved successfully');
+      const result = await response.json();
+      console.log('Success:', result);
     } catch (error) {
-      console.error('Error saving company:', error);
-      toast.error('Failed to save company');
+      console.error('Error in handleSave:', error);
     } finally {
       setIsSaving(false);
     }
@@ -166,9 +200,11 @@ export function AddCompetitorForm() {
 
   const handleAnalyzeTweets = async () => {
     if (!twitterData) return;
-    
+
     setIsAnalyzing(true);
     try {
+      console.log('Analyzing tweets with data:', twitterData); // Log the data being sent
+
       const response = await fetch('/api/analyze-tweets', {
         method: 'POST',
         headers: {
@@ -178,7 +214,9 @@ export function AddCompetitorForm() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to analyze tweets');
+        const errorData = await response.json();
+        console.error('Error response from API:', errorData); // Log the error response
+        throw new Error(errorData.error || 'Failed to analyze tweets');
       }
 
       const analysis = await response.json();

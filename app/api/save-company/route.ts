@@ -1,29 +1,31 @@
 import { NextResponse } from "next/server";
 import { promises as fs } from 'fs';
 import path from 'path';
+// Import your database client or ORM
+import { db } from '@/configs/db'; // Adjust the import based on your setup
+import { FILES_TABLE } from '@/configs/schema'; // Import the FILES_TABLE schema
 
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    const filePath = path.join(process.cwd(), 'public', 'saved-companies.json');
-    
-    // Read existing data or create empty array
-    let companies = [];
-    try {
-      const fileContent = await fs.readFile(filePath, 'utf-8');
-      companies = JSON.parse(fileContent);
-    } catch (error) {
-      // File doesn't exist yet, use empty array
+
+    // Validate userId
+    if (!data.userId) {
+      return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
     }
 
-    // Add new company with timestamp
-    companies.push({
-      ...data,
-      savedAt: new Date().toISOString()
-    });
+    // Create a new company object
+    const newCompany = {
+      userId: data.userId, // Assuming userId is part of the incoming data
+      fileName: data.companyName, // Adjust based on your data structure
+      fileContent: data.fileContent, // Assuming you have this in your data
+      fileType: data.fileType || 'competitor', // Default value if not provided
+      description: data.description || '', // Default to empty if not provided
+      createdAt: new Date() // Set createdAt as a Date object
+    };
 
-    // Write back to file
-    await fs.writeFile(filePath, JSON.stringify(companies, null, 2));
+    // Insert the new company into the FILES_TABLE
+    await db.insert(FILES_TABLE).values(newCompany); // Use the correct insert method
 
     return NextResponse.json({ success: true });
   } catch (error) {

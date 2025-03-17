@@ -1,5 +1,5 @@
 "use client";
-import { NavHeader } from "../components/nav-header"
+import { NavHeader } from "../components/navHeader"
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
