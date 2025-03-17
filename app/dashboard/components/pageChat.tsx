@@ -60,7 +60,7 @@ export default function PageChat() {
     }, [messages]);
 
     return (
-        <div className={`${isOpen ? "w-[40%]" : "w-[7%]"} h-[calc(100vh-68px)] bg-[rgba(217,217,217,0.05)]
+        <div className={`${isOpen ? "w-[40%]" : "w-[7%]"} h-full bg-[rgba(217,217,217,0.05)]
                         transition-all duration-500`}>
 
             {!isOpen && (
