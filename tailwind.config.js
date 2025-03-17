@@ -26,9 +26,6 @@ module.exports = {
 			'accent-sherbert-strong': 'linear-gradient(-134.678deg, #FFA44A 0%, #FF548A 100%)',
 			'accent-spumoni': 'linear-gradient(-137.62deg, #FFB599 0%, #FFB599 28%, #56E6A8 100%)',
 		},
-		fontFamily: {
-			karla: ["Karla", "sans-serif"],
-		},
 		colors: {
 		  border: "hsl(var(--border))",
 		  input: "hsl(var(--input))",

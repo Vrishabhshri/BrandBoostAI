@@ -7,8 +7,11 @@ import { CompetitorCard } from "../components/competitor-card"
 import { AddCompetitorButton } from "../components/add-competitor-button"
 import { Chat } from "../components/chat"
 import Image from 'next/image';
-import { Flame, LayoutDashboard, Settings, Wand2, ArrowLeft, BookUser, Castle } from 'lucide-react'
+import { Flame, LayoutDashboard, Settings, Wand2, ArrowLeft, BookUser, Castle, RotateCw } from 'lucide-react'
 import './styles.css';
+import { Karla } from 'next/font/google'
+
+const karla = Karla({ subsets: ['latin'] })
 
 interface CompanyData {
   name: string;
@@ -28,53 +31,25 @@ interface CompanyData {
 
 export default function CompetitorDashboardPage() {
   const [competitors, setCompetitors] = useState<CompanyData[]>([]);
-  const [latestDate, setLatestDate] = useState("");
   const [messages, setMessages] = useState([
     { response: "Welcome! Add competitors to your dashboard to get started. You can also brainstorm potential competitors in the chat. ", sender: "bot"},
-    { response: "Hi. I have a small business that sells handmade clothing. What are some potential competitors to  add to add?", sender: "user"},
-    { response: `General Handmade/Artisan Clothing
-
-	          •	Etsy Sellers: Independent artisans offering handmade clothing.
-	          •	Big Cartel Stores: Small businesses that sell handmade clothing online.
-	          •	Fashion Nova (for trendier designs): If your style aligns with fast fashion but handmade.
-
-            Niche Handmade Clothing Companies
-
-              •	Bohemian Styles:
-              •	Free People
-              •	Spell & The Gypsy Collective
-              •	Minimalist & Sustainable:
-              •	Everlane
-              •	Pact
-              •	Kotn
-              •	Luxury Handmade:
-              •	Christy Dawn
-              •	Reformation
-              •	Children’s Clothing:
-              •	Hanna Andersson (sustainably made)
-              •	Little Cotton Clothes
-
-            Sustainable & Ethical Clothing
-
-              •	Patagonia (ethical outdoor wear)
-              •	Amour Vert
-              •	People Tree
-
-            Regional/Local Brands
-
-            Look at handmade clothing brands or boutiques within your region that target a similar customer demographic.
-
-            Platforms with Similar Offerings
-
-              •	Zazzle
-              •	Not On The High Street
-
-            It’s also important to monitor small but growing brands within your niche that might not yet have wide recognition. Consider competitors who sell on platforms like Instagram or through local pop-up markets, as they can directly appeal to your target audience.
-
-            If you can tell me more about your business’s style, target demographic, or key differentiators, I can refine this list further!`, sender: "bot" }
   ]);
   const [input, setInput] = useState("");
+  const [lastRefresh, setLastRefresh] = useState(new Date());
   const chatRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState<string>("target");
+
+  const brandWords = ["spring", "floral", "pizza", "garden", "collab"]
+  const commentWords = ["DEI", "Costco", "shop", "collab", "love"]
+  const socialMediaMetrics = {
+
+    target: {"followers": "6.1M", "engagements": "1.5M"},
+    facebook: {"followers": "5.3M", "engagements": "770K"},
+    instagram: {"followers": "2.7M", "engagements": "650K"},
+    tiktok: {"followers": "3.9M", "engagements": "3.5M"},
+    twitter: {"followers": "4.3M", "engagements": "2.5M"}
+  
+  }
 
   useEffect(() => {
     // Auto-scroll to bottom when messages update
@@ -83,10 +58,24 @@ export default function CompetitorDashboardPage() {
     }
   }, [messages]);
 
+  const changeTab = (tab: string) => {
+
+    setActiveTab(tab);
+
+  }
+
+  const refreshDate = () => {
+
+    setLastRefresh(new Date());
+
+  }
+
   const handleSendMessage = () => {
     if (!input.trim()) return;
 
-    setMessages([...messages, { text: input, sender: "user" }]);
+    console.log("hello");
+
+    setMessages([...messages, { response: input, sender: "user" }]);
     setInput("");
   };
 
@@ -95,7 +84,7 @@ export default function CompetitorDashboardPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#302f2f] overflow-x-hidden font-karla">
+    <div className={`flex min-h-screen flex-col bg-[#302f2f] overflow-x-hidden ${karla.className} font-medium`}>
 
       {/* Nav container */}
       <div className={`flex flex-row justify-start items-center
@@ -196,7 +185,7 @@ export default function CompetitorDashboardPage() {
                       flex flex-row`}>
 
         {/* Overlay Gray */}
-        <div className='absolute inset-0 bg-[#302f2f] opacity-95'></div>
+        <div className='absolute inset-0 bg-[#302f2f] opacity-90'></div>
 
         {/* Container of main content */}
         <div className='relative z-10 flex flex-row'>
@@ -205,7 +194,7 @@ export default function CompetitorDashboardPage() {
           <div className={`
                           flex flex-col
                           bg-[rgba(217,217,217,0.05)]
-                          w-1/3 h-[calc(100vh-68px)]
+                          w-[40%] h-[calc(100vh-68px)]
                           p-6`}>
 
             {/* Chatbot title */}
@@ -218,6 +207,7 @@ export default function CompetitorDashboardPage() {
             <div
               ref={chatRef}
               className="overflow-y-auto mt-4 space-y-3 text-sm h-[560px] custom-scrollbar"
+              style={{ whiteSpace: 'pre-line' }}
             >
               {messages.map((msg, index) => (
                 <div
@@ -230,13 +220,16 @@ export default function CompetitorDashboardPage() {
             </div>
 
             {/* Message input */}
-            <div className="border border-white mt-7 flex items-center gap-2 p-2 rounded-[1.5rem]">
+            <div className="relative border border-white mt-7 flex items-center gap-2 p-2 rounded-[1.5rem]">
+              <div className="absolute top-[-10px] left-1/4 transform -translate-x-1/2 bg-[#302f2f] px-2 text-white text-sm">
+                Ask a question
+              </div>
               <input
                 type="text"
-                placeholder="Type your message..."
-                className="flex-1 p-2 bg-transparent text-white border-none outline-none placeholder-gray-400"
+                placeholder="Reply"
+                className="flex-1 p-2 bg-transparent text-white border-none outline-none placeholder-gray-400 italic"
               />
-              <div className='bg-white rounded-full p-2'>
+              <div className='bg-white rounded-full p-2 cursor-pointer' onClick={handleSendMessage}>
                 <Image
                   src={'/assets/icons/comment.svg'}
                   alt='Message icon'
@@ -245,7 +238,6 @@ export default function CompetitorDashboardPage() {
                   className='invert-[70%] brightness-150'
                 />
               </div>
-
             </div>
 
           </div>
@@ -253,48 +245,181 @@ export default function CompetitorDashboardPage() {
           {/* Stats Pages */}
           <div className='w-full h-full p-7'>
 
-              {/* Title div */}
-              <div className='border border-blue-900 w-1/3 flex flex-col mb-5'>
+              <div className='flex flex-row gap-12 mb-5'>
 
-                <span className='text-white text-[2.3rem]'>Competitor Dashboard</span>
-                <span className='text-[#ffffff]'>Last refreshed: {latestDate}</span>
+                {/* Title div */}
+                <div className='w-[50%] flex flex-col'>
+
+                  <span className='text-white text-[2.5rem]'>Competitor Dashboard</span>
+
+                  <div className='flex flex-row items-center gap-2'>
+                    <RotateCw className='w-4 h-4 text-white cursor-pointer transition-all duration-100 hover:scale-110' onClick={refreshDate}/>
+                    <span className='text-[#ffffff]'>Last refreshed: {lastRefresh.toISOString()}</span>
+                  </div>
+
+                </div>
+
+                {/* Add Competitor Button */}
+                <div className='flex jusify-center items-center text-white px-[100px] py-10 rounded-[2rem]
+                                border border-white border-dashed cursor-pointer'>
+
+                  <span>Add Competitor</span>
+
+                </div>
 
               </div>
 
-              {/* Competitor temp page */}
-              <div className='border borde-red-900 rounded-[3rem] w-2/5 h-3/5 overflow-hidden bg-[#ffffff19]'>
+              <div className='w-full h-[74%] overflow-y-auto'>
 
-                {/* Competitor navbar */}
-                <div className='border border-green-900 w-full h-1/6 flex justify-around items-center bg-[#ffffff33]'>
+                {/* Competitor temp page */}
+                <div className='rounded-[1.5rem] w-2/5 h-[80%] overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19]'>
 
-                  {/* Active Tab - Target */}
-                  <div className="cursor-pointer text-white px-6 py-2 rounded-lg">
-                    <span className="">Target</span>
+                  {/* Competitor navbar */}
+                  <div className='w-full h-[12%] flex justify-center items-center'>
+
+                    <div className={`cursor-pointer text-white h-full flex justify-center items-center w-1/3
+                                    border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
+                                    ${activeTab === "target" ? "bg-[#ffffff33]" : "bg-[#ffffff01]"}`}
+                                    onClick={() => changeTab("target")}>
+
+                      Target
+
+                    </div>
+
+                    <div className={`cursor-pointer text-white h-full flex justify-center items-center w-[14.285714%]
+                                    border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
+                                    ${activeTab === "facebook" ? "bg-[#ffffff33]" : "bg-[#ffffff01]"}`}
+                                    onClick={() => changeTab("facebook")}>
+
+                      <Image
+                        src={'/assets/icons/Facebook-f.svg'}
+                        alt='Facebook icon'
+                        width={20}
+                        height={20}
+                      />
+
+                    </div>
+
+                    <div className={`cursor-pointer text-white h-full flex justify-center items-center w-[14.285714%]
+                                    border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
+                                    ${activeTab === "instagram" ? "bg-[#ffffff33]" : "bg-[#ffffff01]"}`}
+                                    onClick={() => changeTab("instagram")}>
+
+                      <Image
+                        src={'/assets/icons/instagram.svg'}
+                        alt='Instagram icon'
+                        width={20}
+                        height={20}
+                      />
+
+                    </div>
+
+                    <div className={`cursor-pointer text-white h-full flex justify-center items-center w-[14.285714%]
+                                    border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
+                                    ${activeTab === "tiktok" ? "bg-[#ffffff33]" : "bg-[#ffffff01]"}`}
+                                    onClick={() => changeTab("tiktok")}>
+
+                      <Image
+                        src={'/assets/icons/tiktok.png'}
+                        alt='Tiktok icon'
+                        width={20}
+                        height={20}
+                      />
+
+                    </div>
+
+                    <div className={`cursor-pointer text-white h-full flex justify-center items-center w-[14.285714%]
+                                    border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
+                                    ${activeTab === "twitter" ? "bg-[#ffffff33]" : "bg-[#ffffff01]"}`}
+                                    onClick={() => changeTab("twitter")}>
+
+                      <Image
+                        src={'/assets/icons/Facebook-f.svg'}
+                        alt='Twitter icon'
+                        width={20}
+                        height={20}
+                      />
+
+                    </div>
+
+                    <div className='cursor-pointer text-white bg-[#ffffff01] h-full flex justify-center items-center w-[14.285714%]
+                                    hover:bg-[#ffffff10]'>
+
+                      ...
+
+                    </div>
+
                   </div>
 
-                  {/* Inactive Tab 1 - Icon */}
-                  <div className="cursor-pointer text-white px-5 py-2 rounded-lg">
-                    <Image
-                      src={'/assets/icons/Facebook-f.svg'}
-                      alt='Facebook logo'
-                      width={50}
-                      height={60}
-                    />
-                  </div>
+                  {/* Comptetitor Info */}
+                  <div className='w-full h-full rounded-[1.5rem] overflow-hidden bg-[#ffffff33] px-8'>
 
-                  {/* Inactive Tab 2 - Icon */}
-                  <div className="cursor-pointer text-white px-5 py-2 rounded-lg">
-                    <span>Icon 2</span>
-                  </div>
+                    {/* Numbers */}
+                    <div className='w-full h-[23%] text-white flex flex-row gap-10 items-center font-light'>
 
-                  {/* Inactive Tab 3 - Icon */}
-                  <div className="cursor-pointer text-white px-5 py-2 rounded-lg">
-                    <span>Icon 3</span>
-                  </div>
+                      {/* Followers */}
+                      <div className='flex flex-col'>
 
-                  {/* Inactive Tab 4 - Icon */}
-                  <div className="cursor-pointer text-white px-5 py-2 rounded-lg">
-                    <span>Icon 4</span>
+                        {/* Number */}
+                        <span className='text-3xl'>{socialMediaMetrics[activeTab]["followers"]}</span>
+                        {/* Title */}
+                        <span className='text-sm'>Followers</span>
+
+                      </div>
+                      {/* Engagements */}
+                      <div className='flex flex-col'>
+
+                        {/* Number */}
+                        <span className='text-3xl'>{socialMediaMetrics[activeTab]["engagements"]}</span>
+                        {/* Title */}
+                        <span className='text-sm'>Engagements</span>
+
+                      </div>
+
+                    </div>
+
+                    {/* Posting words */}
+                    <div className='w-full h-[33%] text-white'>
+
+                      <span>Brand has been posting...</span>
+
+                      {/* Words */}
+                      <div className='flex flex-wrap gap-2 mt-2'>
+
+                        {brandWords.map((word, index) => (
+
+                          <div key={index} className='bg-[#ffffff26] rounded-full px-3 py-1 text-[1rem] transition-all 
+                                        duration-200 hover:scale-105 hover:bg-[#ffffff40] cursor-pointer'>
+                            {word}
+                          </div>
+
+                        ))}
+
+                      </div>
+
+                    </div>
+
+                    {/* Commenting words */}
+                    <div className='w-full h-[33%] text-white'>
+
+                      <span>Users are commenting...</span>
+
+                      {/* Words */}
+                      <div className='flex flex-wrap gap-2 mt-2'>
+
+                        {commentWords.map((word, index) => (
+
+                          <div key={index} className='bg-[#ffffff26] rounded-full px-3 py-1 text-[1rem] transition-all 
+                                        duration-200 hover:scale-105 hover:bg-[#ffffff40] cursor-pointer'>
+                            {word}
+                          </div>
+
+                        ))}
+
+                      </div>
+
+                    </div>
+
                   </div>
 
                 </div>
