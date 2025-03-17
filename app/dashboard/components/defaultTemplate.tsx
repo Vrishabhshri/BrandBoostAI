@@ -22,7 +22,7 @@ export default function CompetitorDashboardPage() {
         <div className='absolute inset-0 bg-[#302f2f] opacity-90'></div>
 
         {/* Container of main content */}
-        <div className='relative z-10 flex flex-row'>
+        <div className='relative z-10 flex flex-row h-[calc(100vh-68px)] w-screen'>
 
           <PageChat/>
 
