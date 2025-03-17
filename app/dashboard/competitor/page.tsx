@@ -334,10 +334,11 @@ export default function CompetitorDashboardPage() {
                                     onClick={() => changeTab("twitter")}>
 
                       <Image
-                        src={'/assets/icons/Facebook-f.svg'}
+                        src={'/assets/icons/twitter.svg'}
                         alt='Twitter icon'
                         width={20}
                         height={20}
+                        className='fill-white'
                       />
 
                     </div>
