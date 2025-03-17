@@ -114,12 +114,12 @@ export default function CompetitorDashboardPage() {
           <PageChat/>
 
           {/* Page Content */}
-          <div className='w-full h-full p-7'>
+          <div className='w-full h-full p-7 flex-grow'>
 
               <div className='flex flex-row gap-12 mb-5'>
 
                 {/* Title div */}
-                <div className='w-[50%] flex flex-col'>
+                <div className='w-[400px] flex flex-col'>
 
                   <span className='text-white text-[2.5rem]'>Competitor Dashboard</span>
 
@@ -132,7 +132,7 @@ export default function CompetitorDashboardPage() {
 
                 {/* Add Competitor Button */}
                 <div className='flex jusify-center items-center text-white px-[100px] py-10 rounded-[2rem]
-                                border border-white border-dashed cursor-pointer'>
+                                border border-white border-dashed cursor-pointer w-[300px]'>
 
                   <span>Add Competitor</span>
 
@@ -143,7 +143,7 @@ export default function CompetitorDashboardPage() {
               <div className='w-full h-[74%] overflow-y-auto'>
 
                 {/* Competitor temp page */}
-                <div className='rounded-[1.5rem] w-2/5 h-[80%] overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19]'>
+                <div className='rounded-[1.5rem] w-[320px] h-[80%] overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19]'>
 
                   {/* Competitor navbar */}
                   <div className='w-full h-[12%] flex justify-center items-center'>
