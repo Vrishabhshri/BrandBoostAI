@@ -1,0 +1,29 @@
+{
+  "social": {
+    "followers": 276000000,
+    "likes": 1000000,
+    "tweets": 50000
+  },
+  "description": "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services.",
+  "hashtags": [
+    "#nike",
+    "#justdoit",
+    "#sneakers",
+    "#airmax",
+    "#sportswear"
+  ],
+  "postingWords": [
+    "sport",
+    "shoes",
+    "new",
+    "justdoit",
+    "athlete"
+  ],
+  "commentingWords": [
+    "shoes",
+    "nike",
+    "love",
+    "great",
+    "comfortable"
+  ]
+}

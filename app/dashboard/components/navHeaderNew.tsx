@@ -62,7 +62,7 @@ export default function NavHeader() {
                 </Link>
 
                 {/* Content Builder Link */}
-                <Link href="/dashboard/Content-Builder" className={`
+                <Link href="/dashboard/ContentBuilder" className={`
                                 text-[15px]
                                 flex flex-row items-center justify-center
                                 hover:text-[#ffffff80]
