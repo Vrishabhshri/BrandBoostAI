@@ -64,7 +64,7 @@ export default function Graph() {
     }, []);
 
     return (
-        <div className='rounded-[1.5rem] w-[850px] h-[90%] overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19] p-5'>
+        <div className='scale-50 rounded-3xl w-[850px] h-auto overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19] p-5'>
 
             {/* Title */}
             <div className="text-white flex flex-col">
