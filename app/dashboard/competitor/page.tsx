@@ -30,6 +30,7 @@ export default function CompetitorDashboardPage() {
   const [competitors, setCompetitors] = useState<CompanyData[]>([]);
   const [lastRefresh, setLastRefresh] = useState(new Date());
   const [activeTab, setActiveTab] = useState<string>("target");
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const brandWords = ["spring", "floral", "pizza", "garden", "collab"]
   const commentWords = ["DEI", "Costco", "shop", "collab", "love"]
@@ -111,10 +112,10 @@ export default function CompetitorDashboardPage() {
         {/* Container of main content */}
         <div className='relative z-10 flex flex-row h-[calc(100vh-68px)] w-screen'>
 
-          <PageChat/>
+          <PageChat isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
 
           {/* Page Content */}
-          <div className='w-full h-full p-7 flex-grow'>
+          <div className='w-full h-full p-7 flex-grow overflow-y-auto custom-scrollbar'>
 
               <div className='flex flex-row gap-12 mb-5'>
 

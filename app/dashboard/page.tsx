@@ -1,70 +1,77 @@
-"use client";
+"use client"
 
-import React from "react";
-import { Karla } from "next/font/google";
 import NavHeader from "./components/navHeaderNew";
-import PageChat from "./components/pageChat";
+import PageChat from "./components/pageChat"
+import { Karla } from 'next/font/google'
 import Graph from "./components/graph";
 import OverviewCard from "./components/overviewCard"; // Social Media Tabs
 import MetricSection from "./components/metricSection"; // 5 Metric Cards
 import OverviewHeader from "./components/overviewHeader";
 import RecentPosts from "./components/recentPosts";
+import './styles.css';
+import { useState } from 'react';
 
-const karla = Karla({ subsets: ["latin"] });
+const karla = Karla({ subsets: ['latin'] })
 
 export default function OverviewPage() {
-    return (
-        <div
-            className={`flex flex-col min-h-screen ${karla.className} font-medium`}
-            style={{
-                backgroundImage: "url('/Background.png')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundAttachment: "fixed"
-            }}
-        >
-            {/* Top Navigation Bar */}
-            <NavHeader />
+    const [isChatOpen, setIsChatOpen] = useState(false);
 
-            {/* Main Dashboard Layout */}
-            <div className="relative bg-[rgba(255,255,255,0.08)] backdrop-blur-lg flex flex-row w-full grow">
+  return (
+    <div className={`flex min-h-screen flex-col bg-[#302f2f] overflow-x-hidden ${karla.className} font-medium`}>
 
-                {/* Sidebar (Page Chat) */}
-                <div className="w-1/4 max-w-[320px] h-auto p-4">
-                    <PageChat />
-                </div>
+      {/* Nav container */}
+      <NavHeader/>
 
-                {/* Main Content Area */}
-                <div className="flex flex-col w-3/4 h-auto p-6">
-                    
+      {/* Main Content */}
+      <div className={`relative bg-radial-gradient
+                      flex flex-row`}>
+
+        {/* Overlay Gray */}
+        <div className='absolute inset-0 bg-[#302f2f] opacity-90'></div>
+
+        {/* Container of main content */}
+        <div className='relative z-10 flex flex-row h-[calc(100vh-68px)] w-screen'>
+
+          <PageChat isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
+
+          {/* Page Content */}
+          <div className='w-full h-full p-7 flex-grow overflow-y-auto custom-scrollbar'>
+
+                <div className="flex flex-row justify-between">
+
                     {/* Overview Title */}
                     <OverviewHeader />
 
                     {/* OverviewCard (Social Media Tabs) */}
-                    <div className="absolute top-20 right-28 w-auto justify-right w-auto mb-0">
+                    <div className="flex w-auto items-center mb-0">
                         <OverviewCard activeTab="All" handleTabClick={() => {}} />
                     </div>
 
-                    {/* Metric Section - 5 Cards in a Row */}
-                    <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-4 mt-0">
-                        <MetricSection />
-                    </div>
+                </div>
 
+                {/* Metric Section - 5 Cards in a Row */}
+                <MetricSection />
 
-                    {/* Graph & Post Performance Section */}
-                    <div className="flex flex-row gap-6 mt-2">
-                        
-                        {/* Graph Section (Already Wrapped in a Card) */}
-                        <Graph />
+                {/* Graph & Post Performance Section */}
+                <div className="flex flex-row gap-6 mt-4">
+                    
+                    {/* Graph Section (Already Wrapped in a Card) */}
+                    <Graph isChatOpen={isChatOpen} />
 
-                        {/* Recent Posts */}
-                        <div className="w-1/3 h-auto p-4 bg-[rgba(255,255,255,0.08)] backdrop-blur-lg rounded-xl">
-                            <RecentPosts posts={[]} />
-                        </div>
+                    {/* Recent Posts */}
+                    <div className="w-1/3 h-auto p-4 bg-[rgba(255,255,255,0.08)] backdrop-blur-lg rounded-xl">
+                        <RecentPosts posts={[]} />
                     </div>
                 </div>
-            </div>
+
+          </div>
+
         </div>
-    );
+
+      </div>
+
+      
+    </div>
+  )
 }
+

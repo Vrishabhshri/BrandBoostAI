@@ -32,7 +32,7 @@ const generateData = () => {
     return data.sort((a, b) => a.fullDate - b.fullDate); // Sort by full date
 };
 
-export default function Graph() {
+export default function Graph({ isChatOpen }) {
 
     const [activeTab, setActiveTab] = useState<string>("1Y");
     const tabs = ["1D", "1M", "1Y", "Max"];
@@ -64,7 +64,7 @@ export default function Graph() {
     }, []);
 
     return (
-        <div className='scale-50 rounded-3xl w-[850px] h-auto overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19] p-5'>
+        <div className='rounded-3xl w-full h-full overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19] p-5'>
 
             {/* Title */}
             <div className="text-white flex flex-col">
@@ -129,14 +129,18 @@ export default function Graph() {
             </div>
 
             {/* Legend */}
-            <div className="flex justify-center mt-4">
+            <div className="flex flex-row justify-between mt-4 w-full">
                 {categories.map((category, index) => (
                     <div key={category} className="flex items-center mx-8">
                         <div 
-                            style={{ backgroundColor: colors[index], width: '15px', height: '15px' }} 
+                            style={{ 
+                                backgroundColor: colors[index], 
+                                width: isChatOpen ? "8px" : "15px", 
+                                height: isChatOpen ? "8px" : "15px" 
+                            }} 
                             className="rounded-full mr-2"
                         ></div>
-                        <span className="text-white text-sm">{category}</span>
+                        <span className={`text-white ${isChatOpen ? "text-[0.6rem]" : "text-[0.8rem]"}`}>{category}</span>
                     </div>
                 ))}
             </div>

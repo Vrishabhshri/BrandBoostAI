@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
 import { Wand2, ArrowLeft } from 'lucide-react'
-import './styles.css';
+import '../styles.css';
 
-export default function PageChat() {
+export default function PageChat({ isOpen, setIsOpen }) {
 
     // Variables for handling view of chatbat
-    const [isOpen, setIsOpen] = useState<boolean>(false);
     const [showMessages, setShowMessages] = useState<boolean>(false);
 
     // Variables for handling inputs and chat history of page chat

@@ -18,21 +18,21 @@ const metrics: Metric[] = [
 
 const MetricsSection: React.FC = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-4 w-full m-20 mt-0">
+    <div className="flex flex-wrap justify-center gap-4 w-full justify-between">
       {metrics.map((metric, index) => (
         <div
           key={index}
-          className="flex-wrap bg-[rgba(255,255,255,0.01)] backdrop-blur p-5 rounded-3xl shadow-md w-1/4 w-min-28 text-center"
+          className="bg-[#ffffff19] backdrop-blur p-5 rounded-3xl shadow-md w-[18%] w-min-28 flex flex-col"
         >
-        <div className="flex flex-row">
-          <h3 className="text-sm  text-white">{metric.title}</h3>
+          <div className="flex">
+            <h3 className="text-sm font-light text-white">{metric.title}</h3>
           </div>
-          <div className="mt-2 flex items-center justify-center gap-2">
-            <span className="text-xl font-bold text-white">{metric.value}</span>
+          <div className="flex gap-2">
+            <span className="font-light text-white text-[1.6rem]">{metric.value}</span>
             <span
-              className={`px-2 py-1 text-sm font-semibold text-white rounded-md ${
-                metric.change > 0 ? "bg-green-500" : "bg-red-500"
-              }`}
+              className={`text-[0.8rem] font-light text-black rounded-[1.5rem] px-2
+                          w-[50px] h-[20px]
+                          ${metric.change > 0 ? "bg-green-500" : "bg-red-500"}`}
             >
               {metric.change > 0 ? `+${metric.change}%` : `${metric.change}%`}
             </span>
