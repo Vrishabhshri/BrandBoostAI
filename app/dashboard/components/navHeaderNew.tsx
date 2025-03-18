@@ -94,8 +94,8 @@ export default function NavHeader() {
 
                 </Link>
 
-                {/* Test Link */}
-                <Link href="/dashboard/test" className={`
+                {/* Test Link - useful for testing new components used for dashboard*/}
+                {/* <Link href="/dashboard/test" className={`
                                 text-[15px]
                                 flex flex-row items-center justify-center
                                 hover:text-[#ffffff80]
@@ -109,7 +109,7 @@ export default function NavHeader() {
                     />
                     <span className='ml-1 mr-1'>Test</span>
 
-                </Link>
+                </Link> */}
 
             </div>
 
