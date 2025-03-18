@@ -21,106 +21,110 @@ export default function NavHeader() {
             height={30}
             />
 
-            {/* Nav categories */}
-            <div className={`
-                            flex flex-row items-center
-                            h-10 ml-10 gap-4
-                            `}>
+            <div className="flex flex-row w-full justify-between px-6">
 
-                {/* Overview Link */}
-                <Link href="/dashboard" className={`
-                                text-[15px]
-                                flex flex-row items-center justify-center
-                                hover:text-[#ffffff80]
-                                cursor-pointer`}>
+                {/* Nav categories */}
+                <div className={`
+                                flex flex-row items-center
+                                h-10 ml-10 gap-4
+                                `}>
 
-                    <Image
-                    src={'/assets/icons/Book.svg'}
-                    alt='book user icon'
-                    width={15}
-                    height={15}
-                    />
-                    <span className='ml-1 mr-1'>Overview</span>
+                    {/* Overview Link */}
+                    <Link href="/dashboard" className={`
+                                    text-[15px]
+                                    flex flex-row items-center justify-center
+                                    hover:text-[#ffffff80]
+                                    cursor-pointer`}>
 
-                </Link>
+                        <Image
+                        src={'/assets/icons/Book.svg'}
+                        alt='book user icon'
+                        width={15}
+                        height={15}
+                        />
+                        <span className='ml-1 mr-1'>Overview</span>
 
-                {/* Competitor Dashboard Link */}
-                <Link href="/dashboard/competitor" className={`
-                                text-[15px]
-                                flex flex-row items-center justify-center
-                                hover:text-[#ffffff80]
-                                cursor-pointer`}>
+                    </Link>
 
-                    <Image
-                    src={'/assets/icons/ChessRook.svg'}
-                    alt='chess rook icon'
-                    width={15}
-                    height={15}
-                    />
-                    <span className='ml-1 mr-1'>Competitor Dashboard</span>
+                    {/* Competitor Dashboard Link */}
+                    <Link href="/dashboard/competitor" className={`
+                                    text-[15px]
+                                    flex flex-row items-center justify-center
+                                    hover:text-[#ffffff80]
+                                    cursor-pointer`}>
 
-                </Link>
+                        <Image
+                        src={'/assets/icons/ChessRook.svg'}
+                        alt='chess rook icon'
+                        width={15}
+                        height={15}
+                        />
+                        <span className='ml-1 mr-1'>Competitor Dashboard</span>
 
-                {/* Content Builder Link */}
-                <Link href="/dashboard/ContentBuilder" className={`
-                                text-[15px]
-                                flex flex-row items-center justify-center
-                                hover:text-[#ffffff80]
-                                cursor-pointer`}>
+                    </Link>
 
-                    <Image
-                    src={'/assets/icons/Magic.svg'}
-                    alt='magic icon'
-                    width={15}
-                    height={15}
-                    />
-                    <span className='ml-1 mr-1'>Content Builder</span>
+                    {/* Content Builder Link */}
+                    <Link href="/dashboard/ContentBuilder" className={`
+                                    text-[15px]
+                                    flex flex-row items-center justify-center
+                                    hover:text-[#ffffff80]
+                                    cursor-pointer`}>
 
-                </Link>
+                        <Image
+                        src={'/assets/icons/Magic.svg'}
+                        alt='magic icon'
+                        width={15}
+                        height={15}
+                        />
+                        <span className='ml-1 mr-1'>Content Builder</span>
 
-                {/* Settings Link */}
-                <Link href="/" className={`
-                                text-[15px]
-                                flex flex-row items-center justify-center
-                                hover:text-[#ffffff80]
-                                cursor-pointer`}>
+                    </Link>
 
-                    <Image
-                    src={'/assets/icons/Cog.svg'}
-                    alt='settings icon'
-                    width={15}
-                    height={15}
-                    />
-                    <span className='ml-1 mr-1'>Settings</span>
+                    {/* Settings Link */}
+                    <Link href="/" className={`
+                                    text-[15px]
+                                    flex flex-row items-center justify-center
+                                    hover:text-[#ffffff80]
+                                    cursor-pointer`}>
 
-                </Link>
+                        <Image
+                        src={'/assets/icons/Cog.svg'}
+                        alt='settings icon'
+                        width={15}
+                        height={15}
+                        />
+                        <span className='ml-1 mr-1'>Settings</span>
 
-                {/* Test Link - useful for testing new components used for dashboard*/}
-                {/* <Link href="/dashboard/test" className={`
-                                text-[15px]
-                                flex flex-row items-center justify-center
-                                hover:text-[#ffffff80]
-                                cursor-pointer`}>
+                    </Link>
 
-                    <Image
-                    src={'/assets/icons/Cog.svg'}
-                    alt='settings icon'
-                    width={15}
-                    height={15}
-                    />
-                    <span className='ml-1 mr-1'>Test</span>
+                    {/* Test Link - useful for testing new components used for dashboard*/}
+                    {/* <Link href="/dashboard/test" className={`
+                                    text-[15px]
+                                    flex flex-row items-center justify-center
+                                    hover:text-[#ffffff80]
+                                    cursor-pointer`}>
 
-                </Link> */}
+                        <Image
+                        src={'/assets/icons/Cog.svg'}
+                        alt='settings icon'
+                        width={15}
+                        height={15}
+                        />
+                        <span className='ml-1 mr-1'>Test</span>
 
-            </div>
+                    </Link> */}
 
-            <div className="bg-slate-200 p-1 rounded-lg cursor ml-4">
-                <SignedOut>
-                    <SignInButton mode="modal" />
-                </SignedOut>
-                <SignedIn>
-                    <UserButton afterSignOutUrl="/" />
-                </SignedIn>
+                </div>
+
+                <div className="p-1 rounded-lg cursor ml-4">
+                    <SignedOut>
+                        <SignInButton mode="modal" />
+                    </SignedOut>
+                    <SignedIn>
+                        <UserButton afterSignOutUrl="/" />
+                    </SignedIn>
+                </div>
+
             </div>
 
         </div>
