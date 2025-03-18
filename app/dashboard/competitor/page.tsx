@@ -262,7 +262,7 @@ export default function CompetitorDashboardPage() {
           {/* Page Content */}
           <div className='w-full h-full p-7 flex-grow overflow-y-auto custom-scrollbar'>
 
-              <div className='flex flex-row gap-12 mb-5'>
+              <div className='flex flex-row gap-12 mb-5 justify-between'>
 
                 {/* Title div */}
                 <div className='w-[400px] flex flex-col'>
