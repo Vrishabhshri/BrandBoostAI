@@ -1,11 +1,27 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
+// import styled from "styled-components";
+import { Karla } from 'next/font/google';
 import NavHeader from "./components/navHeaderNew";
-import PageChat from "./components/pageChat"
-import { Karla } from 'next/font/google'
+import PageChat from "./components/pageChat";
+// import OverviewCard from "../components/OverviewCard";
+// import Sidebar from "../components/Comp/Sidebar2";
+// import OverviewHeader from "../components/OverviewHeader";
+// import SocialMediaPerformance from "../components/SocialMediaPerformance";
 
-const karla = Karla({ subsets: ['latin'] })
+const karla = Karla({ subsets: ['latin'] });
+
+// const ContentLayout = styled.div`
+//   display: flex;
+//   margin: clamp(5px, 1.25vw, 10px);
+//   gap: clamp(20px, 5vw, 40px);
+//   align-items: flex-end;
+
+//   @media (max-width: 968px) {
+//     flex-direction: column;
+//   }
+// `;
 
 export default function OverviewPage() {
     return (
@@ -28,4 +44,3 @@ export default function OverviewPage() {
         </div>
     )
 }
-
