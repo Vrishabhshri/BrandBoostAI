@@ -143,7 +143,7 @@ export default function CompetitorDashboardPage() {
               <div className='w-full h-[74%] overflow-y-auto'>
 
                 {/* Competitor temp page */}
-                <div className='rounded-[1.5rem] w-[320px] h-[80%] overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19]'>
+                <div className='rounded-[1.5rem] w-[320px] h-[90%] overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19]'>
 
                   {/* Competitor navbar */}
                   <div className='w-full h-[12%] flex justify-center items-center'>

@@ -94,6 +94,23 @@ export default function NavHeader() {
 
                 </Link>
 
+                {/* Test Link */}
+                <Link href="/dashboard/test" className={`
+                                text-[15px]
+                                flex flex-row items-center justify-center
+                                hover:text-[#ffffff80]
+                                cursor-pointer`}>
+
+                    <Image
+                    src={'/assets/icons/Cog.svg'}
+                    alt='settings icon'
+                    width={15}
+                    height={15}
+                    />
+                    <span className='ml-1 mr-1'>Test</span>
+
+                </Link>
+
             </div>
 
         </div>
