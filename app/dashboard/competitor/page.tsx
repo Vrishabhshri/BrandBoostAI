@@ -28,7 +28,7 @@ interface CompanyData {
 
 export default function CompetitorDashboardPage() {
   const [competitors, setCompetitors] = useState<CompanyData[]>([]);
-  const [lastRefresh, setLastRefresh] = useState(new Date());
+  const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
   const [activeTab, setActiveTab] = useState<string>("target");
   const [isChatOpen, setIsChatOpen] = useState(false);
 
@@ -126,7 +126,7 @@ export default function CompetitorDashboardPage() {
 
                   <div className='flex flex-row items-center gap-2'>
                     <RotateCw className='w-4 h-4 text-white cursor-pointer' onClick={refreshDate}/>
-                    <span className='text-[#ffffff]'>Last refreshed: {lastRefresh.toISOString()}</span>
+                    <span className='text-[#ffffff]'>Last refreshed: {lastRefresh ? lastRefresh.toISOString() : 'Loading...'}</span>
                   </div>
 
                 </div>
