@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect } from "react";
 
 interface Metric {
   title: string;
@@ -9,20 +9,35 @@ interface Metric {
 }
 
 const metrics: Metric[] = [
-  { title: "Total Followers", value: "40.5M", change: 20.1 },
+  { title: "Total Followers", value: "40.4M", change: 20.1 },
   { title: "Total Engagements", value: "15M", change: 12.3 },
   { title: "Total Impressions", value: "2,015M", change: 10.5 },
   { title: "Total Reach", value: "714.5M", change: 10.5 },
   { title: "Total Mentions", value: "1M", change: -8.2 },
 ];
 
-const MetricsSection: React.FC = () => {
+const MetricsSection = ({ isChatOpen }: { isChatOpen: boolean }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkWidth = () => setIsMobile(window.innerWidth < 300);
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
+
   return (
-    <div className="flex flex-wrap justify-center gap-4 w-full justify-between">
+    <div
+      className={`grid gap-4 w-full justify-center max-h-30 ${
+        isChatOpen
+          ? "grid-cols-3 grid-rows-2" // Chat open → 3 on top, 2 on bottom (3x2 grid)
+          : "grid-cols-5" // Chat closed → 5 in a row
+      }`}
+    >
       {metrics.map((metric, index) => (
         <div
           key={index}
-          className="bg-[#ffffff19] backdrop-blur p-5 rounded-3xl shadow-md w-[18%] w-min-28 flex flex-col"
+          className="bg-[#ffffff19] backdrop-blur p-5 rounded-3xl shadow-md w-full min-w-[120px] flex flex-col"
         >
           <div className="flex">
             <h3 className="text-sm font-light text-white">{metric.title}</h3>
@@ -30,9 +45,9 @@ const MetricsSection: React.FC = () => {
           <div className="flex gap-2">
             <span className="font-light text-white text-[1.6rem]">{metric.value}</span>
             <span
-              className={`text-[0.8rem] font-light text-black rounded-[1.5rem] px-2
-                          w-[50px] h-[20px]
-                          ${metric.change > 0 ? "bg-green-500" : "bg-red-500"}`}
+              className={`text-[0.8rem] font-light text-black rounded-[1.5rem] px-2 w-[50px] h-[20px] ${
+                metric.change > 0 ? "bg-green-500" : "bg-red-500"
+              }`}
             >
               {metric.change > 0 ? `+${metric.change}%` : `${metric.change}%`}
             </span>

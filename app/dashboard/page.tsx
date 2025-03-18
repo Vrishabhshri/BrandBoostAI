@@ -43,17 +43,17 @@ export default function OverviewPage() {
                     <OverviewHeader />
 
                     {/* OverviewCard (Social Media Tabs) */}
-                    <div className="flex w-auto items-center mb-0">
+                    <div className="flex flex-col w-auto items-center mb-0">
                         <OverviewCard activeTab="All" handleTabClick={() => {}} />
                     </div>
 
                 </div>
 
                 {/* Metric Section - 5 Cards in a Row */}
-                <MetricSection />
+                  <MetricSection isChatOpen={isChatOpen} />
 
                 {/* Graph & Post Performance Section */}
-                <div className="flex flex-row gap-6 mt-4">
+                <div className="flex flex-row gap-4 mt-4">
                     
                     {/* Graph Section (Already Wrapped in a Card) */}
                     <Graph isChatOpen={isChatOpen} />
