@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function NavHeader() {
 
@@ -111,6 +112,15 @@ export default function NavHeader() {
 
                 </Link> */}
 
+            </div>
+
+            <div className="bg-slate-200 p-1 rounded-lg cursor ml-4">
+                <SignedOut>
+                    <SignInButton mode="modal" />
+                </SignedOut>
+                <SignedIn>
+                    <UserButton afterSignOutUrl="/" />
+                </SignedIn>
             </div>
 
         </div>

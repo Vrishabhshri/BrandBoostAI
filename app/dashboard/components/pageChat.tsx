@@ -3,10 +3,16 @@ import { useRef, useState, useEffect } from 'react';
 import { Wand2, ArrowLeft } from 'lucide-react'
 import '../styles.css';
 
-export default function PageChat({ isOpen, setIsOpen }) {
+interface PageChatProps {
+    isOpen: boolean;
+    setIsOpen: (open: boolean) => void;
+}
 
-    // Variables for handling view of chatbat
+export default function PageChat({ isOpen, setIsOpen }: PageChatProps) {
+
+    // Variables for handling view of chatbot
     const [showMessages, setShowMessages] = useState<boolean>(false);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
     // Variables for handling inputs and chat history of page chat
     const [messages, setMessages] = useState([
@@ -22,6 +28,22 @@ export default function PageChat({ isOpen, setIsOpen }) {
     
         setMessages([...messages, { response: input, sender: "user" }]);
         setInput("");
+    };
+
+    const handleInputSize = (e: React.MouseEvent<HTMLTextAreaElement>) => {
+        const textarea = textareaRef.current;
+        if (textarea) {
+          textarea.style.height = "auto"; // Reset height to recalculate
+          const newHeight = textarea.scrollHeight;
+          
+          if (newHeight <= 130) {
+            textarea.style.height = `${newHeight}px`; // Grow normally
+            textarea.style.overflowY = "hidden"; // No scrolling yet
+          } else {
+            textarea.style.height = `${130}px`; // Cap at 5 lines
+            textarea.style.overflowY = "auto"; // Enable scrolling
+          }
+        }
     };
 
     const showChat = () => {
@@ -119,10 +141,13 @@ export default function PageChat({ isOpen, setIsOpen }) {
                                             ${showMessages ? "opacity-1" : "opacity-0"}`}>
                                 Ask a question
                             </div>
-                            <input
-                                type="text"
+                            <textarea
+                                ref={textareaRef}
+                                rows={1}
                                 placeholder="Reply"
-                                className="flex-1 p-2 bg-transparent text-white border-none outline-none placeholder-gray-400 italic"
+                                className="flex-1 p-2 bg-transparent text-white border-none outline-none placeholder-gray-400 
+                                            italic resize-none overflow-hidden custom-scrollbar"
+                                onInput={handleInputSize}
                             />
                             <div className='bg-white rounded-full p-2 cursor-pointer' onClick={handleSendMessage}>
                                 <Image

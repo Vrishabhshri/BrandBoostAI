@@ -32,7 +32,11 @@ const generateData = () => {
     return data.sort((a, b) => a.fullDate - b.fullDate); // Sort by full date
 };
 
-export default function Graph({ isChatOpen }) {
+interface GraphProps {
+    isChatOpen: boolean
+}
+
+export default function Graph({ isChatOpen }: GraphProps) {
 
     const [activeTab, setActiveTab] = useState<string>("1Y");
     const tabs = ["1D", "1M", "1Y", "Max"];
