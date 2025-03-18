@@ -287,7 +287,6 @@ export default function CompetitorDashboardPage() {
 
               </div>
 
-              <div className='w-full h-[74%] overflow-y-auto'>
                 {/* Competitor cards container */}
                 <div className='flex flex-wrap gap-6'>
                   {/* Example card */}
@@ -357,7 +356,7 @@ export default function CompetitorDashboardPage() {
                     </div>
 
                     {/* Competitor Info */}
-                    <div className={`w-full h-[calc(100%-72px)] rounded-[1.5rem] overflow-hidden bg-[#ffffff33] px-8 py-6
+                    <div className={`w-full h-[calc(100%-72px)] rounded-[1.5rem] overflow-hidden bg-[#ffffff33] px-8 py-6 flex flex-col gap-10
                                   ${activeTab === "target" ? "rounded-tl-none" : ""}
                                   ${activeTab === "facebook" ? "rounded-tl-none" : ""}
                                   ${activeTab === "instagram" ? "rounded-tl-none" : ""}
@@ -574,7 +573,6 @@ export default function CompetitorDashboardPage() {
                     </div>
                   ))}
                 </div>
-              </div>
 
           </div>
 
