@@ -10,7 +10,7 @@ interface MetricCardProps {
 
 export function MetricCard({ title, value, className }: MetricCardProps) {
   return (
-    <div className="bg-gray-50 p-4 rounded-lg">
+    <div className="bg-gray-50 p-8 rounded-3xl">
       <h4 className="text-sm font-medium text-gray-600">{title}</h4>
       <p className={`text-lg font-semibold mt-1 ${className}`}>{value}</p>
     </div>

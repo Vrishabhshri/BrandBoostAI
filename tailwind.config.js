@@ -27,8 +27,8 @@ module.exports = {
 			'accent-spumoni': 'linear-gradient(-137.62deg, #FFB599 0%, #FFB599 28%, #56E6A8 100%)',
 		},
 		colors: {
-		  boostrLight: "rgba(255,255,255,0.08)",
-		  boostrDark: "rgba(0,0,0,0.08)",
+		  card: "hsl(5 10% 15%)",
+		  dark: "hsl(5 10% 15%)",
 		  border: "hsl(var(--border))",
 		  input: "hsl(var(--input))",
 		  ring: "hsl(var(--ring))",

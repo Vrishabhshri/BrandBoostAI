@@ -25,26 +25,26 @@ const OverviewCard = ({ activeTab, handleTabClick }: OverviewProps) => {
     const renderTabs = useCallback(
         () =>
             tabList.map((tab) => (
-                <div key={tab.value} className="flex justify-center w-[100%] h-full">
+                <div key={tab.value} className="flex  h-auto">
                     <Tabs.Trigger
                         value={tab.value}
-                        className={`flex w-full justify-center p-4 py-2 rounded-xl text-md ${activeTab === tab.value
-                                ? 'bg-[rgba(241, 2, 2, 0.4)] p-4 h-full text-white rounded-3xl'
-                                : 'bg-[rgba(0, 94, 255, 0.1)] text-white  rounded-none'
+                        className={`flex w-9  items-center justify-flex-end py-2 rounded-none text-md ${activeTab === tab.value
+                                ? 'bg-[rgba(255, 255, 255, 0.08)] p-2 h-full text-white rounded-3xl'
+                                : 'bg-[rgba(255, 255, 255, 0.2)] text-white  rounded-md'
                             }`}
                     >
                         {tab.icon ?? <p>{tab.value}</p>}
                     </Tabs.Trigger>
-                    <Separator />
+                    {/* <Separator /> */}
                 </div>
             )),
         [activeTab, tabList]
     );
 
     return (
-        <div className="flex flex-col  justify-center w-full">
+        <div className="flex flex-col  justify-flex-end w-full">
             <Tabs.Root value={activeTab} onValueChange={handleTabClick}>
-                <Tabs.List className="flex h-8 justify-center outline-none bg-[rgba(250,250,250,0.1)] rounded-2xl overflow-hidden">
+                <Tabs.List className="flex h-8 justify-center outline-none bg-[rgba(250,250,250,0.08)] rounded-2xl">
                     {renderTabs()}
                 </Tabs.List>
 

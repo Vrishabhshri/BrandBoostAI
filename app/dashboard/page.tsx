@@ -5,8 +5,8 @@ import { Karla } from "next/font/google";
 import NavHeader from "./components/navHeaderNew";
 import PageChat from "./components/pageChat";
 import Graph from "./components/graph";
-import OverviewCard from "./components/overviewCard";
-import MetricSection from "./components/metricSection";
+import OverviewCard from "./components/overviewCard"; // Social Media Tabs
+import MetricSection from "./components/metricSection"; // 5 Metric Cards
 import OverviewHeader from "./components/overviewHeader";
 import RecentPosts from "./components/recentPosts";
 
@@ -24,12 +24,12 @@ export default function OverviewPage() {
                 backgroundAttachment: "fixed"
             }}
         >
-            {/* Nav container */}
+            {/* Top Navigation Bar */}
             <NavHeader />
 
-            {/* Main Content */}
-            <div className="relative bg-boostrDark backdrop-blur-lg flex flex-row w-full grow">
-                
+            {/* Main Dashboard Layout */}
+            <div className="relative bg-[rgba(255,255,255,0.08)] backdrop-blur-lg flex flex-row w-full grow">
+
                 {/* Sidebar (Page Chat) */}
                 <div className="w-1/4 max-w-[320px] h-auto p-4">
                     <PageChat />
@@ -37,29 +37,29 @@ export default function OverviewPage() {
 
                 {/* Main Content Area */}
                 <div className="flex flex-col w-3/4 h-auto p-6">
-                    {/* Overview Header */}
+                    
+                    {/* Overview Title */}
                     <OverviewHeader />
 
-                    {/* Metrics Section */}
-                    <div className="grid grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-6 mt-6">
-                        <OverviewCard title="Total Engagements" value="15M" change="+12.3%" />
- 
+                    {/* OverviewCard (Social Media Tabs) */}
+                    <div className="absolute top-20 right-28 w-auto justify-right w-auto mb-0">
+                        <OverviewCard activeTab="All" handleTabClick={() => {}} />
                     </div>
 
-                    {/* Metric Section */}
-                    <div className="w-full h-auto p-4 mt-6">
+                    {/* Metric Section - 5 Cards in a Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-4 mt-0">
                         <MetricSection />
                     </div>
 
-                    {/* Graph & Recent Posts - Horizontally Aligned */}
-                    <div className="flex flex-row gap-6 mt-6 bg-[rgba(255,255,255,0.02)] rounded-xl p-6">
-                        {/* Graph Section (Takes 2/3 of width) */}
-                        <div className="w-2/3 h-auto p-4 bg-boostrDark rounded-xl">
-                            <Graph />
-                        </div>
 
-                        {/* Recent Posts / Post Performance (Takes 1/3 of width) */}
-                        <div className="w-1/3 h-auto p-4 bg-boostrDark rounded-xl">
+                    {/* Graph & Post Performance Section */}
+                    <div className="flex flex-row gap-6 mt-2">
+                        
+                        {/* Graph Section (Already Wrapped in a Card) */}
+                        <Graph />
+
+                        {/* Recent Posts */}
+                        <div className="w-1/3 h-auto p-4 bg-[rgba(255,255,255,0.08)] backdrop-blur-lg rounded-xl">
                             <RecentPosts posts={[]} />
                         </div>
                     </div>
