@@ -36,11 +36,11 @@ export default function CompetitorDashboardPage() {
   const commentWords = ["DEI", "Costco", "shop", "collab", "love"]
   const socialMediaMetrics = {
 
-    target: {"followers": "6.1M", "engagements": "1.5M"},
-    facebook: {"followers": "5.3M", "engagements": "770K"},
-    instagram: {"followers": "2.7M", "engagements": "650K"},
-    tiktok: {"followers": "3.9M", "engagements": "3.5M"},
-    twitter: {"followers": "4.3M", "engagements": "2.5M"}
+    target: {"followers": "6.1M", "engagements": "1.5M", "change": 20.1},
+    facebook: {"followers": "5.3M", "engagements": "770K", "change": 2.1},
+    instagram: {"followers": "2.7M", "engagements": "650K", "change": -8.1},
+    tiktok: {"followers": "3.9M", "engagements": "3.5M", "change": -3.1},
+    twitter: {"followers": "4.3M", "engagements": "2.5M", "change": 5.1}
   
   }
 
@@ -228,13 +228,22 @@ export default function CompetitorDashboardPage() {
                   <div className='w-full h-full rounded-[1.5rem] overflow-hidden bg-[#ffffff33] px-8'>
 
                     {/* Numbers */}
-                    <div className='w-full h-[23%] text-white flex flex-row gap-10 items-center font-light'>
+                    <div className='w-full h-[23%] text-white flex flex-row gap-5 items-center font-light'>
 
                       {/* Followers */}
                       <div className='flex flex-col'>
 
                         {/* Number */}
-                        <span className='text-3xl'>{socialMediaMetrics[activeTab]["followers"]}</span>
+                        <div className="flex gap-1">
+                          <span className="font-light text-white text-[1.6rem]">{socialMediaMetrics[activeTab]["followers"]}</span>
+                          <span
+                            className={`text-[0.8rem] font-light text-black rounded-[1.5rem] px-2
+                                        w-[50px] h-[20px]
+                                        ${socialMediaMetrics[activeTab]["change"] > 0 ? "bg-green-500" : "bg-red-500"}`}
+                          >
+                            {socialMediaMetrics[activeTab]["change"] > 0 ? `+${socialMediaMetrics[activeTab]["change"]}%` : `${socialMediaMetrics[activeTab]["change"]}%`}
+                          </span>
+                        </div>
                         {/* Title */}
                         <span className='text-sm'>Followers</span>
 
@@ -243,7 +252,16 @@ export default function CompetitorDashboardPage() {
                       <div className='flex flex-col'>
 
                         {/* Number */}
-                        <span className='text-3xl'>{socialMediaMetrics[activeTab]["engagements"]}</span>
+                        <div className="flex gap-1">
+                          <span className="font-light text-white text-[1.6rem]">{socialMediaMetrics[activeTab]["engagements"]}</span>
+                          <span
+                            className={`text-[0.8rem] font-light text-black rounded-[1.5rem] px-2
+                                        w-[50px] h-[20px]
+                                        ${socialMediaMetrics[activeTab]["change"] > 0 ? "bg-green-500" : "bg-red-500"}`}
+                          >
+                            {socialMediaMetrics[activeTab]["change"] > 0 ? `+${socialMediaMetrics[activeTab]["change"]}%` : `${socialMediaMetrics[activeTab]["change"]}%`}
+                          </span>
+                        </div>
                         {/* Title */}
                         <span className='text-sm'>Engagements</span>
 

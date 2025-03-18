@@ -114,7 +114,7 @@ export default function Graph({ isChatOpen }: GraphProps) {
                             tickLine={false} 
                             interval={activeTab === "1Y" || activeTab === "Max" ? 4 : 0}
                         />
-                        <YAxis domain={[0, 120]} ticks={[0, 30, 60, 90, 120]} tick={{ fill: "white" }} />
+                        <YAxis domain={[0, 120]} ticks={[0, 30, 60, 90, 120]} tick={{ fill: "white" }} axisLine={false}/>
                         <CartesianGrid vertical={false} horizontal={true} strokeDasharray="3 3" stroke="#ffffff40" />
                         <Tooltip contentStyle={{ backgroundColor: "#222", borderRadius: "5px", color: "white" }} />
                         {categories.map((category, index) => (
