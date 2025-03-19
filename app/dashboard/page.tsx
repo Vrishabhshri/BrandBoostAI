@@ -23,8 +23,7 @@ export default function OverviewPage() {
       <NavHeader/>
 
       {/* Main Content */}
-      <div className={`relative bg-radial-gradient
-                      flex flex-row`}>
+      <div className={`relative bg-[Background.png] flex flex-row`}>
 
         {/* Overlay Gray */}
         <div className='absolute inset-0 bg-[#302f2f] opacity-90'></div>
@@ -50,10 +49,11 @@ export default function OverviewPage() {
                 </div>
 
                 {/* Metric Section - 5 Cards in a Row */}
-                  <MetricSection isChatOpen={isChatOpen} />
-
+                <div className="flex ">
+                  <MetricSection />
+                </div>
                 {/* Graph & Post Performance Section */}
-                <div className="flex flex-row gap-4 mt-4">
+                <div className="flex flex-row gap-6 mt-4">
                     
                     {/* Graph Section (Already Wrapped in a Card) */}
                     <Graph isChatOpen={isChatOpen} />

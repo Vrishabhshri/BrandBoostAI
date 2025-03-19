@@ -16,8 +16,7 @@ export default function Test() {
         <NavHeader/>
 
         {/* Main Content */}
-        <div className={`relative bg-radial-gradient
-                        flex flex-row`}>
+        <div className={`relative bg-gray-200 flex flex-row`}>
 
             {/* Overlay Gray */}
             <div className='absolute inset-0 bg-[#302f2f] opacity-90'></div>
