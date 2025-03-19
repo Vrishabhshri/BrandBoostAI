@@ -70,7 +70,7 @@ const SearchModal = ({ isOpen, onClose, onSearch }: SearchModalProps) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-grey-200 rounded-lg p-6 w-[500px] relative">
+      <div className="bg-[#302f2f] rounded-lg p-6 w-[500px] relative">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-white hover:text-gray-300"
@@ -88,7 +88,7 @@ const SearchModal = ({ isOpen, onClose, onSearch }: SearchModalProps) => {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Enter company name..."
-              className="w-full px-4 py-2 bg-[#ffffff80] border border-[#ffffff33] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white"
+              className="w-full px-4 py-2 bg-[#ffffff19] border border-[#ffffff33] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white"
             />
           </div>
           
@@ -287,7 +287,6 @@ export default function CompetitorDashboardPage() {
 
               </div>
 
-<<<<<<< HEAD
               {/* Competitor cards container */}
               <div className='flex flex-wrap gap-6'>
                 {/* Example card */}
@@ -434,13 +433,6 @@ export default function CompetitorDashboardPage() {
                 {/* New competitor cards */}
                 {competitors.slice(1).map((competitor, index) => (
                   <div key={index} className='rounded-[1.5rem] w-[320px] h-[600px] overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19]'>
-=======
-              <div className='w-full h-[74%] overflow-overflow-y-hidden'>
-                {/* Competitor cards container */}
-                <div className='flex flex-wrap gap-6'>
-                  {/* Example card */}
-                  <div className='rounded-[1.5rem] w-[320px] h-[600px] overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19]'>
->>>>>>> 4b0b79e (changed background and visible scrollbar)
                     {/* Competitor navbar */}
                     <div className='w-full h-[72px] flex justify-center items-center'>
                       <div className={`cursor-pointer text-white h-full flex justify-center items-center w-1/3
@@ -657,4 +649,3 @@ export default function CompetitorDashboardPage() {
     </div>
   )
 }
-
