@@ -1,6 +1,6 @@
 "use client";
 
-import NavHeader from "../components/navHeaderNew";
+import NavHeader from "./navHeaderNew";
 import PageChat from "../components/pageChat";
 import { Karla } from "next/font/google";
 import Graph from "../components/graph";
