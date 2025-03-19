@@ -320,7 +320,7 @@ export default function CompetitorDashboardPage() {
                         src={'/assets/icons/instagram.svg'}
                         alt='Instagram icon'
                         width={20}
-                        height={20}
+                        height={20} 
                       />
                     </div>
 
