@@ -44,7 +44,7 @@ export default function CompetitorCard({ cardName, description, postingWords, co
     const [activeTab, setActiveTab] = useState(cardName)
 
     const socialMediaMetrics: SocialMediaData = {
-        target: {"followers": "6.1M", "engagements": "1.5M", "change": 20.1},
+        [cardName]: {"followers": "6.1M", "engagements": "1.5M", "change": 20.1},
         facebook: {"followers": "5.3M", "engagements": "770K", "change": 2.1},
         instagram: {"followers": "2.7M", "engagements": "650K", "change": -8.1},
         tiktok: {"followers": "3.9M", "engagements": "3.5M", "change": -3.1},
@@ -64,7 +64,7 @@ export default function CompetitorCard({ cardName, description, postingWords, co
                         border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
                         ${activeTab === cardName ? "bg-[#ffffff33] border-b-0" : "bg-[#ffffff01]"}`}
                         onClick={() => changeTab(cardName)}>
-                Target
+                {cardName}
             </div>
 
             <div className={`cursor-pointer text-white h-full flex justify-center items-center w-[14.285714%]

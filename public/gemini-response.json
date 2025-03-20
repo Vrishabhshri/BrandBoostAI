@@ -1,29 +1,29 @@
 {
   "social": {
-    "followers": 25000000,
-    "likes": 500000,
+    "followers": 60000000,
+    "likes": 1000000,
     "tweets": 20000
   },
-  "description": "SpaceX designs, manufactures and launches advanced rockets and spacecraft.",
+  "description": "Amazon is a multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
   "hashtags": [
-    "#SpaceX",
-    "#Starship",
-    "#FalconHeavy",
-    "#Dragon",
-    "#SpaceExploration"
+    "#Amazon",
+    "#AmazonPrime",
+    "#AmazonDeals",
+    "#Delivery",
+    "#CloudComputing"
   ],
   "postingWords": [
-    "launch",
-    "rocket",
-    "space",
-    "mission",
-    "orbit"
+    "deals",
+    "prime",
+    "shipping",
+    "new",
+    "shop"
   ],
   "commentingWords": [
-    "SpaceX",
-    "Elon",
-    "Musk",
-    "rocket",
-    "launch"
+    "delivery",
+    "order",
+    "service",
+    "price",
+    "amazon"
   ]
 }
