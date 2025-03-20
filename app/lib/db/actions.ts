@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { createCheckoutSession, createCustomerPortalSession } from '../payments/stripe';
-import { withTeam } from 'app/lib/auth/middleware';
+import { withTeam } from '../auth/middleware';
 
 export const checkoutAction = withTeam(async (formData, team) => {
   const priceId = formData.get('priceId') as string;

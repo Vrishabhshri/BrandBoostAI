@@ -10,6 +10,7 @@ import OverviewHeader from "./components/overviewHeader";
 import RecentPosts from "./components/recentPosts";
 import './styles.css';
 import { useState, useEffect } from 'react';
+import { useUser } from '@clerk/nextjs';
 
 const karla = Karla({ subsets: ['latin'] })
 
@@ -88,6 +89,8 @@ export default function OverviewPage() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("All");
   const [posts, setPosts] = useState(samplePosts);
+  const { user } = useUser();
+  const userName = user?.firstName || user?.username || 'there';
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -115,6 +118,13 @@ export default function OverviewPage() {
 
           {/* Page Content */}
           <div className='w-full h-full p-7 flex-grow overflow-y-auto custom-scrollbar'>
+            {/* Welcome Section */}
+            <div className="mb-8 bg-[rgba(255,255,255,0.08)] backdrop-blur-lg rounded-xl p-6 border border-[rgba(255,255,255,0.1)]">
+              <h1 className="text-3xl font-light text-white">
+                Welcome back, <span className="font-medium">{userName}</span>
+              </h1>
+            </div>
+
             <div className="flex flex-row justify-between">
               {/* Overview Title */}
               <OverviewHeader />

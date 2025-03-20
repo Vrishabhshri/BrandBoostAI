@@ -1,29 +1,29 @@
 {
   "social": {
-    "followers": 277000000,
-    "likes": 1000000,
-    "tweets": 5000
+    "followers": 11900000,
+    "likes": 500000,
+    "tweets": 227000
   },
-  "description": "Nike, Inc. is an American multinational corporation that designs, develops, manufactures, markets, and sells footwear, apparel, equipment, accessories, and services worldwide.",
+  "description": "Target is a general merchandise retailer offering a wide assortment of products ranging from apparel and accessories to home goods and groceries.",
   "hashtags": [
-    "#nike",
-    "#justdoit",
-    "#airmax",
-    "#sneakers",
-    "#sportswear"
+    "#Target",
+    "#TargetStyle",
+    "#DealOfTheDay",
+    "#TargetFinds",
+    "#GiftIdeas"
   ],
   "postingWords": [
-    "sport",
+    "Target",
     "new",
-    "shoes",
-    "justdoit",
-    "nike"
+    "style",
+    "deals",
+    "shop"
   ],
   "commentingWords": [
-    "shoes",
-    "nike",
     "love",
-    "great",
-    "comfortable"
+    "Target",
+    "cute",
+    "price",
+    "store"
   ]
 }
