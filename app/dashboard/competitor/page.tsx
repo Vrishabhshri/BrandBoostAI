@@ -6,6 +6,7 @@ import PageChat from "../components/pageChat"
 import Image from 'next/image';
 import { RotateCw, X } from 'lucide-react'
 import { Karla } from 'next/font/google'
+import CompetitorCard from '../components/competitor-card-new';
 
 const karla = Karla({ subsets: ['latin'] })
 
@@ -318,153 +319,12 @@ export default function CompetitorDashboardPage() {
 
               </div>
 
-              <div className='w-full h-[74%] overflow-y-auto'>
+              <div className='w-full h-[74%]'>
                 {/* Competitor cards container */}
                 <div className='flex flex-wrap gap-6'>
-                  {/* Example card */}
-                  <div className='rounded-[1.5rem] w-[320px] h-[600px] overflow-hidden border-2 border-[#ffffff19] bg-[#ffffff19]'>
-                    {/* Competitor navbar */}
-                    <div className='w-full h-[72px] flex justify-center items-center'>
-                      <div className={`cursor-pointer text-white h-full flex justify-center items-center w-1/3
-                                  border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
-                                  ${activeTabs["Target"] === "target" ? "bg-[#ffffff33] border-b-0" : "bg-[#ffffff01]"}`}
-                                  onClick={() => changeTab("target", "Target")}>
-                        Target
-                      </div>
-
-                      <div className={`cursor-pointer text-white h-full flex justify-center items-center w-[14.285714%]
-                                  border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
-                                  ${activeTabs["Target"] === "facebook" ? "bg-[#ffffff33] border-b-0" : "bg-[#ffffff01]"}`}
-                                  onClick={() => changeTab("facebook", "Target")}>
-                        <Image
-                          src={'/assets/icons/Facebook-f.svg'}
-                          alt='Facebook icon'
-                          width={20}
-                          height={20}
-                        />
-                      </div>
-
-                      <div className={`cursor-pointer text-white h-full flex justify-center items-center w-[14.285714%]
-                                  border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
-                                  ${activeTabs["Target"] === "instagram" ? "bg-[#ffffff33] border-b-0" : "bg-[#ffffff01]"}`}
-                                  onClick={() => changeTab("instagram", "Target")}>
-                        <Image
-                          src={'/assets/icons/instagram.svg'}
-                          alt='Instagram icon'
-                          width={20}
-                          height={20}
-                        />
-                      </div>
-
-                      <div className={`cursor-pointer text-white h-full flex justify-center items-center w-[14.285714%]
-                                  border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
-                                  ${activeTabs["Target"] === "tiktok" ? "bg-[#ffffff33] border-b-0" : "bg-[#ffffff01]"}`}
-                                  onClick={() => changeTab("tiktok", "Target")}>
-                        <Image
-                          src={'/assets/icons/tiktok.png'}
-                          alt='Tiktok icon'
-                          width={20}
-                          height={20}
-                        />
-                      </div>
-
-                      <div className={`cursor-pointer text-white h-full flex justify-center items-center w-[14.285714%]
-                                  border-r-2 border-[#ffffff19] hover:bg-[#ffffff33]
-                                  ${activeTabs["Target"] === "twitter" ? "bg-[#ffffff33] border-b-0" : "bg-[#ffffff01]"}`}
-                                  onClick={() => changeTab("twitter", "Target")}>
-                        <Image
-                          src={'/assets/icons/twitter.svg'}
-                          alt='Twitter icon'
-                          width={20}
-                          height={20}
-                          className='fill-white'
-                        />
-                      </div>
-
-                      <div className='cursor-pointer text-white bg-[#ffffff01] h-full flex justify-center items-center w-[14.285714%]
-                                  hover:bg-[#ffffff10]'>
-                        ...
-                      </div>
-                    </div>
-
-                    {/* Competitor Info */}
-                    <div className={`w-full h-[calc(100%-72px)] rounded-[1.5rem] overflow-hidden bg-[#ffffff33] px-8 py-6
-                                  ${activeTabs["Target"] === "target" ? "rounded-tl-none" : ""}
-                                  ${activeTabs["Target"] === "facebook" ? "rounded-tl-none" : ""}
-                                  ${activeTabs["Target"] === "instagram" ? "rounded-tl-none" : ""}
-                                  ${activeTabs["Target"] === "tiktok" ? "rounded-tl-none" : ""}
-                                  ${activeTabs["Target"] === "twitter" ? "rounded-tl-none" : ""}`}>
-                      {/* Numbers */}
-                      <div className='w-full h-[20%] text-white flex flex-row gap-5 items-center font-light'>
-                        {/* Followers */}
-                        <div className='flex flex-col'>
-                          <div className="flex gap-1">
-                            <span className="font-light text-white text-[1.6rem]">
-                              {getCompetitorMetrics(competitors[0], activeTabs["Target"]).followers}
-                            </span>
-                            <span className={`text-[0.8rem] font-light text-black rounded-[1.5rem] px-2 w-[50px] h-[20px]
-                                      ${getCompetitorMetrics(competitors[0], activeTabs["Target"]).change > 0 ? "bg-green-500" : "bg-red-500"}`}>
-                              {getCompetitorMetrics(competitors[0], activeTabs["Target"]).change > 0 ? 
-                                `+${getCompetitorMetrics(competitors[0], activeTabs["Target"]).change}%` : 
-                                `${getCompetitorMetrics(competitors[0], activeTabs["Target"]).change}%`}
-                            </span>
-                          </div>
-                          <span className='text-sm'>Followers</span>
-                        </div>
-
-                        {/* Engagements */}
-                        <div className='flex flex-col'>
-                          <div className="flex gap-1">
-                            <span className="font-light text-white text-[1.6rem]">
-                              {getCompetitorMetrics(competitors[0], activeTabs["Target"]).engagements}
-                            </span>
-                            <span className={`text-[0.8rem] font-light text-black rounded-[1.5rem] px-2 w-[50px] h-[20px]
-                                      ${getCompetitorMetrics(competitors[0], activeTabs["Target"]).change > 0 ? "bg-green-500" : "bg-red-500"}`}>
-                              {getCompetitorMetrics(competitors[0], activeTabs["Target"]).change > 0 ? 
-                                `+${getCompetitorMetrics(competitors[0], activeTabs["Target"]).change}%` : 
-                                `${getCompetitorMetrics(competitors[0], activeTabs["Target"]).change}%`}
-                            </span>
-                          </div>
-                          <span className='text-sm'>Engagements</span>
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      <div className='w-full h-[15%] text-white mb-4'>
-                        <p className="text-sm">{competitors[0]?.description || "Loading..."}</p>
-                      </div>
-
-                      {/* Posting words */}
-                      <div className='w-full h-[32%] text-white mb-4'>
-                        <span className="text-sm font-medium">Brand has been posting...</span>
-                        <div className='flex flex-wrap gap-2 mt-2'>
-                          {competitors[0]?.postingWords?.map((word, idx) => (
-                            <div 
-                              key={idx} 
-                              className='bg-[#ffffff26] rounded-full px-3 py-1 text-[0.9rem] transition-all duration-200 hover:scale-105 hover:bg-[#ffffff40] cursor-pointer'
-                            >
-                              {word}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Commenting words */}
-                      <div className='w-full h-[32%] text-white'>
-                        <span className="text-sm font-medium">Users are commenting...</span>
-                        <div className='flex flex-wrap gap-2 mt-2'>
-                          {competitors[0]?.commentingWords?.map((word, idx) => (
-                            <div 
-                              key={idx} 
-                              className='bg-[#ffffff26] rounded-full px-3 py-1 text-[0.9rem] transition-all duration-200 hover:scale-105 hover:bg-[#ffffff40] cursor-pointer'
-                            >
-                              {word}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  
+                  <CompetitorCard cardName={competitors[0].name.toLowerCase()} description={competitors[0].description} 
+                                postingWords={competitors[0].postingWords} commentingWords={competitors[0].commentingWords} />
 
                   {/* New competitor cards */}
                   {competitors.slice(1).map((competitor, index) => (

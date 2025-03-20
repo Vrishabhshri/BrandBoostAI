@@ -5,8 +5,8 @@ interface CardProps {
 
     cardName: string;
     description: string;
-    postingWords: string[];
-    commentingWords: string[];
+    postingWords: string[] | undefined;
+    commentingWords: string[] | undefined;
 
 }
 
@@ -39,7 +39,7 @@ interface SocialMediaData {
     [key: string]: SocialMediaMetrics;
 }
 
-export default function CompetitorCardPage({ cardName, description, postingWords, commentingWords }: CardProps) {
+export default function CompetitorCard({ cardName, description, postingWords, commentingWords }: CardProps) {
 
     const [activeTab, setActiveTab] = useState(cardName)
 
@@ -169,7 +169,7 @@ export default function CompetitorCardPage({ cardName, description, postingWords
             <div className='w-full h-[32%] text-white mb-4'>
                 <span className="text-sm font-medium">Brand has been posting...</span>
                 <div className='flex flex-wrap gap-2 mt-2'>
-                {postingWords.map((word: string, idx: number) => (
+                {postingWords?.map((word: string, idx: number) => (
                     <div 
                     key={idx} 
                     className='bg-[#ffffff26] rounded-full px-3 py-1 text-[0.9rem] transition-all duration-200 hover:scale-105 hover:bg-[#ffffff40] cursor-pointer'
@@ -184,7 +184,7 @@ export default function CompetitorCardPage({ cardName, description, postingWords
             <div className='w-full h-[32%] text-white'>
                 <span className="text-sm font-medium">Users are commenting...</span>
                 <div className='flex flex-wrap gap-2 mt-2'>
-                {commentingWords.map((word: string, idx: number) => (
+                {commentingWords?.map((word: string, idx: number) => (
                     <div 
                     key={idx} 
                     className='bg-[#ffffff26] rounded-full px-3 py-1 text-[0.9rem] transition-all duration-200 hover:scale-105 hover:bg-[#ffffff40] cursor-pointer'
