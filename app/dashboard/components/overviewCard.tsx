@@ -1,22 +1,15 @@
 "use client";
 
-import { useCallback, useMemo, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useCallback, useMemo } from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaTiktok } from "react-icons/fa";
-import { Separator } from "@/components/ui/separator";
 import * as Tabs from "@radix-ui/react-tabs";
 
-const OverviewCard = () => {
-  const router = useRouter();
-  const searchParams = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
-  const activeTab = searchParams.get("tab") || "All";
+interface OverviewCardProps {
+  activeTab: string;
+  handleTabClick: (tab: string) => void;
+}
 
-  const handleTabClick = (tab: string) => {
-    const params = new URLSearchParams(window.location.search);
-    params.set("tab", tab);
-    router.push(`?${params.toString()}`, { scroll: false });
-  };
-
+const OverviewCard = ({ activeTab, handleTabClick }: OverviewCardProps) => {
   const tabList = useMemo(
     () => [
       { value: "All", label: "All", icon: null },
@@ -39,12 +32,13 @@ const OverviewCard = () => {
                 ? "bg-[rgba(250,250,250,0.4)] p-2 h-full text-white border-black rounded-none"
                 : "bg-[rgb(0, 0, 0)] text-white border-black rounded-none"
             }`}
+            onClick={() => handleTabClick(tab.value)}
           >
             {tab.icon ?? <p>{tab.value}</p>}
           </Tabs.Trigger>
         </div>
       )),
-    [activeTab, tabList]
+    [activeTab, tabList, handleTabClick]
   );
 
   return (
@@ -53,13 +47,6 @@ const OverviewCard = () => {
         <Tabs.List className="flex h-8 justify-center outline-none bg-[rgba(250,250,250,0.2)] rounded-3xl overflow-hidden">
           {renderTabs()}
         </Tabs.List>
-
-        {/* Tabs Content */}
-        {tabList.map((tab) => (
-          <Tabs.Content key={tab.value} value={tab.value}>
-            {/* Content for each tab */}
-          </Tabs.Content>
-        ))}
       </Tabs.Root>
     </div>
   );

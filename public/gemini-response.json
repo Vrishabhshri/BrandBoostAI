@@ -1,29 +1,29 @@
 {
   "social": {
-    "followers": 60000000,
+    "followers": 277000000,
     "likes": 1000000,
-    "tweets": 50000
+    "tweets": 5000
   },
-  "description": "Amazon is a multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
+  "description": "Nike, Inc. is an American multinational corporation that designs, develops, manufactures, markets, and sells footwear, apparel, equipment, accessories, and services worldwide.",
   "hashtags": [
-    "#Amazon",
-    "#AmazonPrime",
-    "#deals",
-    "#delivery",
-    "#tech"
+    "#nike",
+    "#justdoit",
+    "#airmax",
+    "#sneakers",
+    "#sportswear"
   ],
   "postingWords": [
-    "deals",
-    "prime",
+    "sport",
     "new",
-    "shop",
-    "save"
+    "shoes",
+    "justdoit",
+    "nike"
   ],
   "commentingWords": [
-    "delivery",
-    "order",
-    "service",
-    "price",
-    "amazon"
+    "shoes",
+    "nike",
+    "love",
+    "great",
+    "comfortable"
   ]
 }

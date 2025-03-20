@@ -8,15 +8,12 @@ interface Metric {
   change: number;
 }
 
-const metrics: Metric[] = [
-  { title: "Total Followers", value: "40.4M", change: 20.1 },
-  { title: "Total Engagements", value: "15M", change: 12.3 },
-  { title: "Total Impressions", value: "2,015M", change: 10.5 },
-  { title: "Total Reach", value: "714.5M", change: 10.5 },
-  { title: "Total Mentions", value: "1M", change: -8.2 },
-];
+interface MetricSectionProps {
+  isChatOpen: boolean;
+  metrics: Metric[];
+}
 
-const MetricsSection = ({ isChatOpen }: { isChatOpen: boolean }) => {
+const MetricSection = ({ isChatOpen, metrics }: MetricSectionProps) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -58,4 +55,4 @@ const MetricsSection = ({ isChatOpen }: { isChatOpen: boolean }) => {
   );
 };
 
-export default MetricsSection;
+export default MetricSection;

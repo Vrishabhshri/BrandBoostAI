@@ -15,7 +15,7 @@ interface TwitterData {
 export async function POST(request: Request) {
   try {
     const twitterData: TwitterData = await request.json();
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `Analyze these tweets from ${twitterData.name}:
     ${twitterData.tweets.map((t: Tweet) => t.text).join('\n')}

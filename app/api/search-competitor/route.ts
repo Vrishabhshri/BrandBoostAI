@@ -62,7 +62,7 @@ export async function GET(req: Request) {
                         "likes": 50000,
                         "tweets": 10000
                     },
-                    "description": "A brief description of the company",
+                    "description": "A brief description of the company in 1-2 sentences",
                     "hashtags": ["#hashtag1", "#hashtag2"],
                     "postingWords": ["word1", "word2", "word3", "word4", "word5"],
                     "commentingWords": ["word1", "word2", "word3", "word4", "word5"]

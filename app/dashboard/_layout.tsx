@@ -45,7 +45,7 @@ export default function DashboardLayout({
       <div className={`fixed top-0 left-0 h-full w-64 bg-zinc-900 border-r border-zinc-800 transition-transform duration-300 ease-in-out ${
         isDashboardOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
-        <DashboardSidebar />
+        {/* <DashboardSidebar /> */}
       </div>
 
       {/* Chat Sidebar */}
