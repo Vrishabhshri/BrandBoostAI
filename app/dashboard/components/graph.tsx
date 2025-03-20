@@ -50,6 +50,10 @@ export default function Graph({ isChatOpen }: GraphProps) {
     const tabs = ["1D", "1M", "1Y", "Max"] as const;
     const [chartData, setChartData] = useState<DataPoint[]>([]);
 
+    const [activeTab, setActiveTab] = useState<string>("1M");
+    const tabs = ["1D", "1M", "1Y", "Max"];
+    const [chartData, setChartData] = useState([]);
+
     const filteredData = (): DataPoint[] => {
         if (!chartData.length) return [];
     
