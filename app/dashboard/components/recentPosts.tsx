@@ -42,9 +42,9 @@ const RecentPosts = ({ posts }: RecentPostsProps) => {
                 />
               </div>
 
-{/* Post Title & Details */}
+            {/* Post Title & Details
               <div>
-            {/* Sentiment Analysis Badge */}
+            Sentiment Analysis Badge
                 <h4 className="flex flex-row text-sm font-medium text-gray-100">{post.title}</h4>
             <span
               className={`text-[0.6rem] font-semibold text-black rounded-[1.5rem] px-2 w-[5rem] h-[1rem] flex flex-row items-center justify-center ${
@@ -56,7 +56,7 @@ const RecentPosts = ({ posts }: RecentPostsProps) => {
               {post.sentimentValue}
             </span>
                 <p className="text-xs text-gray-300 font-light">{post.details}</p>
-              </div>
+              </div> */}
             </div>
           </div>
         ))}
