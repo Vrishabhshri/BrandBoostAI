@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Facebook, Twitter } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import Toast from "@/components/ui/Toast";
+import Toast from "../../components/ui/Toast"
 import { Provider } from '@supabase/supabase-js';
 
 const Login = () => {
